@@ -64,4 +64,14 @@ const Book = db.define("book", {
   },
 });
 
+//could possibly create a class method that returns all books that have a particular genre
+// Book.getGenreBooks = function(genre){
+
+// }
+
+//class method that returns true/false if a book has a particular genre
+Book.prototype.hasGenre = function(genre){
+  return this.genres.includes(genre);
+}
+
 module.exports = Book;
