@@ -1,0 +1,65 @@
+body {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.all-books {
+  width: 10vw;
+}
+
+.book-small {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 100px;
+  margin: 0px 50px 0px 50px;
+}
+
+.book-info {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 10vw;
+  margin-bottom: 1vh;
+}
+
+.user-table table,
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+tr:nth-child(even) { 
+  background: rgb(228, 226, 226); 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: lavender;
+}
