@@ -66,7 +66,11 @@ const Book = db.define("book", {
 
 //could possibly create a class method that returns all books that have a particular genre
 // Book.getGenreBooks = function(genre){
-
+//  return Book.findAll({
+  //where: {
+    //
+  //}
+//})
 // }
 
 //class method that returns true/false if a book has a particular genre
