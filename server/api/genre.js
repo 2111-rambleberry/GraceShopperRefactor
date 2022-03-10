@@ -3,7 +3,7 @@ const {
   models: { Book },
 } = require("../db");
 //const { Op } = require('@sequelize/core');
-const { Sequelize, Op } = require('Sequelize')
+const { Op } = require('Sequelize')
 module.exports = router;
 
 //This is a helper function that will sort through the book->genre object to see if the particular genre is included in the object
@@ -17,7 +17,7 @@ module.exports = router;
 // //mounted on api/genre
 router.get('/:genre', async(req, res, next) => {
     try{
-        const genre = String(req.params.genre);
+        const genre = req.params.genre;
         const genreBook = await Book.findAll({
             where: {
                     genres:{
@@ -25,7 +25,8 @@ router.get('/:genre', async(req, res, next) => {
                 }
             }
         });
-        console.log('The genre url', genre)
+        console.log('The genre url', typeof genre)
+        console.log('stringified genre', typeof String(genre))
         res.json(genreBook)
     }catch(e){
         next(e)
