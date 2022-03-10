@@ -3,7 +3,7 @@ const {
   models: { Book },
 } = require("../db");
 //const { Op } = require('@sequelize/core');
-const { Op } = require('Sequelize')
+const { Op } = require('sequelize')
 module.exports = router;
 
 //This is a helper function that will sort through the book->genre object to see if the particular genre is included in the object
