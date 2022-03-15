@@ -21,11 +21,11 @@ router.get('/:genre', async(req, res, next) => {
         const genreBook = await Book.findAll({
             where: {
                     genres:{
-                        [Op.contains]: ["'Fiction'"]
+                        [Op.contains]: [`'${genre}'`]
                 }
             }
         });
-        console.log('The genre url', typeof genre)
+        console.log('The genre url', genre)
         console.log('stringified genre', typeof String(genre))
         res.json(genreBook)
     }catch(e){
