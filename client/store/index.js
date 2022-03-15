@@ -10,6 +10,7 @@ import cartReducer from "./cart"
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import usersReducer from "./users";
+import genreReducer from "./genre"
 
 //add reducers here! Don't forget to import!
 
@@ -21,7 +22,8 @@ const reducer = combineReducers({
   usersReducer,
   stockReducer,
   stockItemReducer,
-  cartReducer
+  cartReducer,
+  genreReducer
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
