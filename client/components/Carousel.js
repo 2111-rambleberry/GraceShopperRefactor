@@ -19,31 +19,25 @@ const GenreCarousel = () => {
 
     console.log(books)
     return(
-        <div>
+        <>
             <Carousel>
                 {books.map((book) =>
-                    
-                    <Link to={`/books/${book.id}`}>
-                        
-                        <Carousel.Item key = {book.id}>
-                        <div className = 'col-6 col-md-2'>
+                    <Link to={`/books/${book.id}`} key={book.id}>
+                        <Carousel.Item >
                             <img
                             className="d-block w-30"
-                            src = {book.coverimg}
+                            src={book.coverimg}
                             alt="First slide"
                             />
                             <Carousel.Caption>
                             <h3>{book.title}</h3>
                             <p>{book.format}</p>
                             </Carousel.Caption> 
-                        </div>
                         </Carousel.Item>
-                       
                     </Link>
-                    
                 )}
             </Carousel>
-        </div>
+        </>
     )
 }
 
