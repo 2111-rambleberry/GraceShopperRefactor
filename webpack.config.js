@@ -20,13 +20,6 @@ module.exports = {
           presets: ["@babel/preset-react"],
         },
       },
-      {
-        test: /\.(sass|css)$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ],
-      }
     ],
   },
 };

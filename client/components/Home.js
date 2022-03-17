@@ -1,5 +1,4 @@
 import React from "react";
-
 import Books from "./AllBooks";
 import { useSelector } from "react-redux";
 import GenreCarousel from "./Carousel"
