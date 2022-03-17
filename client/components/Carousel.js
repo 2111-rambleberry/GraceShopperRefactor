@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGenre } from "../store/genre";
-import Carousel from 'react-bootstrap/Carousel'
+import { Carousel, CarouselItem } from "react-bootstrap";
 
 //For this element the genre would get passed through 
 const GenreCarousel = () => {
@@ -19,31 +19,25 @@ const GenreCarousel = () => {
 
     console.log(books)
     return(
-        <div>
-            <Carousel>
-                {books.map((book) =>
-                    
-                    <Link to={`/books/${book.id}`}>
-                        
-                        <Carousel.Item key = {book.id}>
-                        <div className = 'col-6 col-md-2'>
-                            <img
-                            className="d-block w-30"
-                            src = {book.coverimg}
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            <h3>{book.title}</h3>
-                            <p>{book.format}</p>
-                            </Carousel.Caption> 
-                        </div>
-                        </Carousel.Item>
-                       
-                    </Link>
-                    
+        <>
+        {/* <Carousel>
+                {books.map((book) =>                                       
+                    <Carousel.Item key = {book.id}>
+                    <div className = 'col-6 col-md-2'>
+                        <img
+                        className="d-block w-30"
+                        src = {book.coverimg}
+                        alt="First slide"
+                        />
+                        <Carousel.Caption>
+                        <h3>{book.title}</h3>
+                        <p>{book.format}</p>
+                        </Carousel.Caption> 
+                    </div>
+                    </Carousel.Item>    
                 )}
-            </Carousel>
-        </div>
+            </Carousel> */}
+        </>
     )
 }
 

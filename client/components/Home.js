@@ -1,8 +1,7 @@
 import React from "react";
-
 import Books from "./AllBooks";
 import { useSelector } from "react-redux";
-import GenreCarousel from "./Carousel"
+import HomeCarousel from "./HomeCarousel"
 /**
  * COMPONENT
  */
@@ -11,7 +10,7 @@ const Home = () => {
 
   return (
     <div>
-      <GenreCarousel />
+      <HomeCarousel />
       {username? (<h1>Hello {username}!</h1> ): (<h1>Hello Book Shopper!</h1>)}
       <Books />
     </div>

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBooks } from "../store/books";
+import {Card, Button } from "react-bootstrap";
 
 const Books = () => {
   //gives access to dispatch thunks directly
@@ -17,15 +18,39 @@ const Books = () => {
   }, []);
 
   return (
+    // <>
+    // <div className="book-small">
+    //   {books.map((book) => {
+    //       {
+    //         if (book.bought === false)
+    //           return (
+    //             <Card style={{ width: '10rem' }} bg="light" key={book.id}>
+    //               <Card.Img variant="top" src={book.coverimg} />
+    //               <Card.Body>
+    //                 {/* <Card.Title>{book.title}</Card.Title>
+    //                 <Card.Subtitle className="mb-2 text-muted">{book.author}</Card.Subtitle> */}
+    //                 <Button variant="primary">Add to Cart</Button>
+    //               </Card.Body>
+    //             </Card>
+    //               // <Link to={`/books/${book.id}`}>
+    //               //   <img className="book-cover all-books"  />
+    //               // </Link>
+    //           );
+    //       }
+    //     })}
+    //   </div>
+    // </>
     <div className="book-small">
       {books.map((book) => {
         {
           if (book.bought === false)
             return (
               <div className="book-info" key={book.id}>
-                <Link to={`/books/${book.id}`}>
-                  <img className="book-cover all-books" src={book.coverimg} />
-                </Link>
+                <div className="shadow-lg">
+                  <Link to={`/books/${book.id}`}>
+                    <img className="book-cover all-books" src={book.coverimg} />
+                  </Link>
+                </div>
               </div>
             );
         }
