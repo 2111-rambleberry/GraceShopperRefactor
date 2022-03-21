@@ -14,7 +14,7 @@ const GenreCarousel = () => {
     const books = useSelector((state) => state.genreReducer);
 
     useEffect(() => {
-        dispatch(fetchGenre('Vampires'));
+        dispatch(fetchGenre('Fiction'));
     }, [])
 
     const carouselGroup = (books, n) => books.reduce((acc, book, i) => {
@@ -23,7 +23,7 @@ const GenreCarousel = () => {
         return acc;
     }, []);
 
-    const groups = carouselGroup(books, 3)
+    const groups = carouselGroup(books, 6)
 
     // const BookGroup = ({items}) => {
     //     items.map((item) => {
