@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGenre } from "../store/genre";
-import { Carousel, CarouselItem } from "react-bootstrap";
+import { Carousel, CarouselItem, Row, Col } from "react-bootstrap";
 
 //For this element the genre would get passed through 
 const GenreCarousel = () => {
@@ -14,31 +14,106 @@ const GenreCarousel = () => {
     const books = useSelector((state) => state.genreReducer);
 
     useEffect(() => {
-        dispatch(fetchGenre('Westerns'));
+        dispatch(fetchGenre('Vampires'));
     }, [])
 
-    console.log(books)
+    const carouselGroup = (books, n) => books.reduce((acc, book, i) => {
+        const idx = Math.floor(i / n);
+        acc[idx] = [...(acc[idx] || []), book.coverimg];
+        return acc;
+    }, []);
+
+    const groups = carouselGroup(books, 3)
+
+    // const BookGroup = ({items}) => {
+    //     items.map((item) => {
+    //         return (
+    //             <div>
+
+    //             </div>
+    //         )
+    //     })
+        
+    // }
+
+
     return(
         <>
-        {/* <Carousel>
-                {books.map((book) =>                                       
-                    <Carousel.Item key = {book.id}>
-                    <div className = 'col-6 col-md-2'>
+        <Carousel>
+            {groups.map((group) => {
+                return ( <CarouselItem key={group}>
+                    <Row>
+                        <Col>
                         <img
-                        className="d-block w-30"
-                        src = {book.coverimg}
+                        className="book-cover carousel-books"
+                        src={group[0]}
                         alt="First slide"
                         />
-                        <Carousel.Caption>
-                        <h3>{book.title}</h3>
-                        <p>{book.format}</p>
-                        </Carousel.Caption> 
-                    </div>
-                    </Carousel.Item>    
-                )}
-            </Carousel> */}
+                        </Col>
+                        <Col>
+                        <img
+                        className="book-cover carousel-books"
+                        src={group[1]}
+                        alt="First slide"
+                        />
+                        </Col>
+                        <Col>
+                        <img
+                        className="book-cover carousel-books"
+                        src={group[2]}
+                        alt="First slide"
+                        />
+                        </Col>
+                    </Row>
+                </CarouselItem>
+            )})}
+            {/* <CarouselSlide items={books}/> */}
+        </Carousel>
+            
         </>
     )
 }
 
 export default GenreCarousel;
+
+
+
+
+{/* <>
+<CarouselSlide items={books}></CarouselSlide>
+<Carousel>
+    
+        <Carousel.Item>
+                <CarouselSlide items={books}>
+                    {books.map((book) => {
+                        <img
+                        className="d-block w-30"
+                        src = {book.coverimg}
+                        alt="First slide"
+                        />
+                    })}
+                </CarouselSlide>
+            <Col>
+            <img
+            className="d-block w-30"
+            src = {book.coverimg}
+            alt="First slide"
+            />
+            </Col>
+            <Col>
+            <img
+            className="d-block w-30"
+            src = {book.coverimg}
+            alt="First slide"
+            />
+            </Col>
+            <Col>
+            <img
+            className="d-block w-30"
+            src = {book.coverimg}
+            alt="First slide"
+            />
+            </Col>
+        </Carousel.Item>
+</Carousel>
+</> */}

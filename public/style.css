@@ -29,6 +29,11 @@ nav {
   width: 10vw;
 }
 
+.carousel-books {
+  justify-content: center;
+  height: 300px
+}
+
 .book-small {
   display: flex;
   flex-wrap: wrap;
@@ -36,6 +41,7 @@ nav {
   gap: 100px;
   margin: 0px 50px 0px 50px;
 }
+
 
 .book-info {
   display: flex;
