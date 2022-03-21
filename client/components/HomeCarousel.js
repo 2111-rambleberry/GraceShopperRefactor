@@ -17,7 +17,7 @@ const HomeCarousel = () => {
         dispatch(fetchGenre('Westerns'));
     }, [])
 
-    console.log(books)
+    // console.log(books)
     return(
         <>
         <Carousel indicators={false} controls={false} >                                  

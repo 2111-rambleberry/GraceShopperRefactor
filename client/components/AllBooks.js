@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBooks } from "../store/books";
-import {Card, Button } from "react-bootstrap";
 
 const Books = () => {
   //gives access to dispatch thunks directly
