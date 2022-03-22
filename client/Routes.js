@@ -14,6 +14,7 @@ import { me } from "./store";
 import AllUsers from "./components/AllUsers";
 import Checkout from "./components/Checkout";
 import AddBook from "./components/AddBook";
+import GenrePage from './components/GenrePage'
 
 /**
  * COMPONENT
@@ -44,6 +45,7 @@ class Routes extends Component {
             <Route path="/users" component={AllUsers} />
             <Route path="/checkout" component={Checkout} />
             <Route path = "/add-book" component = {AddBook} />
+            <Route path = "/genre/:genre" component = {GenrePage} />
             <Redirect to="/homepage" />
           </Switch>
         ) : (
@@ -55,6 +57,7 @@ class Routes extends Component {
             <Route path="/checkout" component={Checkout} />
             {/* <Route path="/cart" component={LocalCart} /> */}
             <Route path="/cart" component={Cart} />
+            <Route path = "/genre/:genre" component = {GenrePage} />
 
           </Switch>
         )}
