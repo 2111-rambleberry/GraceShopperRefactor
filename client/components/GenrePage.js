@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchGenre } from "../store/genre";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-// import { Container } from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
 
 const GenrePage = () => {
   //Need to get the genre from the URL
@@ -11,7 +11,7 @@ const GenrePage = () => {
   const books = useSelector((state) => state.genreReducer);
   const { genre } = useParams();
   const strGenre = String(genre)
-  
+
   useEffect(() => {
       dispatch(fetchGenre(strGenre));
   }, [])
@@ -19,8 +19,15 @@ const GenrePage = () => {
  console.log(genre);
 
   return (
-   
-    <div className="book-small">
+
+   <Container>
+    
+      <Row className="justify-content-md-center">
+      <h1>{genre}</h1>
+      </Row>
+
+      <Row>
+      <div className="book-small">
       {books.map((book) => {
         {
           if (book.bought === false)
@@ -35,7 +42,9 @@ const GenrePage = () => {
             );
         }
       })}
-    </div>
+       </div>
+      </Row>
+    </Container>
   );
 };
 
