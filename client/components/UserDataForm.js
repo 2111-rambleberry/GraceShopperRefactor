@@ -6,6 +6,7 @@ class UserDataForm extends React.Component {
     constructor(props){
       super(props)
       this.state = {
+        username: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -35,6 +36,7 @@ class UserDataForm extends React.Component {
 componentDidUpdate(prevProps){
   if (prevProps.user.id !== this.props.user.id) {
     this.setState({
+      username : this.props.user.username || '',
       firstName: this.props.user.firstName || '',
       lastName: this.props.user.lastName || '',
       email: this.props.user.email || '',
@@ -59,15 +61,16 @@ componentDidUpdate(prevProps){
         this.props.updateUser({ ...this.props.user, ...this.state })
         
         //this should clear the form after you submit
-        // this.setState({
-        //   firstName: '',
-        //   lastName: '',
-        //   email: '',
-        //   streetAddress: '',
-        //   cityAddress: '',
-        //   zipcode: 0,
-        //   phoneNumber: ''
-        // })
+        this.setState({
+          username: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          streetAddress: '',
+          cityAddress: '',
+          zipcode: 0,
+          phoneNumber: ''
+        })
     }
 
     render(){
@@ -81,12 +84,18 @@ componentDidUpdate(prevProps){
             <div>
             <h1>Edit:</h1>
             <form onSubmit={handleSubmit} id = "update-user-form">
+            <div>
+                <label htmlFor="username">
+                  <small>Username</small>
+                </label>
+                <input id ="username" type="text" onChange = {handleChange} value = {username}/>
+              </div>
 
               <div>
                 <label htmlFor="firstName">
                   <small>First Name</small>
                 </label>
-                <input id ="firstName" type="text" onChangeq = {handleChange} value = {firstName}/>
+                <input id ="firstName" type="text" onChange = {handleChange} value = {firstName}/>
               </div>
 
               <div>
