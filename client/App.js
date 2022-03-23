@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar from './components/Navbar'
+import GenreNav from './components/GenreNav'
 import Routes from './Routes'
 import Footer from './components/Footer'
+import TopNav from './components/TopNav'
 
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <TopNav />
+      <GenreNav />
       <Routes />
       <Footer />
     </div>

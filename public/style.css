@@ -1,5 +1,25 @@
-body {
-  font-family: sans-serif;
+/* body {
+  font-family: "Montserrat";
+} */
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-style: extra-bold;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+h3 {  
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+
+p {
+  font-family: "Montserrat";
 }
 
 a {
