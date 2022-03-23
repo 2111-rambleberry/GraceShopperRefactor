@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { fetchSingleUser, updateSingleUser } from '../store/singleUser'
+import { Form, Button, Stack } from 'react-bootstrap'
 
+///This pretty much works, but security thingies won't let changes go through, come back to this!!
 class UserDataForm extends React.Component {
     constructor(props){
       super(props)
@@ -75,7 +77,7 @@ componentDidUpdate(prevProps){
 
     render(){
         const { handleSubmit, handleChange } = this;
-        const { firstName, lastName, email, streetAddress, cityAddress, zipcode, phoneNumber} = this.state;
+        const { firstName, username, lastName, email, streetAddress, cityAddress, zipcode, phoneNumber} = this.state;
 
         console.log('props', this.props)
         console.log('state', this.state)
@@ -83,69 +85,54 @@ componentDidUpdate(prevProps){
         return (
             <div>
             <h1>Edit:</h1>
-            <form onSubmit={handleSubmit} id = "update-user-form">
-            <div>
-                <label htmlFor="username">
-                  <small>Username</small>
-                </label>
-                <input id ="username" type="text" onChange = {handleChange} value = {username}/>
-              </div>
+            <Stack gap={3} className = "col-md-5 mx-auto">
+            <Form onSubmit={handleSubmit} id = "update-user-form">
+            <Form.Group className="mb-3" >
+                <Form.Label>Username</Form.Label>
+                <Form.Control id ="username" type="text" placeholder="Username"  onChange = {handleChange} value = {username}/>
+            </Form.Group>
 
-              <div>
-                <label htmlFor="firstName">
-                  <small>First Name</small>
-                </label>
-                <input id ="firstName" type="text" onChange = {handleChange} value = {firstName}/>
-              </div>
+            <Form.Group className="mb-3" >
+                <Form.Label>First Name</Form.Label>
+                <Form.Control id ="firstName" placeholder="First Name" type="text" onChange = {handleChange} value = {firstName}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="lastName">
-                  <small>Last Name</small>
-                </label>
-                <input  id ="lastName" type="text" onChange = {handleChange} value = {lastName}/>
-              </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control  id ="lastName" placeholder= 'Last Name' type="text" onChange = {handleChange} value = {lastName}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <input id ="email" type="email" onChange = {handleChange} value = {email}/>
-            </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>Email</Form.Label>
+                <Form.Control id ="email" type="email" placeholder= 'Email' onChange = {handleChange} value = {email}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="streetAddress">
-                  <small>Street</small>
-                </label>
-                <input id ="streetAddress" type="streetAddress" onChange = {handleChange} value = {streetAddress}/>
-              </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>Street</Form.Label>
+                <Form.Control id ="streetAddress" type="streetAddress" placeholder= 'Street' onChange = {handleChange} value = {streetAddress}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="cityAddress">
-                  <small>City</small>
-                </label>
-                <input id ="cityAddress" type="cityAddress" onChange = {handleChange} value = {cityAddress}/>
-              </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>City</Form.Label>
+                <Form.Control id ="cityAddress" type="cityAddress" placeholder= 'City' onChange = {handleChange} value = {cityAddress}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="zipcode">
-                  <small>Zipcode</small>
-                </label>
-                <input id ="zipcode" type="zipcode" onChange = {handleChange} value = {zipcode}/>
-              </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>Zipcode</Form.Label>
+                <Form.Control id ="zipcode" type="zipcode" placeholder = 'Zipcode' onChange = {handleChange} value = {zipcode}/>
+              </Form.Group>
 
-              <div>
-                <label htmlFor="phone-number">
-                  <small>Phone Number</small>
-                </label>
-                <input id ="phoneNumber" type="phone-number" onChange = {handleChange} value = {phoneNumber}/>
-              </div>
+              <Form.Group className="mb-3" >
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control id ="phoneNumber" type="phone-number" placeholder= 'Phone Number' onChange = {handleChange} value = {phoneNumber}/>
+              </Form.Group>
 
-              <div>
-                <button type="submit">Submit</button>
-              </div>
-
+                
+<Button className="justify-content-center"  type="submit" variant="primary">Submit</Button>
               {/* {error && error.response && <div> {error.response.data} </div>} */}
-            </form>
+            </Form>
+            
+            </Stack>
           </div>
         )
     }
