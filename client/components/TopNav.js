@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store";
-import { BsFillBasket3Fill } from "react-icons/bs";
+import { BsFillBasket3Fill, BsSearch } from "react-icons/bs";
 import {
   Navbar,
   FormControl,
@@ -9,7 +9,11 @@ import {
   Container,
   Nav,
   NavDropdown,
+<<<<<<< HEAD
   Stack
+=======
+  Button
+>>>>>>> main
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
@@ -20,21 +24,26 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
       {/* <Container> */}  
       
       <Navbar.Brand href="/homepage" className="logo">
+<<<<<<< HEAD
         <h2>BookShopper</h2>
+=======
+        <h1 className="bold">BookShopper</h1>
+>>>>>>> main
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className = "ms-auto"> 
         <Form className="d-flex">
           <FormControl
-            className = "justify-content-center"
             type="search"
             placeholder="Search"
             className="me-2"
             aria-label="Search"
           />
         </Form>
+<<<<<<< HEAD
         <Nav>
         {isLoggedIn ? (
           <div>
@@ -61,11 +70,40 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
                      </NavDropdown.Item>
                    </NavDropdown>
                </div> 
+=======
+        <Button variant="outline-primary">
+          <BsSearch />
+        </Button>
+      </Nav> 
+      <Nav className="ms-auto">
+        {isLoggedIn ? (
+          <>            
+            <Nav.Link href="/edit">Profile</Nav.Link>
+            {/* The navbar will show these links after you log in */}
+            <Nav.Link href="#" onClick={handleClick}>
+              Logout
+            </Nav.Link>
+            <Nav.Link href="/cart">
+              <BsFillBasket3Fill />
+            </Nav.Link>
+            {isUserAdmin && (
+              <NavDropdown
+                title="Admin Portal"
+                id="collasible-nav-dropdown"
+              >
+                <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
+                <NavDropdown.Item href="/users">Users</NavDropdown.Item>
+                <NavDropdown.Item href="/add-book">
+                  Add Book
+                </NavDropdown.Item>
+              </NavDropdown>
+>>>>>>> main
             )}
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             {/* The navbar will show these links before you log in */}
+<<<<<<< HEAD
               <Nav.Link href="/login">Login</Nav.Link>
               <Nav.Link href="/cart">
                 <BsFillBasket3Fill />
@@ -74,6 +112,15 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
           </div>
         )}
         </Nav>
+=======
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/cart">
+              <BsFillBasket3Fill />
+            </Nav.Link>
+          </>
+        )}
+      </Nav>
+>>>>>>> main
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>

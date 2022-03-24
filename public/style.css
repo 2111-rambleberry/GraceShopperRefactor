@@ -2,19 +2,23 @@
   font-family: "Montserrat";
 } */
 
+.bold {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
 h1 {
   font-family: 'Playfair Display', serif;
-  font-weight: 800;
-  font-style: extra-bold;
 }
 
 h2 {
   font-family: 'Playfair Display', serif;
 }
 
-h3 {  
+h3 { 
+  font-family: 'Playfair Display', serif; 
   font-style: italic;
-  font-family: 'Playfair Display', serif;
 }
 
 
