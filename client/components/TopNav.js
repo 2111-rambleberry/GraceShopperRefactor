@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store";
-import { BsFillBasket3Fill } from "react-icons/bs";
+import { BsFillBasket3Fill, BsSearch } from "react-icons/bs";
 import {
   Navbar,
   FormControl,
@@ -9,6 +9,7 @@ import {
   Container,
   Nav,
   NavDropdown,
+  Button
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
@@ -17,65 +18,59 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
     <Navbar collapseOnSelect expand="lg" bg="light">
       {/* <Container> */}
       <Navbar.Brand href="/homepage" className="logo">
-        <h1>BookShopper</h1>
+        <h1 className="bold">BookShopper</h1>
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className = "ms-auto"> 
         <Form className="d-flex">
           <FormControl
-            className = "justify-content-center"
             type="search"
             placeholder="Search"
             className="me-2"
             aria-label="Search"
           />
         </Form>
-
+        <Button variant="outline-primary">
+          <BsSearch />
+        </Button>
+      </Nav> 
+      <Nav className="ms-auto">
         {isLoggedIn ? (
-          <div>
-            {/* Put this back in when other formatting thingies are figured out */}
-            {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
-            {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-            <Nav className="me-auto">
-              <Nav.Link href="/edit">Profile</Nav.Link>
-              {/* The navbar will show these links after you log in */}
-              <Nav.Link href="#" onClick={handleClick}>
-                Logout
-              </Nav.Link>
-              <Nav.Link href="/cart">
-                <BsFillBasket3Fill />
-              </Nav.Link>
-            </Nav>
+          <>            
+            <Nav.Link href="/edit">Profile</Nav.Link>
+            {/* The navbar will show these links after you log in */}
+            <Nav.Link href="#" onClick={handleClick}>
+              Logout
+            </Nav.Link>
+            <Nav.Link href="/cart">
+              <BsFillBasket3Fill />
+            </Nav.Link>
             {isUserAdmin && (
-              <div>
-                <Nav className="me-auto">
-                  <NavDropdown
-                    title="Market Place"
-                    id="collasible-nav-dropdown"
-                  >
-                    <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
-                    <NavDropdown.Item href="/users">Users</NavDropdown.Item>
-                    <NavDropdown.Item href="/add-book">
-                      Add Book
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </div>
+              <NavDropdown
+                title="Admin Portal"
+                id="collasible-nav-dropdown"
+              >
+                <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
+                <NavDropdown.Item href="/users">Users</NavDropdown.Item>
+                <NavDropdown.Item href="/add-book">
+                  Add Book
+                </NavDropdown.Item>
+              </NavDropdown>
             )}
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             {/* The navbar will show these links before you log in */}
-            <Nav>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/cart">
-                <BsFillBasket3Fill />
-              </Nav.Link>
-            </Nav>
-          </div>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/cart">
+              <BsFillBasket3Fill />
+            </Nav.Link>
+          </>
         )}
+      </Nav>
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>
