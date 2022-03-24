@@ -17,103 +17,39 @@ const GenreCarousel = () => {
         dispatch(fetchGenre('Fiction'));
     }, [])
 
-    const carouselGroup = (books, n) => books.reduce((acc, book, i) => {
+    const carouselGroup = (books, n) => books.slice(0, 12)
+        .reduce((acc, book, i) => {
         const idx = Math.floor(i / n);
         acc[idx] = [...(acc[idx] || []), book.coverimg];
         return acc;
     }, []);
 
-    const groups = carouselGroup(books, 6)
-
-    // const BookGroup = ({items}) => {
-    //     items.map((item) => {
-    //         return (
-    //             <div>
-
-    //             </div>
-    //         )
-    //     })
-        
-    // }
-
+    const groups = carouselGroup(books, 4)
 
     return(
-        <>
-        <Carousel>
-            {groups.map((group) => {
-                return ( <CarouselItem key={group}>
-                    <Row>
-                        <Col>
-                        <img
-                        className="book-cover carousel-books"
-                        src={group[0]}
-                        alt="First slide"
-                        />
-                        </Col>
-                        <Col>
-                        <img
-                        className="book-cover carousel-books"
-                        src={group[1]}
-                        alt="First slide"
-                        />
-                        </Col>
-                        <Col>
-                        <img
-                        className="book-cover carousel-books"
-                        src={group[2]}
-                        alt="First slide"
-                        />
-                        </Col>
-                    </Row>
-                </CarouselItem>
-            )})}
-            {/* <CarouselSlide items={books}/> */}
-        </Carousel>
-            
-        </>
+        <div className="carouselGenre">
+            <Carousel> 
+                {groups.map((group) => {
+                    return (
+                        <CarouselItem key={group}>
+                            <Row>
+                                <div className="genreCenter">
+                                {group.map((book) => {
+                                    return ( <div key={book}>
+                                        <img
+                                        className="book-cover carousel-books"
+                                        src={book}
+                                        alt="First slide"
+                                        />
+                                    </div>
+                                )})}
+                                </div>
+                            </Row>
+                        </CarouselItem>
+                )})}
+            </Carousel>     
+        </div>
     )
 }
 
 export default GenreCarousel;
-
-
-
-
-{/* <>
-<CarouselSlide items={books}></CarouselSlide>
-<Carousel>
-    
-        <Carousel.Item>
-                <CarouselSlide items={books}>
-                    {books.map((book) => {
-                        <img
-                        className="d-block w-30"
-                        src = {book.coverimg}
-                        alt="First slide"
-                        />
-                    })}
-                </CarouselSlide>
-            <Col>
-            <img
-            className="d-block w-30"
-            src = {book.coverimg}
-            alt="First slide"
-            />
-            </Col>
-            <Col>
-            <img
-            className="d-block w-30"
-            src = {book.coverimg}
-            alt="First slide"
-            />
-            </Col>
-            <Col>
-            <img
-            className="d-block w-30"
-            src = {book.coverimg}
-            alt="First slide"
-            />
-            </Col>
-        </Carousel.Item>
-</Carousel>
-</> */}
