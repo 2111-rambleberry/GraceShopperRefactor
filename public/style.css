@@ -1,11 +1,5 @@
-/* body {
+body {
   font-family: "Montserrat";
-} */
-
-.bold {
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
 }
 
 h1 {
@@ -21,13 +15,69 @@ h3 {
   font-style: italic;
 }
 
-
 p {
   font-family: "Montserrat";
 }
 
 a {
   text-decoration: none;
+}
+
+.darkPurple {
+  color: #2d0a4e;
+}
+
+.darkPurpleNav {
+  background-color: #2d0a4e;
+}
+
+.logo {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  color: #2d0a4e;
+}
+
+.bold {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+.boldCarousel {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  color: #2d0a4e;
+  margin-left: 5%;
+  margin-bottom: 30px;
+
+}
+
+.carouselGenre {
+  background-color: #e3d7ee;
+  padding: 20px;
+  margin-bottom: 5%;
+}
+
+.carouselCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.genreCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 5%;
+}
+
+.marginTop {
+  margin-top: 5%;
 }
 
 label {
@@ -55,7 +105,10 @@ nav {
 
 .carousel-books {
   justify-content: center;
-  height: 300px
+  height: 300px;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 10px 10px 20px grey;
 }
 
 .book-small {
@@ -65,7 +118,6 @@ nav {
   gap: 100px;
   margin: 0px 50px 0px 50px;
 }
-
 
 .book-info {
   display: flex;

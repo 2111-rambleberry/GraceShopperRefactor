@@ -13,12 +13,12 @@ import {
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
-const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
+const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
   <div>
     <Navbar collapseOnSelect expand="lg" bg="light">
       {/* <Container> */}
       <Navbar.Brand href="/homepage" className="logo">
-        <h1 className="bold">BookShopper</h1>
+        <h1 className="logo">BookShopper</h1>
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
       </Navbar.Brand>
 
@@ -39,7 +39,8 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
       </Nav> 
       <Nav className="ms-auto">
         {isLoggedIn ? (
-          <>            
+          <>  
+            <Nav.Link disabled>Hello {username}!</Nav.Link>         
             <Nav.Link href="/edit">Profile</Nav.Link>
             {/* The navbar will show these links after you log in */}
             <Nav.Link href="#" onClick={handleClick}>
@@ -84,6 +85,7 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     isUserAdmin: !!state.auth.isAdmin,
+    username: state.auth.username
   };
 };
 
