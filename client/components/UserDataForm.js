@@ -21,13 +21,6 @@ class UserDataForm extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-//This is to fetch user data to pre-populate the page
-    // componentDidMount () {
-    //   // console.log(req.headers.authorization)
-    //     const { id } = this.props.match.params;
-    //     this.props.fetchUser(id)
-    // }
-
 //For when you remove this data from the dom
 // componentWillUnmount() {
     //if this is neccissary go back and create a clear user thunk
@@ -84,8 +77,9 @@ componentDidUpdate(prevProps){
 
         return (
             <div>
-            <h1>Edit:</h1>
+            
             <Stack gap={3} className = "col-md-5 mx-auto">
+              <h1 className = "justify-content-center">Edit:</h1>
             <Form onSubmit={handleSubmit} id = "update-user-form">
             <Form.Group className="mb-3" >
                 <Form.Label>Username</Form.Label>
@@ -128,11 +122,12 @@ componentDidUpdate(prevProps){
               </Form.Group>
 
                 
-<Button className="justify-content-center"  type="submit" variant="primary">Submit</Button>
+             
               {/* {error && error.response && <div> {error.response.data} </div>} */}
             </Form>
-            
-            </Stack>
+             <Button  className="col-md-5 mx-auto" type="submit" variant="primary">Submit</Button>
+            </Stack> 
+           
           </div>
         )
     }

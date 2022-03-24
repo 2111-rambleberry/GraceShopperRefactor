@@ -9,15 +9,18 @@ import {
   Container,
   Nav,
   NavDropdown,
+  Stack
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
 const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
   <div>
+    {/* <Stack direction="horizontal" gap={2}> */}
     <Navbar collapseOnSelect expand="lg" bg="light">
-      {/* <Container> */}
+      {/* <Container> */}  
+      
       <Navbar.Brand href="/homepage" className="logo">
-        <h1>BookShopper</h1>
+        <h2>BookShopper</h2>
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
       </Navbar.Brand>
 
@@ -32,13 +35,10 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
             aria-label="Search"
           />
         </Form>
-
+        <Nav>
         {isLoggedIn ? (
           <div>
-            {/* Put this back in when other formatting thingies are figured out */}
-            {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
-            {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-            <Nav className="me-auto">
+           
               <Nav.Link href="/edit">Profile</Nav.Link>
               {/* The navbar will show these links after you log in */}
               <Nav.Link href="#" onClick={handleClick}>
@@ -47,44 +47,40 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
               <Nav.Link href="/cart">
                 <BsFillBasket3Fill />
               </Nav.Link>
-            </Nav>
             {isUserAdmin && (
-              <div>
-                <Nav className="me-auto">
-                  <NavDropdown
-                    title="Market Place"
-                    id="collasible-nav-dropdown"
-                  >
-                    <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
-                    <NavDropdown.Item href="/users">Users</NavDropdown.Item>
-                    <NavDropdown.Item href="/add-book">
-                      Add Book
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </div>
+
+                 <div>
+                   <NavDropdown
+                     title="Market Place"
+                     id="collasible-nav-dropdown"
+                   >
+                     <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
+                     <NavDropdown.Item href="/users">Users</NavDropdown.Item>
+                     <NavDropdown.Item href="/add-book">
+                       Add Book
+                     </NavDropdown.Item>
+                   </NavDropdown>
+               </div> 
             )}
           </div>
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
-            <Nav>
               <Nav.Link href="/login">Login</Nav.Link>
               <Nav.Link href="/cart">
                 <BsFillBasket3Fill />
               </Nav.Link>
-            </Nav>
+              
           </div>
         )}
+        </Nav>
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>
+    {/* </Stack> */}
   </div>
 );
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
