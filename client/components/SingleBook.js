@@ -32,8 +32,8 @@ const SingleBook = () => {
 
               <Col sm={8}>
                 <div className="card mb-4 border-0">
-                  <h1>{book.title}</h1>
-                  <p>{book.author}</p>
+                  <h1 className="bold">{book.title}</h1>
+                  <h4>{book.author}</h4>
 
                   <Stack direction="horizontal" gap={3}>
                     <div>
