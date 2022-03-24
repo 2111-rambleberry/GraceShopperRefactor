@@ -15,9 +15,9 @@ const GenreCarousel = (props) => {
 
     const books = useSelector((state) => state.genreReducer);
 
-
+     const genreProp = props.genre;
     useEffect(() => {
-        setGenre(props.genre);
+        //setGenre(props.genre);
         dispatch(fetchGenre(genreProp));
     }, [])
 
@@ -28,7 +28,7 @@ const GenreCarousel = (props) => {
         return acc;
     }, []);
 
-    //const genre = props.genre;
+   
 
     const groups = carouselGroup(books, 4)
     //console.log("genre", genreProp)
