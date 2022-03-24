@@ -13,7 +13,9 @@ const Home = () => {
       <HomeCarousel />
       <div className="marginTop">
         <h2 className="boldCarousel">Browse Our Fiction Collection</h2>
-        <GenreCarousel />
+        <GenreCarousel genre = {'Fiction'} />
+        {/* <GenreCarousel genre2 = {'Historical'} />
+        <GenreCarousel genre3 = {'Westerns'} /> */}
         <Books />
       </div>
     </div>

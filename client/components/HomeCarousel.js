@@ -10,14 +10,7 @@ import { Carousel, CarouselItem } from "react-bootstrap";
 
 //For this element the genre would get passed through 
 const HomeCarousel = () => {
-    const dispatch = useDispatch();
-    const books = useSelector((state) => state.genreReducer);
 
-    useEffect(() => {
-        dispatch(fetchGenre('Westerns'));
-    }, [])
-
-    // console.log(books)
     return(
         <>
         <Carousel indicators={false} controls={false} >                                  

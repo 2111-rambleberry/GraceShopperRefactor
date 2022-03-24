@@ -2,19 +2,23 @@
 
 //This will get a genre input, then based off the genre will go to 
 //-->Thunk-->API-->Data-->Component
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchGenre } from "../store/genre";
+import genreReducer, { fetchGenre } from "../store/genre";
 import { Carousel, CarouselItem, Row, Col } from "react-bootstrap";
 
 //For this element the genre would get passed through 
-const GenreCarousel = () => {
+const GenreCarousel = (props) => {
     const dispatch = useDispatch();
+    //const [genre, setGenre] = useState('');
+
     const books = useSelector((state) => state.genreReducer);
 
+
     useEffect(() => {
-        dispatch(fetchGenre('Fiction'));
+        setGenre(props.genre);
+        dispatch(fetchGenre(genreProp));
     }, [])
 
     const carouselGroup = (books, n) => books.slice(0, 12)
@@ -24,7 +28,10 @@ const GenreCarousel = () => {
         return acc;
     }, []);
 
+    //const genre = props.genre;
+
     const groups = carouselGroup(books, 4)
+    //console.log("genre", genreProp)
 
     return(
         <div className="carouselGenre">

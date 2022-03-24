@@ -9,14 +9,17 @@ import {
   Container,
   Nav,
   NavDropdown,
+  Stack,
   Button
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
 const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
   <div>
+    {/* <Stack direction="horizontal" gap={2}> */}
     <Navbar collapseOnSelect expand="lg" bg="light">
-      {/* <Container> */}
+      {/* <Container> */}  
+      
       <Navbar.Brand href="/homepage" className="logo">
         <h1 className="logo">BookShopper</h1>
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
@@ -75,12 +78,10 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>
+    {/* </Stack> */}
   </div>
 );
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
