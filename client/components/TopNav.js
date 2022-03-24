@@ -9,11 +9,8 @@ import {
   Container,
   Nav,
   NavDropdown,
-<<<<<<< HEAD
-  Stack
-=======
+  Stack,
   Button
->>>>>>> main
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
@@ -24,11 +21,7 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
       {/* <Container> */}  
       
       <Navbar.Brand href="/homepage" className="logo">
-<<<<<<< HEAD
-        <h2>BookShopper</h2>
-=======
         <h1 className="bold">BookShopper</h1>
->>>>>>> main
         {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
       </Navbar.Brand>
 
@@ -43,34 +36,6 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
             aria-label="Search"
           />
         </Form>
-<<<<<<< HEAD
-        <Nav>
-        {isLoggedIn ? (
-          <div>
-           
-              <Nav.Link href="/edit">Profile</Nav.Link>
-              {/* The navbar will show these links after you log in */}
-              <Nav.Link href="#" onClick={handleClick}>
-                Logout
-              </Nav.Link>
-              <Nav.Link href="/cart">
-                <BsFillBasket3Fill />
-              </Nav.Link>
-            {isUserAdmin && (
-
-                 <div>
-                   <NavDropdown
-                     title="Market Place"
-                     id="collasible-nav-dropdown"
-                   >
-                     <NavDropdown.Item href="/stock">Stock</NavDropdown.Item>
-                     <NavDropdown.Item href="/users">Users</NavDropdown.Item>
-                     <NavDropdown.Item href="/add-book">
-                       Add Book
-                     </NavDropdown.Item>
-                   </NavDropdown>
-               </div> 
-=======
         <Button variant="outline-primary">
           <BsSearch />
         </Button>
@@ -97,22 +62,11 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
                   Add Book
                 </NavDropdown.Item>
               </NavDropdown>
->>>>>>> main
             )}
           </>
         ) : (
           <>
             {/* The navbar will show these links before you log in */}
-<<<<<<< HEAD
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/cart">
-                <BsFillBasket3Fill />
-              </Nav.Link>
-              
-          </div>
-        )}
-        </Nav>
-=======
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/cart">
               <BsFillBasket3Fill />
@@ -120,7 +74,6 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin }) => (
           </>
         )}
       </Nav>
->>>>>>> main
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>
