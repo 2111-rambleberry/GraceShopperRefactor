@@ -22,8 +22,8 @@ const GenrePage = () => {
 
    <Container>
     
-      <Row className="justify-content-md-center">
-      <h1>{genre}</h1>
+      <Row>
+        <h1>{genre}</h1>
       </Row>
 
       <Row>

@@ -23,6 +23,12 @@ a {
   text-decoration: none;
 }
 
+.genre {
+  text-align: center;
+  background-color: lightgray;
+}
+
+
 .darkPurple {
   color: #2d0a4e;
 }
@@ -124,6 +130,7 @@ nav {
   flex-flow: column nowrap;
   width: 10vw;
   margin-bottom: 1vh;
+  margin-top: 5%;
 }
 
 .user-table table,
