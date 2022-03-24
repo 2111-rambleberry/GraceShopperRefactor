@@ -22,7 +22,7 @@ const GenrePage = () => {
 
    <Container>
     
-      <Row>
+      <Row className = "genre">
         <h1>{genre}</h1>
       </Row>
 

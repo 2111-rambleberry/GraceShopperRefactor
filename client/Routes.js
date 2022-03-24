@@ -58,7 +58,7 @@ class Routes extends Component {
             {/* <Route path="/cart" component={LocalCart} /> */}
             <Route path="/cart" component={Cart} />
             <Route path = "/genre/:genre" component = {GenrePage} />
-
+            <Redirect to="/homepage" />
           </Switch>
         )}
       </div>
