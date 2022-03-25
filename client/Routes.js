@@ -34,6 +34,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/homepage" component={Home} />
+            <Route path="/" component={Home} />
             <Route path="/cart" component={Cart} />
             {/* <Route path="/cart" component={Cart} /> */}
             {/* <Route path="/cart/:username" component={UserCart} /> */}
@@ -46,7 +47,7 @@ class Routes extends Component {
             <Route path="/checkout" component={Checkout} />
             <Route path = "/add-book" component = {AddBook} />
             <Route path = "/genre/:genre" component = {GenrePage} />
-            <Redirect to="/homepage" />
+            {/* <Redirect to="/homepage" /> */}
           </Switch>
         ) : (
           <Switch>
@@ -58,7 +59,7 @@ class Routes extends Component {
             {/* <Route path="/cart" component={LocalCart} /> */}
             <Route path="/cart" component={Cart} />
             <Route path = "/genre/:genre" component = {GenrePage} />
-            <Redirect to="/homepage" />
+            {/* <Redirect to="/homepage" /> */}
           </Switch>
         )}
       </div>
