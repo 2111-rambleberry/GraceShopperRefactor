@@ -33,10 +33,10 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/homepage" component={Home} />
-            <Route path="/" component={Home} />
+            <Route exact path="/homepage" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/cart" component={Cart} />
-            {/* <Route path="/cart" component={Cart} /> */}
+            <Route path="/cart" component={Cart} />
             {/* <Route path="/cart/:username" component={UserCart} /> */}
             <Route exact path="/books/:bookId" component={SingleBook} />
             <Route path="/edit" component={UserDataForm} />
@@ -52,6 +52,7 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path="/homepage" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/books/:bookId" component={SingleBook} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
