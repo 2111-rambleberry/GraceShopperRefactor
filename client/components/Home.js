@@ -12,10 +12,9 @@ const Home = () => {
     <div>
       <HomeCarousel />
       <div className="marginTop">
-        <h2 className="boldCarousel">Browse Our Fiction Collection</h2>
         <GenreCarousel genre = {'Fiction'} />
-        {/* <GenreCarousel genre2 = {'Historical'} />
-        <GenreCarousel genre3 = {'Westerns'} /> */}
+        <GenreCarousel genre = {'Historical'} />
+        {/* <GenreCarousel genre3 = {'Westerns'} /> */}
         <Books />
       </div>
     </div>

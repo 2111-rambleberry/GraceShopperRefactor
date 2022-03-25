@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleBook } from "../store/singleBook";
 import { addItemThunk } from "../store/cart";
 import { Button, Stack, Container, Row, Col, Card } from "react-bootstrap";
+import GenreCarousel from "./Carousel";
 
 const SingleBook = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ const SingleBook = () => {
   useEffect(() => {
     dispatch(fetchSingleBook(bookId));
   }, []);
+
+  const genreIndex = Math.floor(Math.random() * 7)
+
+  // console.log(book.genres.length || [])
+  // console.log(Object.keys(book.genres))
 
   return (
     <div className = "singleBook">
@@ -65,6 +71,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
+       <GenreCarousel genre = {book.genres.genreIndex} />
     </div>
   );
 };

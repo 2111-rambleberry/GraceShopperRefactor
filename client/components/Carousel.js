@@ -5,22 +5,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import genreReducer, { fetchGenre } from "../store/genre";
-import { Carousel, CarouselItem, Row, Col } from "react-bootstrap";
+import { fetchGenre } from "../store/genre";
+import { Carousel, CarouselItem, Row} from "react-bootstrap";
+import axios from "axios";
 
 //For this element the genre would get passed through 
 const GenreCarousel = (props) => {
-    const dispatch = useDispatch();
-    //const [genre, setGenre] = useState('');
+    const [books, setBooks] = useState([]);
 
-    const books = useSelector((state) => state.genreReducer);
-
-     const genreProp = props.genre;
-     
+    const genre = props.genre;
+    
     useEffect(() => {
-        //setGenre(props.genre);
-        dispatch(fetchGenre(genreProp));
-    }, [])
+        const fetchBooks = async () => {
+            const { data: bookGenre } = await axios.get(`/api/genre/${genre}`)
+            setBooks(bookGenre);
+        };
+        fetchBooks()
+      }, 
+      []);
 
     const carouselGroup = (books, n) => books.slice(0, 12)
         .reduce((acc, book, i) => {
@@ -29,12 +31,11 @@ const GenreCarousel = (props) => {
         return acc;
     }, []);
 
-   
-
     const groups = carouselGroup(books, 4)
-    //console.log("genre", genreProp)
 
     return(
+        <>
+        <h2 className="boldCarousel">Browse Our {genre} Collection</h2>
         <div className="carouselGenre">
             <Carousel> 
                 {groups.map((group) => {
@@ -42,21 +43,22 @@ const GenreCarousel = (props) => {
                         <CarouselItem key={group}>
                             <Row>
                                 <div className="genreCenter">
-                                {group.map((book) => {
-                                    return ( <div key={book}>
-                                        <img
-                                        className="book-cover carousel-books"
-                                        src={book}
-                                        alt="First slide"
-                                        />
-                                    </div>
-                                )})}
+                                    {group.map((book) => {
+                                        return ( <div key={book}>
+                                            <img
+                                            className="book-cover carousel-books"
+                                            src={book}
+                                            alt="First slide"
+                                            />
+                                        </div>
+                                    )})}
                                 </div>
                             </Row>
                         </CarouselItem>
                 )})}
             </Carousel>     
         </div>
+        </>
     )
 }
 
