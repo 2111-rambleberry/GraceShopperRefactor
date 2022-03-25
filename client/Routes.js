@@ -15,10 +15,7 @@ import AllUsers from "./components/AllUsers";
 import Checkout from "./components/Checkout";
 import AddBook from "./components/AddBook";
 import GenrePage from './components/GenrePage'
-
-/**
- * COMPONENT
- */
+import LoginButton from "./components/LoginModal";
 
 //Note theres is a slight switch if the user is logged in
 class Routes extends Component {
@@ -35,7 +32,6 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/homepage" component={Home} />
             <Route exact path="/" component={Home} />
-            <Route path="/cart" component={Cart} />
             <Route path="/cart" component={Cart} />
             {/* <Route path="/cart/:username" component={UserCart} /> */}
             <Route exact path="/books/:bookId" component={SingleBook} />
@@ -54,7 +50,7 @@ class Routes extends Component {
             <Route path="/homepage" component={Home} />
             <Route exact path="/" component={Home} />
             <Route exact path="/books/:bookId" component={SingleBook} />
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={LoginButton} />
             <Route path="/signup" component={Signup} />
             <Route path="/checkout" component={Checkout} />
             {/* <Route path="/cart" component={LocalCart} /> */}
