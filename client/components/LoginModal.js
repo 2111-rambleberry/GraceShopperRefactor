@@ -48,7 +48,7 @@ function LoginModal(props) {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control name="password" placeholder="Password" />
+                <Form.Control name="password" placeholder={Passwoe} />
             </Form.Group>
 
 
