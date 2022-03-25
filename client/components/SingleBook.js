@@ -15,7 +15,7 @@ const SingleBook = () => {
   }, []);
 
   return (
-    <>
+    <div className = "singleBook">
       {!book ? (
         <p> Loading... </p>
       ) : (
@@ -65,7 +65,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

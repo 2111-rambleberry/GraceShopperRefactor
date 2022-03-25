@@ -16,6 +16,7 @@ const GenreCarousel = (props) => {
     const books = useSelector((state) => state.genreReducer);
 
      const genreProp = props.genre;
+     
     useEffect(() => {
         //setGenre(props.genre);
         dispatch(fetchGenre(genreProp));
