@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchGenre } from "../store/genre";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Container, Row } from "react-bootstrap"
+import { Container, Row, Card, Button } from "react-bootstrap"
 
 const GenrePage = () => {
   //Need to get the genre from the URL
@@ -34,9 +34,16 @@ const GenrePage = () => {
             return (
               <div className="book-info" key={book.id}>
                 <div className="shadow-lg">
-                  <Link to={`/books/${book.id}`}>
-                    <img className="book-cover all-books" src={book.coverimg} />
-                  </Link>
+                  <Card style={{ width: '8rem' }}> 
+                      <Card.Img variant ="top" className="book-cover all-books" src={book.coverimg} />
+                      <Card.Body>
+                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Text className="text-muted">{book.author}</Card.Text>
+
+                        <Card.Text>{book.price}</Card.Text>
+                        <Button variant="primary">Add to Cart</Button>
+                      </Card.Body>
+                  </Card>
                 </div>
               </div>
             );
