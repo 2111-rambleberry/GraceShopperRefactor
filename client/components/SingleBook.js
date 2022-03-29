@@ -26,7 +26,7 @@ const SingleBook = () => {
         <p> Loading... </p>
       ) : (
         <div>
-          <Container>
+          <Container >
             <Row>
               <Col sm={4}>
                 <img
@@ -71,7 +71,9 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-       <GenreCarousel className = "marginTop" genre = {'Westerns'} />
+      <div className = "marginTop">
+       <GenreCarousel genre = {'Westerns'} />
+      </div>
     </div>
   );
 };
