@@ -90,6 +90,10 @@ a {
   margin-top: 5%;
 }
 
+.marginBottom {
+  margin-bottom: 5%;
+}
+
 label {
   display: block;
 }
@@ -127,6 +131,16 @@ nav {
   justify-content: space-evenly;
   gap: 100px;
   margin: 0px 50px 0px 50px;
+}
+
+/* .cardBody{
+  display: flex,
+
+} */
+
+.btn-primary {
+  background-color: purple;
+  color: white;
 }
 
 .book-info {

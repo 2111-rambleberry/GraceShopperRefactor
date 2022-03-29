@@ -18,8 +18,6 @@ const SingleBook = () => {
   // they all have 10 genres
   const genreIndex = Math.floor(Math.random()*10)
 
-  // console.log(book.genres.length || [])
-  // console.log(Object.keys(book.genres))
   const genres = Object.values(book)[7];
   console.log(typeof genres)
   return (
@@ -73,7 +71,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-       <GenreCarousel genre = {'Westerns'} />
+       <GenreCarousel className = "marginTop" genre = {'Westerns'} />
     </div>
   );
 };

@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchGenre } from "../store/genre";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Container, Row, Card, Button } from "react-bootstrap"
+import { Container, Row, Card, Button, Col } from "react-bootstrap"
+import { addItemThunk } from "../store/cart";
+import { BsFillBasket3Fill } from "react-icons/bs";
 
 const GenrePage = () => {
   //Need to get the genre from the URL
@@ -22,30 +24,53 @@ const GenrePage = () => {
 
    <Container>
     
-      <Row className = "genre">
+      <Row className = "genre marginBottom">
         <h1>{genre}</h1>
       </Row>
 
-      <Row>
+      <Row s={2} md={1} className="g-4">
       <div className="book-small">
+      
       {books.map((book) => {
         {
           if (book.bought === false)
             return (
+            <Col>
               <div className="book-info" key={book.id}>
-                <div className="shadow-lg">
-                  <Card style={{ width: '8rem' }}> 
-                      <Card.Img variant ="top" className="book-cover all-books" src={book.coverimg} />
-                      <Card.Body>
+                <div className="book-card">
+                  <Card className = "border-0" style={{ width: '10rem', height: '32rem' }}> 
+                    <Card.Link href = {`/books/${book.id}`}> 
+                      <Card.Img variant ="top" className="book-cover shadow-lg" src={book.coverimg} />
+                      </Card.Link>
+                      <Card.Body className= "d-flex flex-column">
                         <Card.Title>{book.title}</Card.Title>
-                        <Card.Text className="text-muted">{book.author}</Card.Text>
+                        <Card.Text className="text-muted">
+                          {book.author.length > 30 ? 
+                          book.author.slice(0,40) + '...' :
+                          book.author
+                          }
+                        </Card.Text>
 
-                        <Card.Text>{book.price}</Card.Text>
-                        <Button variant="primary">Add to Cart</Button>
+                        <Card.Text>                        $
+                        {book.price
+                          ? (book.price / 100).toFixed(2)
+                          : (5.0).toFixed(2)}
+                        </Card.Text>
+                        
+                        <Button
+                        size="sm"
+                        style ={{color:"white", backgroundColor: "purple", border: "purple"}}
+                        type="submit"
+                        variant="primary"
+                        onClick={() => addItemThunk(book)}
+                      >
+                        <BsFillBasket3Fill color = "white"/>  Add To Cart
+                      </Button >
                       </Card.Body>
                   </Card>
                 </div>
               </div>
+              </Col>
             );
         }
       })}
