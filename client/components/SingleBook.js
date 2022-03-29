@@ -15,11 +15,11 @@ const SingleBook = () => {
     dispatch(fetchSingleBook(bookId));
   }, []);
 
-  const genreIndex = Math.floor(Math.random() * 7)
+  // they all have 10 genres
+  const genreIndex = Math.floor(Math.random()*10)
 
-  // console.log(book.genres.length || [])
-  // console.log(Object.keys(book.genres))
-
+  const genres = Object.values(book)[7];
+  console.log(typeof genres)
   return (
     <div className = "singleBook">
       {!book ? (
@@ -71,7 +71,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-       <GenreCarousel genre = {book.genres.genreIndex} />
+       <GenreCarousel className = "marginTop" genre = {'Westerns'} />
     </div>
   );
 };

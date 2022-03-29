@@ -27,7 +27,8 @@ const GenreCarousel = (props) => {
     const carouselGroup = (books, n) => books.slice(0, 12)
         .reduce((acc, book, i) => {
         const idx = Math.floor(i / n);
-        acc[idx] = [...(acc[idx] || []), book.coverimg];
+        console.log(book)
+        acc[idx] = [...(acc[idx] || []), book];
         return acc;
     }, []);
 
@@ -38,18 +39,22 @@ const GenreCarousel = (props) => {
         <h2 className="boldCarousel">Browse Our {genre} Collection</h2>
         <div className="carouselGenre">
             <Carousel> 
+               
                 {groups.map((group) => {
                     return (
                         <CarouselItem key={group}>
                             <Row>
                                 <div className="genreCenter">
                                     {group.map((book) => {
-                                        return ( <div key={book}>
-                                            <img
-                                            className="book-cover carousel-books"
-                                            src={book}
-                                            alt="First slide"
-                                            />
+                                        return ( 
+                                        <div key={book.id}>
+                                            <a href = {`/books/${book.id}`}> 
+                                                <img
+                                                className="book-cover carousel-books"
+                                                src={book.coverimg}
+                                                alt="First slide"
+                                                /> 
+                                            </a>
                                         </div>
                                     )})}
                                 </div>
