@@ -50,7 +50,7 @@ class Routes extends Component {
             <Route path="/homepage" component={Home} />
             <Route exact path="/" component={Home} />
             <Route exact path="/books/:bookId" component={SingleBook} />
-            <Route path="/login" component={LoginButton} />
+            <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/checkout" component={Checkout} />
             {/* <Route path="/cart" component={LocalCart} /> */}

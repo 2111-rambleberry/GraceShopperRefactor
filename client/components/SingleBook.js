@@ -15,11 +15,11 @@ const SingleBook = () => {
     dispatch(fetchSingleBook(bookId));
   }, []);
 
-  // they all have 10 genres
-  const genreIndex = Math.floor(Math.random()*10)
+  const genreIndex = Math.floor(Math.random() * 7)
 
-  const genres = Object.values(book)[7];
-  console.log(typeof genres)
+  // console.log(book.genres.length || []) 
+  // console.log(Object.keys(book.genres))
+
   return (
     <div className = "singleBook">
       {!book ? (
@@ -56,7 +56,7 @@ const SingleBook = () => {
                         size="sm"
                         type="button"
                         variant="primary"
-                        onClick={() => addItemThunk(book)}
+                        onClick={() => dispatch(addItemThunk(book))}
                       >
                         Add To Cart
                       </Button>
@@ -71,7 +71,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-       <GenreCarousel className = "marginTop" genre = {'Westerns'} />
+       <GenreCarousel genre = {book.genres} />
     </div>
   );
 };

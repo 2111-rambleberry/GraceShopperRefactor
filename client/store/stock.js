@@ -115,8 +115,8 @@ export default function stockReducer(state = initialState, action) {
   switch (action.type) {
     case GET_STOCK:
       return action.stock;
-        case ADD_STOCK:
-      return [...state, action.singleBook]
+    case ADD_STOCK:
+      return [...state, action.stockItem]
     case EDIT_STOCK:
       return state.map((stockItem) => {stockItem.id === action.stockItem.id ? action.stockItem : stockItem});
     case DELETE_STOCK:
