@@ -34,7 +34,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // add item to cart:
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, async (req, res, next) => {
   try {
     const currBook = await Book.findByPk(req.body.id);
     const currentOrder = await Cart.findOne({
@@ -64,17 +64,19 @@ router.post('/', async (req, res, next) => {
 })
 
 // remove item from cart
-router.put('/:id', async (req, res, next) => {
+router.delete('/:bookId', requireToken, async (req, res, next) => {
   try {
-    const currBook = await Book.findByPk(req.params.id);
+    const currBook = await Book.findByPk(req.params.bookId);
     const currentOrder = await Cart.findOne({
       where: {
         order_status: 'in cart',
         userId: req.user.id
       }
     })
-    await currentOrder.removeBook(currBook)
-    await currentOrder.save();
+    console.log(currentOrder)
+    console.log(currBook)
+    // await currentOrder.delete(currBook)
+    // await currentOrder.save();
     res.sendStatus(200)
   } catch (err) {
     next(err)

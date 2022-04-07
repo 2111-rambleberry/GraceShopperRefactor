@@ -45,8 +45,6 @@ export const addItemThunk = (book) => {
           authorization: token
         }
       });
-      console.log(token)
-      console.log(added)
       dispatch(updateCart(added));
       }
     } catch (error) {
@@ -56,13 +54,15 @@ export const addItemThunk = (book) => {
   }
 };
 
-// funk for deleting book from cart
-export const removeItemThunk = (id) => {
+// thunk for deleting book from cart
+export const removeItemThunk = (bookId) => {
   return async(dispatch) => {
     try{
+      // const { data: book } = await axios.delete(`/api/cart/${bookId}`)
+      // dispatch(removeItem(book))
       const token = window.localStorage.getItem(TOKEN)
       if(token){
-        const { data: book } = await axios.delete(`/api/cart/${id}`,{
+        const { data: book } = await axios.delete(`/api/cart/${bookId}`, {
           headers: {
             authorization: token,
           },
@@ -83,11 +83,11 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       return action.cart;
-    case UPDATE_CART:{
+    case UPDATE_CART:
       return [...state, action.book]
-    } 
     case REMOVE_ITEM:
-      return state.filter((book) => book.id !== action.book.id);
+      console.log(state)
+      return state.filter((book) => book.id !== action.book.bookId);
     case EMPTY_CART:
       return initialState;
     default:
