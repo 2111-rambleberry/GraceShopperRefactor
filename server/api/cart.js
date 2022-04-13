@@ -5,11 +5,10 @@ const {
 } = require("../db");
 
 // find user cart:
-router.get("/", requireToken, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const currentCart = await Cart.findOne({
       where: {
-        userId: req.user.id,
         order_status: "in cart",
       },
       attributes: ["id"],
@@ -22,7 +21,6 @@ router.get("/", requireToken, async (req, res, next) => {
         },
       ],
     });
-    console.log({ currentCart });
     if (currentCart) {
       res.json(currentCart);
     } else {
@@ -49,12 +47,11 @@ router.post('/', requireToken, async (req, res, next) => {
     //   cartId: currentOrder.id
     // }
     )
-      console.log({currentOrder})
       if(currentOrder){
         await currBook.setCarts(currentOrder.id);
         res.json(currentOrder)
       } else {
-        const currentOrder = await Cart.Create({
+        const currentOrder = await Cart.create({
           userId: req.user.id
         })
         await currentOrder.save();
@@ -66,25 +63,25 @@ router.post('/', requireToken, async (req, res, next) => {
   }
 })
 
-// // remove item from cart
-// router.put('/remove', async (req, res, next) => {
-//   try {
-//     const currentOrder = await Cart.findByPk(req.body.id)
-//     if (currentOrder.username !== req.body.username) {
-//       res.sendStatus(401)
-//     } else {
-//       await BookInOrder.destroy({
-//         where: {
-//           bookId: req.body.bookId,
-//           cartId: req.body.cartId
-//         }
-//       })
-//     }
-//     res.sendStatus(200)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+// remove item from cart
+router.delete('/:bookId', requireToken, async (req, res, next) => {
+  try {
+    const currBook = await Book.findByPk(req.params.bookId);
+    const currentOrder = await Cart.findOne({
+      where: {
+        order_status: 'in cart',
+        userId: req.user.id
+      }
+    })
+    console.log(currentOrder)
+    console.log(currBook)
+    // await currentOrder.delete(currBook)
+    // await currentOrder.save();
+    res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+})
 
 // //update cart:
 // router.put(':id', async (req, res, next) => {

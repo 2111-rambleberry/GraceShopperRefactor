@@ -79,7 +79,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .genreCenter {
@@ -93,10 +92,6 @@ a {
 
 .marginTop {
   margin-top: 5%;
-}
-
-.marginBottom {
-  margin-bottom: 5%;
 }
 
 label {
@@ -138,26 +133,11 @@ nav {
   margin: 20px 20px 20px 20px;
 }
 
-/* .cardBody{
-  display: flex,
-
-} */
-
-.btn-primary {
-  background-color: purple;
-  color: white;
-}
-
-.book-cover{
-  height: 20;
-}
-
 .book-info {
   display: flex;
   flex-flow: column nowrap;
   width: 10vw;
   margin-bottom: 1vh;
-  margin-top: 5%;
 }
 
 .user-table table,
