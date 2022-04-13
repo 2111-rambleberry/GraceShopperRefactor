@@ -35,28 +35,37 @@ const GenrePage = () => {
         {
           if (book.bought === false)
             return (
-            <Col>
-              <div className="book-info" key={book.id}>
-                <div className="book-card">
-                  <Card className = "border-0" style={{ width: '10rem', height: '32rem' }}> 
+            <Col key = {book.id}>
+
+                  {/* */}
+                  <Card className = "border-0"  style={{ width: '12rem', height: '32rem' }}> 
                     <Card.Link href = {`/books/${book.id}`}> 
                       <Card.Img variant ="top" className="book-cover shadow-lg" src={book.coverimg} />
                       </Card.Link>
                       <Card.Body className= "d-flex flex-column">
-                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Title>
+                        <h6 className = "bookTitle">
+                          {book.title.length > 40 ? 
+                          book.title.slice(0, 40) +"..." : 
+                          book.title}
+                        </h6>
+                        </Card.Title>
                         <Card.Text className="text-muted">
                           {book.author.length > 30 ? 
-                          book.author.slice(0,40) + '...' :
+                          book.author.slice(0,30) +"..." :
                           book.author
                           }
                         </Card.Text>
-
-                        <Card.Text>                        $
-                        {book.price
+                        {/* <div  style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}> */}
+                        <Card.Text>                       
+                         ${book.price
                           ? (book.price / 100).toFixed(2)
                           : (5.0).toFixed(2)}
                         </Card.Text>
-                        
+
+                      {/* </div> */}
+                      </Card.Body>
+                      <Card.Footer style ={{color:"white", border: "none", backgroundColor: "white"}}>
                         <Button
                         size="sm"
                         style ={{color:"white", backgroundColor: "purple", border: "purple"}}
@@ -64,12 +73,11 @@ const GenrePage = () => {
                         variant="primary"
                         onClick={() => addItemThunk(book)}
                       >
+                      
                         <BsFillBasket3Fill color = "white"/>  Add To Cart
                       </Button >
-                      </Card.Body>
+                      </Card.Footer>
                   </Card>
-                </div>
-              </div>
               </Col>
             );
         }

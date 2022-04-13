@@ -15,6 +15,11 @@ h3 {
   font-style: italic;
 }
 
+.bookTitle {
+  font-size: 20;
+  font-family: 'Playfair Display', serif; 
+}
+
 p {
   font-family: "Montserrat";
 }
@@ -125,7 +130,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 100px;
-  margin: 0px 50px 0px 50px;
+  margin: 20px 20px 20px 20px;
 }
 
 .book-info {

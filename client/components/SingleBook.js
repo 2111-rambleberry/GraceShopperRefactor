@@ -26,7 +26,7 @@ const SingleBook = () => {
         <p> Loading... </p>
       ) : (
         <div>
-          <Container>
+          <Container >
             <Row>
               <Col sm={4}>
                 <img
