@@ -71,7 +71,7 @@ const SingleBook = () => {
           </Container>
         </div>
       )}
-       <GenreCarousel genre = {book.genres} />
+       <GenreCarousel genre = "Adventure" />
     </div>
   );
 };

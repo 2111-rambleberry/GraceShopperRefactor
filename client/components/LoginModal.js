@@ -4,37 +4,38 @@ import {authenticate} from '../store'
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Form, Button } from "react-bootstrap";
 
-function LoginModal(props) {
+// function LoginModal(props) {
+  function LoginModal() {
+  //   const { error } = useSelector
+  //   (state => {
+  //     return {
+  //       error: state.auth.error
+  //     }
+  //   });
 
-    const { error } = useSelector
-    (state => {
-      return {
-        error: state.auth.error
-      }
-    });
+  // //getting the actions from the store
+  // const dispatch = useDispatch();
 
-  //getting the actions from the store
-  const dispatch = useDispatch();
+  // //local state for editing
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
 
-  //local state for editing
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-    //we need a handle submit function to handle the form submission because of what happens when you submit a form, we need to stop the default behavior of the form which is to refresh the page
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(authenticate(username, password, formName));
-      }
+  //   //we need a handle submit function to handle the form submission because of what happens when you submit a form, we need to stop the default behavior of the form which is to refresh the page
+  //   const handleSubmit = (e) => {
+  //       e.preventDefault();
+  //       dispatch(authenticate(username, password, formName));
+  //     }
       
-      console.log(props);
+  //     console.log(props);
     return (
       <Modal
-        {...props}
+        // {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <h1>Hello World</h1>
+        {/* <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             Login
           </Modal.Title>
@@ -58,27 +59,27 @@ function LoginModal(props) {
             <Button variant="primary" type="submit" onClick = {handleSubmit}>
                 Submit
             </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     );
   }
   
-  function LoginButton() {
-    const [modalShow, setModalShow] = React.useState(false);
+  // function LoginButton() {
+  //   const [modalShow, setModalShow] = React.useState(false);
   
-    return (
-      <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
+  //   return (
+  //     <>
+  //       <Button variant="primary" onClick={() => setModalShow(true)}>
+  //         Launch vertically centered modal
+  //       </Button>
   
-        <LoginModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      </>
-    );
-  }
+  //       <LoginModal
+  //         show={modalShow}
+  //         onHide={() => setModalShow(false)}
+  //       />
+  //     </>
+  //   );
+  // }
 
 //   const mapDispatch = dispatch => {
 //     return {
@@ -92,5 +93,5 @@ function LoginModal(props) {
 //     }
 //   }
   
-  export default LoginButton;
+  export default LoginModal;
   

@@ -15,7 +15,7 @@ import AllUsers from "./components/AllUsers";
 import Checkout from "./components/Checkout";
 import AddBook from "./components/AddBook";
 import GenrePage from './components/GenrePage'
-import LoginButton from "./components/LoginModal";
+import LoginModal from "./components/LoginModal";
 
 //Note theres is a slight switch if the user is logged in
 class Routes extends Component {
