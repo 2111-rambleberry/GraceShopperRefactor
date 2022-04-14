@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
+import {Form, Stack, Button, Card }from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -9,7 +10,35 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+
+    
+    // <div>
+    //   <Form onSubmit={handleSubmit} name={name}>
+    //   <Form.Group className="mb-3" controlId="username">
+    //       <Form.Label htmlFor="username">
+    //         <small>Username</small>
+    //       </Form.Label>
+    //       <Form.Control name="username" type="text" placeholder="Enter Username"/>
+    //     </Form.Group>
+
+    //     <Form.Group className="mb-3" controlId="username">
+    //       <Form.Label htmlFor="password">
+    //         <small>Password</small>
+    //       </Form.Label>
+    //       <Form.Control name="password" type="password" />
+    //     </Form.Group>
+    //     <div>
+    //       <Button variant="primary" type="submit">{displayName}</Button>
+    //     </div>
+    //     {error && error.response && <div> {error.response.data} </div>}
+    //   </Form>
+    // </div>
+      <center>
+      <Card style={{ width: '18rem' }} className = "loginCard">
+         <Card.Body>
+      {/* <Stack gap={2} className="col-md-5 mx-auto"> */}
+      <Card.Title>Login</Card.Title>
+      <center>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">
@@ -17,18 +46,24 @@ const AuthForm = props => {
           </label>
           <input name="username" type="text" />
         </div>
+
         <div>
           <label htmlFor="password">
             <small>Password</small>
           </label>
           <input name="password" type="password" />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+
+   
+        <Button type="submit" text-align = "center">{displayName}</Button> 
+   
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+      </form> 
+      </center>
+      {/* </Stack>  */}
+      </Card.Body>
+      </Card>
+      </center>
   )
 }
 

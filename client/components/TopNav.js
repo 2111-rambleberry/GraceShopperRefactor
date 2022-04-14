@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store";
 import { BsFillBasket3Fill, BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import LoginModal from "./LoginModal"
 import {
   Navbar,
   FormControl,
@@ -15,6 +17,7 @@ import {
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
 const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
+
   <div>
     {/* <Stack direction="horizontal" gap={2}> */}
     <Navbar collapseOnSelect expand="lg" bg="light">
@@ -68,7 +71,7 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
         ) : (
           <>
             {/* The navbar will show these links before you log in */}
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href = '/login'>Login</Nav.Link>
             <Nav.Link href="/cart">
               <BsFillBasket3Fill />
             </Nav.Link>
@@ -95,6 +98,9 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(logout());
     },
+    handleModal() {
+      
+    }
   };
 };
 
