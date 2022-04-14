@@ -5,7 +5,7 @@ const {
 } = require("../db");
 
 // find user cart:
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
     const currentCart = await Cart.findOne({
       where: {
@@ -42,29 +42,25 @@ router.post('/', requireToken, async (req, res, next) => {
         order_status: 'in cart',
         userId: req.user.id
       }
-    }
-    // defaults:{
-    //   cartId: currentOrder.id
-    // }
-    )
+    })
       if(currentOrder){
         await currBook.setCarts(currentOrder.id);
         res.json(currentOrder)
       } else {
         const currentOrder = await Cart.create({
           userId: req.user.id
-        })
-        await currentOrder.save();
-        await currBook.setCarts(currentOrder.id);
-        res.json(currentOrder)
-      }
+      })
+      await currentOrder.save();
+      await currBook.setCarts(currentOrder.id);
+      res.json(currentOrder)
+    }
   } catch (error) {
     next(error)
   }
 })
 
 // remove item from cart
-router.delete('/:bookId', requireToken, async (req, res, next) => {
+router.put('/:bookId', requireToken, async (req, res, next) => {
   try {
     const currBook = await Book.findByPk(req.params.bookId);
     const currentOrder = await Cart.findOne({
@@ -73,24 +69,20 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
         userId: req.user.id
       }
     })
+    if(currentOrder){
+      await currentOrder.removeBook(currBook);
+    } else {
+      console.log("not working!")
+    }
     console.log(currentOrder)
     console.log(currBook)
     // await currentOrder.delete(currBook)
     // await currentOrder.save();
-    res.sendStatus(200)
+    res.json(currentOrder);
   } catch (err) {
     next(err)
   }
 })
 
-// //update cart:
-// router.put(':id', async (req, res, next) => {
-//     try {
-//       const updatingCart = await Cart.findByPk(req.params.id)
-//       res.send(await updatingCart.update(req.body))
-//     } catch (error) {
-//       next(error)
-//     }
-//   })
 
 module.exports = router;
