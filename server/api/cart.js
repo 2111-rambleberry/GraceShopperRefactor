@@ -52,7 +52,7 @@ router.post('/', requireToken, async (req, res, next) => {
         },
       ],
     });
-      if(currentOrder){
+      if(currentOrder) {
         await currBook.setCarts(currentOrder.id);
         res.json(currBook)
       } else {
@@ -60,8 +60,6 @@ router.post('/', requireToken, async (req, res, next) => {
           userId: req.user.id
       })
       await currentOrder.save();
-      // await currBook.setCarts(currentOrder.id);
-      // res.json(currentOrder)
     }
   } catch (error) {
     next(error)
@@ -87,9 +85,8 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
     });
     const currBook = await Book.findByPk(req.params.bookId);
     if(currentOrder){
-      console.log(currentOrder.books.length)
       await currentOrder.removeBook(currBook);
-      res.send(currBook);
+      res.json(currBook);
     // } else if (currentOrder.books === 1 && user) {
     //   await currentOrder.destroy();
     } else {

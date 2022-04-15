@@ -40,13 +40,12 @@ export const addItemThunk = (book) => {
     try {
       const token = window.localStorage.getItem(TOKEN)
       if (token) {
-        console.log("book", book)
         const { data: updated } = await axios.post("/api/cart", book, {
           headers: {
             authorization: token
           }
         });
-        dispatch(updateCart(updated.books));
+        dispatch(updateCart(updated));
       }
     } catch (error) {
       console.log("Thunk not working!!!")
@@ -87,25 +86,16 @@ export default function cartReducer(state = initialState, action) {
     case LOAD_CART:
       return action.cart;
     case ADD_TO_CART:
-      console.log(
-        state)
-      return [...state.cart.books, action.book]  
+      return {...state, cart: {
+          ...state.cart,
+          books: [...state.cart.books, action.book]} 
+      } 
     case REMOVE_ITEM:
-      const items = state.books
-      console.log ({
-        ...state, books: [
-          state.books.filter((book) => {
-            book.id !== action.book.id
-          })
-        ]
-      })
-      return {
-        ...state, books: [
-          state.books.filter((book) => {
-            book.id !== action.book.id
-          })
-        ]
-      }
+      return {...state, 
+        books: state.books.filter((book) => {
+          return book.id !== action.book.id
+        }) 
+    } 
     case EMPTY_CART:
       return initialState;
     default:
