@@ -39,10 +39,18 @@ router.post('/', requireToken, async (req, res, next) => {
     const currBook = await Book.findByPk(req.body.id);
     const currentOrder = await Cart.findOne({
       where: {
-        order_status: 'in cart',
-        userId: req.user.id
-      }
-    })
+        order_status: "in cart",
+      },
+      attributes: ["id"],
+      include: [
+        {
+          model: Book,
+          attributes: ["id", "title", "author", "coverimg", "price"],
+          through: { attributes: [] },
+          required: true,
+        },
+      ],
+    });
       if(currentOrder){
         await currBook.setCarts(currentOrder.id);
         res.json(currentOrder)
@@ -51,8 +59,8 @@ router.post('/', requireToken, async (req, res, next) => {
           userId: req.user.id
       })
       await currentOrder.save();
-      await currBook.setCarts(currentOrder.id);
-      res.json(currentOrder)
+      // await currBook.setCarts(currentOrder.id);
+      // res.json(currentOrder)
     }
   } catch (error) {
     next(error)
@@ -60,25 +68,30 @@ router.post('/', requireToken, async (req, res, next) => {
 })
 
 // remove item from cart
-router.put('/:bookId', requireToken, async (req, res, next) => {
+router.delete('/:bookId', requireToken, async (req, res, next) => {
   try {
-    const currBook = await Book.findByPk(req.params.bookId);
     const currentOrder = await Cart.findOne({
       where: {
-        order_status: 'in cart',
-        userId: req.user.id
-      }
-    })
+        order_status: "in cart",
+      },
+      attributes: ["id"],
+      include: [
+        {
+          model: Book,
+          attributes: ["id", "title", "author", "coverimg", "price"],
+          through: { attributes: [] },
+          required: true,
+        },
+      ],
+    });
+    const currBook = await Book.findByPk(req.params.bookId);
     if(currentOrder){
       await currentOrder.removeBook(currBook);
     } else {
       console.log("not working!")
     }
-    console.log(currentOrder)
-    console.log(currBook)
-    // await currentOrder.delete(currBook)
-    // await currentOrder.save();
-    res.json(currentOrder);
+    await currentOrder.save();
+    res.send();
   } catch (err) {
     next(err)
   }

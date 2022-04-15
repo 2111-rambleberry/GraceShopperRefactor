@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-// import { loadCart, removeItemThunk} from '../store/cart'
 import { loadCart, removeItemThunk  } from '../store/cart'
-import { connect } from 'react-redux';
 import { Button, Spinner } from 'react-bootstrap';
 import { RiDeleteBin3Line } from "react-icons/ri";
 
