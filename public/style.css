@@ -31,21 +31,11 @@ a {
 .genre {
   text-align: center;
   background-color: lightgray;
-  margin-bottom: 5%;
 }
 
 .singleBook{
   margin-top: 5%;
   margin-bottom: 5%;
-}
-
-.footer {
-  /* position: fixed; */
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background: rgb(243, 236, 255);
 }
 
 .darkPurple {
@@ -54,6 +44,8 @@ a {
 
 .darkPurpleNav {
   background-color: #2d0a4e;
+  font-family: "Montserrat";
+  color: orange; 
 }
 
 .logo {
@@ -61,6 +53,16 @@ a {
   font-weight: 800;
   font-display: swap;
   color: #2d0a4e;
+}
+
+.footer {
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightslategray;
+  color: white;
+  text-align: center;
 }
 
 .bold {
@@ -104,18 +106,12 @@ a {
   margin-top: 5%;
 }
 
-label {
-  display: block;
+.marginBottom {
+  margin-bottom: 5%;
 }
 
-.loginCard {
-  margin-bottom: 5%;
-  margin-top: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%; 
-  height: 100%; 
+label {
+  display: block;
 }
 
 nav a {
