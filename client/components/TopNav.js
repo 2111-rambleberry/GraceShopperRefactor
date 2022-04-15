@@ -20,7 +20,7 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
 
   <div>
     {/* <Stack direction="horizontal" gap={2}> */}
-    <Navbar collapseOnSelect expand="lg" bg="light">
+    <Navbar collapseOnSelect sticky="top" expand="lg" bg="light">
       {/* <Container> */}  
       
       <Navbar.Brand href="/homepage" className="logo">

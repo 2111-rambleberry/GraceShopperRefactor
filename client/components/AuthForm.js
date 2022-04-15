@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
 import {Form, Stack, Button, Card }from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
+  console.log(typeof name)
   return (
 
     
@@ -37,7 +38,7 @@ const AuthForm = props => {
       <Card style={{ width: '18rem' }} className = "loginCard">
          <Card.Body>
       {/* <Stack gap={2} className="col-md-5 mx-auto"> */}
-      <Card.Title>Login</Card.Title>
+      <Card.Title>{displayName}</Card.Title>
       <center>
       <form onSubmit={handleSubmit} name={name}>
         <div>
@@ -61,6 +62,9 @@ const AuthForm = props => {
       </form> 
       </center>
       {/* </Stack>  */}
+      {name == "login" ? 
+      <Card.Link href = "/signup"><p>Don't have an account?</p></Card.Link> :
+      <Card.Link href = "/login"><p>Already have an account?</p></Card.Link> }
       </Card.Body>
       </Card>
       </center>
