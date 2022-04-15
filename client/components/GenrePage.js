@@ -21,13 +21,12 @@ const GenrePage = () => {
  console.log(genre);
 
   return (
+    <>
+    <Row className = "genre">
+      <h1>{genre}</h1>
+    </Row>
 
    <Container>
-    
-      <Row className = "genre marginBottom">
-        <h1>{genre}</h1>
-      </Row>
-
       <Row s={2} md={1} className="g-4">
       <div className="book-small">
       
@@ -71,7 +70,7 @@ const GenrePage = () => {
                         style ={{color:"white", backgroundColor: "purple", border: "purple"}}
                         type="submit"
                         variant="primary"
-                        onClick={() => addItemThunk(book)}
+                        onClick={() => dispatch(addItemThunk(book))}
                       >
                       
                         <BsFillBasket3Fill color = "white"/>  Add To Cart
@@ -85,6 +84,7 @@ const GenrePage = () => {
        </div>
       </Row>
     </Container>
+    </>
   );
 };
 

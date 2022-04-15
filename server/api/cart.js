@@ -7,6 +7,7 @@ const {
 // find user cart:
 router.get("/", requireToken, async (req, res, next) => {
   try {
+    const user = await User.findByPk(req.user.id)
     const currentCart = await Cart.findOne({
       where: {
         order_status: "in cart",
@@ -53,7 +54,7 @@ router.post('/', requireToken, async (req, res, next) => {
     });
       if(currentOrder){
         await currBook.setCarts(currentOrder.id);
-        res.json(currentOrder)
+        res.json(currBook)
       } else {
         const currentOrder = await Cart.create({
           userId: req.user.id
@@ -86,12 +87,14 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
     });
     const currBook = await Book.findByPk(req.params.bookId);
     if(currentOrder){
+      console.log(currentOrder.books.length)
       await currentOrder.removeBook(currBook);
+      res.send(currBook);
+    // } else if (currentOrder.books === 1 && user) {
+    //   await currentOrder.destroy();
     } else {
       console.log("not working!")
     }
-    await currentOrder.save();
-    res.send();
   } catch (err) {
     next(err)
   }
