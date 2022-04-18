@@ -118,6 +118,11 @@ label {
   display: block;
 }
 
+.loginCard {
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
