@@ -58,7 +58,7 @@ export const setStock = (stock, history) => {
           headers: {
             authorization: token,
           }})
-        dispatch(setSingleItem(data));
+          console.log(data)
         history.push('/stock')
       }
     }catch (err) {
@@ -99,8 +99,6 @@ export const removeStock = (id) => {
             },
           });
           dispatch(deleteStock(stockItem));
-          // const { data: stock } = await axios.get('/api/books')
-          // dispatch(getStock(stock))
       }      
     } catch (err) {
       console.log(err);

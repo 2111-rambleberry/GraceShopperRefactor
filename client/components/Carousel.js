@@ -3,9 +3,6 @@
 //This will get a genre input, then based off the genre will go to 
 //-->Thunk-->API-->Data-->Component
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchGenre } from "../store/genre";
 import { Carousel, CarouselItem, Row} from "react-bootstrap";
 import axios from "axios";
 
@@ -27,7 +24,6 @@ const GenreCarousel = (props) => {
     const carouselGroup = (books, n) => books.slice(0, 12)
         .reduce((acc, book, i) => {
         const idx = Math.floor(i / n);
-        console.log(book)
         acc[idx] = [...(acc[idx] || []), book];
         return acc;
     }, []);
@@ -39,10 +35,9 @@ const GenreCarousel = (props) => {
         <h2 className="boldCarousel">Browse Our {genre} Collection</h2>
         <div className="carouselGenre">
             <Carousel> 
-               
-                {groups.map((group) => {
+                {groups.map((group, i) => {
                     return (
-                        <CarouselItem key={group}>
+                        <CarouselItem key={group[i].id}>
                             <Row>
                                 <div className="genreCenter">
                                     {group.map((book) => {

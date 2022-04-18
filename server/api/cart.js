@@ -5,8 +5,9 @@ const {
 } = require("../db");
 
 // find user cart:
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
+    const user = await User.findByPk(req.user.id)
     const currentCart = await Cart.findOne({
       where: {
         order_status: "in cart",
@@ -39,25 +40,27 @@ router.post('/', requireToken, async (req, res, next) => {
     const currBook = await Book.findByPk(req.body.id);
     const currentOrder = await Cart.findOne({
       where: {
-        order_status: 'in cart',
-        userId: req.user.id
-      }
-    }
-    // defaults:{
-    //   cartId: currentOrder.id
-    // }
-    )
-      if(currentOrder){
+        order_status: "in cart",
+      },
+      attributes: ["id"],
+      include: [
+        {
+          model: Book,
+          attributes: ["id", "title", "author", "coverimg", "price"],
+          through: { attributes: [] },
+          required: true,
+        },
+      ],
+    });
+      if(currentOrder) {
         await currBook.setCarts(currentOrder.id);
-        res.json(currentOrder)
+        res.json(currBook)
       } else {
         const currentOrder = await Cart.create({
           userId: req.user.id
-        })
-        await currentOrder.save();
-        await currBook.setCarts(currentOrder.id);
-        res.json(currentOrder)
-      }
+      })
+      await currentOrder.save();
+    }
   } catch (error) {
     next(error)
   }
@@ -66,31 +69,33 @@ router.post('/', requireToken, async (req, res, next) => {
 // remove item from cart
 router.delete('/:bookId', requireToken, async (req, res, next) => {
   try {
-    const currBook = await Book.findByPk(req.params.bookId);
     const currentOrder = await Cart.findOne({
       where: {
-        order_status: 'in cart',
-        userId: req.user.id
-      }
-    })
-    console.log(currentOrder)
-    console.log(currBook)
-    // await currentOrder.delete(currBook)
-    // await currentOrder.save();
-    res.sendStatus(200)
+        order_status: "in cart",
+      },
+      attributes: ["id"],
+      include: [
+        {
+          model: Book,
+          attributes: ["id", "title", "author", "coverimg", "price"],
+          through: { attributes: [] },
+          required: true,
+        },
+      ],
+    });
+    const currBook = await Book.findByPk(req.params.bookId);
+    if(currentOrder){
+      await currentOrder.removeBook(currBook);
+      res.json(currBook);
+    // } else if (currentOrder.books === 1 && user) {
+    //   await currentOrder.destroy();
+    } else {
+      console.log("not working!")
+    }
   } catch (err) {
     next(err)
   }
 })
 
-// //update cart:
-// router.put(':id', async (req, res, next) => {
-//     try {
-//       const updatingCart = await Cart.findByPk(req.params.id)
-//       res.send(await updatingCart.update(req.body))
-//     } catch (error) {
-//       next(error)
-//     }
-//   })
 
 module.exports = router;
