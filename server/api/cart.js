@@ -52,15 +52,15 @@ router.post('/', requireToken, async (req, res, next) => {
         },
       ],
     });
-      //
-      if(currentOrder) {
-        await currBook.setCarts(currentOrder.id);
-        res.json(currBook)
-      } else {
-        const currentOrder = await Cart.create({
-          userId: req.user.id
+    if(currentOrder) {
+      await currBook.setCarts(currentOrder.id);
+      res.json(currBook)
+    } else {
+      const newOrder = await Cart.create({
+        userId: req.user.id
       })
-      await currentOrder.save();
+      await currBook.setCarts(newOrder.id);
+      res.json(currBook)
     }
   } catch (error) {
     next(error)
@@ -88,8 +88,6 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
     if(currentOrder){
       await currentOrder.removeBook(currBook);
       res.json(currBook);
-    // } else if (currentOrder.books === 1 && user) {
-    //   await currentOrder.destroy();
     } else {
       console.log("not working!")
     }
