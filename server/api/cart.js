@@ -56,8 +56,12 @@ router.post('/', requireToken, async (req, res, next) => {
         },
       ],
     });
+<<<<<<< HEAD
     console.log("current order");
     console.log(currentOrder);
+=======
+      //
+>>>>>>> main
       if(currentOrder) {
         await currBook.setCarts(currentOrder.id);
         res.json(currBook)
