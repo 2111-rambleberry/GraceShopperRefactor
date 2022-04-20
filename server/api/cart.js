@@ -37,7 +37,11 @@ router.get("/", requireToken, async (req, res, next) => {
 // add item to cart:
 router.post('/', requireToken, async (req, res, next) => {
   try {
+    console.log('are we in');
     const currBook = await Book.findByPk(req.body.id);
+    console.log('currBook');
+    console.log(currBook);
+
     const currentOrder = await Cart.findOne({
       where: {
         order_status: "in cart",
@@ -52,6 +56,8 @@ router.post('/', requireToken, async (req, res, next) => {
         },
       ],
     });
+    console.log("current order");
+    console.log(currentOrder);
       if(currentOrder) {
         await currBook.setCarts(currentOrder.id);
         res.json(currBook)

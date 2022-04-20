@@ -20,6 +20,8 @@ const emptyCart = () => ({ type: EMPTY_CART });
 export const loadCart = () => {
   return async (dispatch) => {
     try { const token = window.localStorage.getItem(TOKEN);
+      console.log(token);
+      console.log(cart);
       if (token) {
         const { data: cart } = await axios.get("/api/cart", {
           headers: {
@@ -36,6 +38,7 @@ export const loadCart = () => {
 
 // funk for adding book to cart
 export const addItemThunk = (book) => {
+  console.log(book); 
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN)
@@ -45,6 +48,8 @@ export const addItemThunk = (book) => {
             authorization: token
           }
         });
+        console.log('here');
+        console.log(updated);
         dispatch(updateCart(updated));
       }
     } catch (error) {
