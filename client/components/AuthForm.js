@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-  console.log(typeof name)
+
   return (
 
     
