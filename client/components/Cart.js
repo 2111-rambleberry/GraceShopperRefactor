@@ -45,7 +45,7 @@ const Cart = () => {
             <center>
             <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
             <Image src = "shelfLogo.png" height = "250px"/>
-            <GenreCarousel genre = "Fantasy" />
+            <GenreCarousel genre = "Fiction" />
             </center>
            </Stack>
         </div>
@@ -55,7 +55,7 @@ const Cart = () => {
           <h2 className="cart">My Cart</h2>
         </div>
         <div>
-         <Table bordered stripped>
+         <Table bordered className = "checkoutTable">
            <thead>
              <tr>
                <th>Book</th>
