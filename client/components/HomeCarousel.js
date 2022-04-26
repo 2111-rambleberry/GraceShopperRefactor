@@ -17,7 +17,7 @@ const HomeCarousel = () => {
                 <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src = "HomeDeets.png"
+                        src = "tredyHome.png"
                         alt="Deets Slide"
                         />
                 </Carousel.Item> 
@@ -34,14 +34,6 @@ const HomeCarousel = () => {
                     src = "https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2022/04/19/Gateway_Billboard_C_Graduation_04-19.jpg"
                     alt="First slide"
                     />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src ="https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2022/04/19/Gateway_Quote_A3_04-19.jpg"
-                    alt="Second"
-                    />
-                    <Carousel.Caption><h1>For those with a Green Thumb</h1></Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img

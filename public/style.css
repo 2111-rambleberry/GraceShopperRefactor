@@ -96,6 +96,10 @@ a {
   font-display: swap;
 }
 
+.checkoutTable{
+  background-color: white;
+}
+
 .boldCarousel {
   font-style: normal;
   font-weight: 800;
