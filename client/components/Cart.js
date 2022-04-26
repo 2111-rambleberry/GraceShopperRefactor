@@ -5,6 +5,7 @@ import { loadCart, removeItemThunk  } from '../store/cart'
 //import { Button } from 'react-bootstrap';
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
+import GenreCarousel from "./Carousel";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,13 @@ const Cart = () => {
     <>
       {!cart.books ? (
         <div className="genreCenter">
-           <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
+          <Stack gap = {3}>
+            <center>
+            <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
+            <Image src = "shelfLogo.png" height = "250px"/>
+            <GenreCarousel genre = "Fantasy" />
+            </center>
+           </Stack>
         </div>
         ) : (
         <>
@@ -48,7 +55,7 @@ const Cart = () => {
           <h2 className="cart">My Cart</h2>
         </div>
         <div>
-         <Table bordered>
+         <Table bordered stripped>
            <thead>
              <tr>
                <th>Book</th>
@@ -57,6 +64,7 @@ const Cart = () => {
                <th>Remove</th>
              </tr>
            </thead>
+           {/* <tbody>  */}
              {cart.books.map((book) => (
                <tr key={book.id}>
                  <td><Image height = "150px" src={book.coverimg} className = "cartBook"/></td>
@@ -82,8 +90,24 @@ const Cart = () => {
                  </td>
                </tr>
              ))}
+              <tr className = "total">
+                 <td>Total</td>
+                 <td></td>
+                 <td><h1>${total}</h1></td>
+                 <td></td>
+                </tr>
+             {/* </tbody>  */}
          </Table>
-         <h1 text-align = "center">Total : {total} </h1>
+       </div>
+       <div>
+         <Button
+           size="md"
+           type="button"
+           variant="primary"
+           onClick={() => dispatch(removeItemThunk(book.id))}
+         >
+           <h1>Checkout</h1>
+         </Button>
        </div>
         </>
       )}

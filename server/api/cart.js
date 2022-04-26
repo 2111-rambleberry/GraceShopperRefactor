@@ -96,5 +96,32 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
   }
 })
 
+// remove item from stock db
+router.post('/:bookId', requireToken, async (req, res, next) => {
+    try{
+      //look for the cart with the books in the db
+      const currentOrder = await Cart.findOne({
+        where: {
+          order_status: "in cart",
+        },
+        attributes: ["id"],
+        include: [
+          {
+            model: Book,
+            attributes: ["id", "title", "author", "coverimg", "price"],
+            through: { attributes: [] },
+            required: true,
+          },
+        ],
+      });
+      //delete all the books from the stock db, but save the books data in an array in the cart
+
+      //switch the cart to ordered
+
+      //Later on the user profile make ordered items viewable
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router;
