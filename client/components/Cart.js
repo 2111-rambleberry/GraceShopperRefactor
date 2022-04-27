@@ -16,11 +16,12 @@ const Cart = () => {
     dispatch(loadCart())
   }, []);
 
-  const handleSubmit = (book) => {() => {
-    dispatch(removeItemThunk(book.id))
-    dispatch(loadCart()) 
-    }
-  }
+  // const handleSubmit = (book) => {() => {
+  //   dispatch(removeItemThunk(book.id))
+  //   dispatch(loadCart()) 
+  //   }
+  // }
+
   console.log(cart.books);
 
   function getTotal(cart){
@@ -45,7 +46,7 @@ const Cart = () => {
             <center>
             <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
             <Image src = "shelfLogo.png" height = "250px"/>
-            <GenreCarousel genre = "Fiction" />
+            {/* <GenreCarousel genre = "Fiction" /> */}
             </center>
            </Stack>
         </div>

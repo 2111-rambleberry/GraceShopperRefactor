@@ -1,6 +1,14 @@
 import axios from "axios";
 
 const TOKEN = "token";
+const GUEST_CART = "guestCart";
+
+//Initial state:
+const initialState = {
+  cart: {
+    books: []
+  }   
+} 
 
 //ACTIONS
 const LOAD_CART = "LOAD_CART";
@@ -27,6 +35,12 @@ export const loadCart = () => {
           },
         });
         dispatch(getCart(cart));
+      } else {
+        const cart = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+        if (!cart) {
+          cart = {book: [] }
+        } 
+        dispatch(getCart(cart));
       }
     } catch (err) {
       console.log(">>>>>>thunk not working");
@@ -46,6 +60,13 @@ export const addItemThunk = (book) => {
           }
         });
         dispatch(updateCart(updated));
+      } else {
+        const cart = window.sessionStorage.getItem(GUEST_CART)
+          ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+          : { books: [] };
+        cart.books.push(book)
+        window.sessionStorage.setItem(GUEST_CART, JSON.stringify(cart))
+        dispatch(updateCart(book));
       }
     } catch (error) {
       console.log("Thunk not working!!!")
@@ -66,6 +87,13 @@ export const removeItemThunk = (id) => {
           },
         });
         dispatch(removeItem(book))
+      } else {
+        const cart = window.sessionStorage.getItem(GUEST_CART)
+          ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+          : { books: [] };
+        cart.books.push(book)
+        window.sessionStorage.setItem(GUEST_CART, JSON.stringify(cart))
+        dispatch(updateCart(book));
       }
     } catch(err){
       console.log('error removing book')
@@ -73,14 +101,7 @@ export const removeItemThunk = (id) => {
   }
 }
 
-//Initial state:
-const initialState = {
-  cart: {
-    books: []
-  }   
-} 
-
-//RReducer
+//Reducer
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
