@@ -4,29 +4,39 @@ const {
   models: { Cart, User, Book },
 } = require("../db");
 
-// find user cart:
+
 router.get("/", requireToken, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id)
-    const currentCart = await Cart.findOne({
-      where: {
-        order_status: "in cart",
-      },
-      attributes: ["id"],
-      include: [
-        {
-          model: Book,
-          attributes: ["id", "title", "author", "coverimg", "price"],
-          through: { attributes: [] },
-          required: true,
+    if (user) {
+      const currentCart = await Cart.findOne({
+        where: {
+          order_status: "in cart",
         },
-      ],
-    });
-    if (currentCart) {
-      res.json(currentCart);
-    } else {
-      console.log("no cart - get shopping!");
-      throw new Error();
+        attributes: ["id"],
+        include: [
+          {
+            model: Book,
+            attributes: ["id", "title", "author", "coverimg", "price"],
+            through: { attributes: [] },
+            required: true,
+          },
+        ],
+      });
+      if (currentCart) {
+        res.json(currentCart);
+      } else {
+        console.log("no cart - get shopping!");
+        throw new Error();
+      }
+    // } else {
+    //   const currentCart = window.sessionStorage.getItem("guestCart") 
+    //   if (currentCart) {
+    //     res.json(currentCart);
+    //   } else {
+    //     console.log("no cart - get shopping!");
+    //     throw new Error();
+    //   }
     }
   } catch (err) {
     console.log(">>>>>>>You are not Authorized!");
@@ -37,8 +47,10 @@ router.get("/", requireToken, async (req, res, next) => {
 // add item to cart:
 router.post('/', requireToken, async (req, res, next) => {
   try {
+    const user = await User.findByPk(req.user.id) 
     const currBook = await Book.findByPk(req.body.id);
-    const currentOrder = await Cart.findOne({
+    if (user) {
+      const currentOrder = await Cart.findOne({
       where: {
         order_status: "in cart",
       },
@@ -52,15 +64,16 @@ router.post('/', requireToken, async (req, res, next) => {
         },
       ],
     });
-    if(currentOrder) {
-      await currBook.setCarts(currentOrder.id);
-      res.json(currBook)
-    } else {
-      const newOrder = await Cart.create({
-        userId: req.user.id
-      })
-      await currBook.setCarts(newOrder.id);
-      res.json(currBook)
+      if(currentOrder) {
+        await currBook.setCarts(currentOrder.id);
+        res.json(currBook)
+      } else {
+        const newOrder = await Cart.create({
+          userId: req.user.id
+        })
+        await currBook.setCarts(newOrder.id);
+        res.json(currBook)
+      }
     }
   } catch (error) {
     next(error)
@@ -70,26 +83,29 @@ router.post('/', requireToken, async (req, res, next) => {
 // remove item from cart
 router.delete('/:bookId', requireToken, async (req, res, next) => {
   try {
-    const currentOrder = await Cart.findOne({
-      where: {
-        order_status: "in cart",
-      },
-      attributes: ["id"],
-      include: [
-        {
-          model: Book,
-          attributes: ["id", "title", "author", "coverimg", "price"],
-          through: { attributes: [] },
-          required: true,
+    const user = await User.findByPk(req.user.id)
+    if (user) {
+      const currentOrder = await Cart.findOne({
+        where: {
+          order_status: "in cart",
         },
-      ],
-    });
-    const currBook = await Book.findByPk(req.params.bookId);
-    if(currentOrder){
-      await currentOrder.removeBook(currBook);
-      res.json(currBook);
-    } else {
-      console.log("not working!")
+        attributes: ["id"],
+        include: [
+          {
+            model: Book,
+            attributes: ["id", "title", "author", "coverimg", "price"],
+            through: { attributes: [] },
+            required: true,
+          },
+        ],
+      });
+      const currBook = await Book.findByPk(req.params.bookId);
+      if(currentOrder){
+        await currentOrder.removeBook(currBook);
+        res.json(currBook);
+      } else {
+        console.log("not working!")
+      }
     }
   } catch (err) {
     next(err)

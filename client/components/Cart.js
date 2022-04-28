@@ -16,13 +16,6 @@ const Cart = () => {
     dispatch(loadCart())
   }, []);
 
-  const handleSubmit = (book) => {() => {
-    dispatch(removeItemThunk(book.id))
-    dispatch(loadCart()) 
-    }
-  }
-  console.log(cart.books);
-
   function getTotal(cart){
     if(cart.books == undefined) return;
     let books = cart.books;
@@ -39,13 +32,13 @@ const Cart = () => {
 
   return (
     <>
-      {!cart.books ? (
+      {!cart.books || cart.books.length === 0 ? (
         <div className="genreCenter">
           <Stack gap = {3}>
             <center>
             <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
             <Image src = "shelfLogo.png" height = "250px"/>
-            <GenreCarousel genre = "Fiction" />
+            {/* <GenreCarousel genre = "Fiction" /> */}
             </center>
            </Stack>
         </div>
