@@ -37,18 +37,17 @@ export const loadCart = () => {
         dispatch(getCart(cart));
       } else {
         const cart = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
-        if (!cart) {
-          cart = {book: [] }
-        } 
+          ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+          : {}
         dispatch(getCart(cart));
       }
     } catch (err) {
-      console.log(">>>>>>thunk not working");
+      console.log(">>>>>>loadCartThunk not working");
     }
   };
 };
 
-// funk for adding book to cart
+// thunk for adding book to cart
 export const addItemThunk = (book) => {
   return async (dispatch) => {
     try {
@@ -69,7 +68,7 @@ export const addItemThunk = (book) => {
         dispatch(updateCart(book));
       }
     } catch (error) {
-      console.log("Thunk not working!!!")
+      console.log(">>>>>>addItemThunk not working")
       console.log(error);
     }
   }
@@ -88,12 +87,11 @@ export const removeItemThunk = (id) => {
         });
         dispatch(removeItem(book))
       } else {
-        const cart = window.sessionStorage.getItem(GUEST_CART)
-          ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
-          : { books: [] };
-        cart.books.push(book)
-        window.sessionStorage.setItem(GUEST_CART, JSON.stringify(cart))
-        dispatch(updateCart(book));
+        const cart = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+        const book = cart.books.filter(book => book.id === id).pop()
+        const cartUpdate = { books: cart.books.filter(book => book.id !== id) }
+        window.sessionStorage.setItem(GUEST_CART, JSON.stringify(cartUpdate))
+        dispatch(removeItem(book));
       }
     } catch(err){
       console.log('error removing book')

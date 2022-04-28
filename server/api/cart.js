@@ -83,26 +83,29 @@ router.post('/', requireToken, async (req, res, next) => {
 // remove item from cart
 router.delete('/:bookId', requireToken, async (req, res, next) => {
   try {
-    const currentOrder = await Cart.findOne({
-      where: {
-        order_status: "in cart",
-      },
-      attributes: ["id"],
-      include: [
-        {
-          model: Book,
-          attributes: ["id", "title", "author", "coverimg", "price"],
-          through: { attributes: [] },
-          required: true,
+    const user = await User.findByPk(req.user.id)
+    if (user) {
+      const currentOrder = await Cart.findOne({
+        where: {
+          order_status: "in cart",
         },
-      ],
-    });
-    const currBook = await Book.findByPk(req.params.bookId);
-    if(currentOrder){
-      await currentOrder.removeBook(currBook);
-      res.json(currBook);
-    } else {
-      console.log("not working!")
+        attributes: ["id"],
+        include: [
+          {
+            model: Book,
+            attributes: ["id", "title", "author", "coverimg", "price"],
+            through: { attributes: [] },
+            required: true,
+          },
+        ],
+      });
+      const currBook = await Book.findByPk(req.params.bookId);
+      if(currentOrder){
+        await currentOrder.removeBook(currBook);
+        res.json(currBook);
+      } else {
+        console.log("not working!")
+      }
     }
   } catch (err) {
     next(err)
