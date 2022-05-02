@@ -76,7 +76,7 @@ componentDidUpdate(prevProps){
         console.log('state', this.state)
 
         return (
-            <div>
+            <div style= "background-color: #e3d7ee">
             
             <Stack gap={3} className = "col-md-5 mx-auto">
               <h1 className = "justify-content-center">Edit:</h1>
