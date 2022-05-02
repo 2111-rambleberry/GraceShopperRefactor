@@ -36,8 +36,8 @@ const Cart = () => {
         <div className="genreCenter">
           <Stack gap = {3}>
             <center>
-            <h2 className="boldCarousel">Nothing in Cart - Start Shopping!</h2>
-            <Image src = "shelfLogo.png" height = "250px"/>
+            <h2 className="bold darkPurple marginTop" >Nothing in Cart - Start Shopping!</h2>
+            <Image src = "boy-reading.png" height = "400px"/>
             {/* <GenreCarousel genre = "Fiction" /> */}
             </center>
            </Stack>

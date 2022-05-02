@@ -1,5 +1,12 @@
 body {
   font-family: "Montserrat";
+  position: relative;
+  min-height: 100vh;
+}
+
+.content {
+  padding-bottom: 80px;
+  overflow: hidden;
 }
 
 h1 {
@@ -28,6 +35,10 @@ a {
   text-decoration: none;
 }
 
+.background-lilac {
+  background-color: #e3d7ee;
+}
+
 .genre {
   margin-bottom: 3.5%;
   text-align: center;
@@ -41,7 +52,7 @@ a {
  .cart {
   margin-bottom: 3.5%;
   text-align: center;
-  background-color: rgb(228, 213, 231);
+  background-color: lightgray;
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -81,13 +92,15 @@ a {
 }
 
 .footer {
-  /* position: fixed; */
-  left: 0;
+  position: absolute;
+  display: flex;
+  /* left: 0; */
   bottom: 0;
   width: 100%;
-  background-color: lightslategray;
-  color: white;
-  text-align: center;
+  height: 80px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
 }
 
 .bold {
@@ -202,7 +215,7 @@ td {
 }
 
 tr:nth-child(even) { 
-  background: rgb(228, 226, 226); 
+  background: lightgray;
 }
 
 table {
