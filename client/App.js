@@ -7,9 +7,11 @@ import TopNav from './components/TopNav'
 const App = () => {
   return (
     <div>
-      <TopNav />
-      <GenreNav />
-      <Routes />
+      <div className='content'>
+        <TopNav />
+        <GenreNav />
+        <Routes />
+      </div>
       <Footer />
     </div>
   )

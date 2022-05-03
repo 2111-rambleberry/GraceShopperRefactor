@@ -11,61 +11,43 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-
-    
-    // <div>
-    //   <Form onSubmit={handleSubmit} name={name}>
-    //   <Form.Group className="mb-3" controlId="username">
-    //       <Form.Label htmlFor="username">
-    //         <small>Username</small>
-    //       </Form.Label>
-    //       <Form.Control name="username" type="text" placeholder="Enter Username"/>
-    //     </Form.Group>
-
-    //     <Form.Group className="mb-3" controlId="username">
-    //       <Form.Label htmlFor="password">
-    //         <small>Password</small>
-    //       </Form.Label>
-    //       <Form.Control name="password" type="password" />
-    //     </Form.Group>
-    //     <div>
-    //       <Button variant="primary" type="submit">{displayName}</Button>
-    //     </div>
-    //     {error && error.response && <div> {error.response.data} </div>}
-    //   </Form>
-    // </div>
       <center>
-      <Card style={{ width: '18rem' }} className = "loginCard">
-         <Card.Body>
-      {/* <Stack gap={2} className="col-md-5 mx-auto"> */}
-      <Card.Title>{displayName}</Card.Title>
-      <center>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
+      <Card style={{ width: "40%", padding:"2%"}} className = "loginCard shadow-lg">
+        <Card.Title>
+              <h2 className="darkPurple" >{displayName}</h2>
+            </Card.Title>
+        <div className='row'>            
+          <div className='col-md-6'>
+            <Card.Img src="books-login.png" alt="Card image" />
+            <div className='marginTop'>
+              {name == "login" ? 
+              <Card.Link href = "/signup"><p>Don't have an account?</p></Card.Link>
+              : <Card.Link href = "/login"><p>Already have an account?</p></Card.Link> }
+            </div>
+          </div>
+          <div className='col-md-6'>
+          <Card.Body>
 
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
+            <center>
+              <form onSubmit={handleSubmit} name={name}>
+                <div>
+                  <Form.Group className="mb-3" >
+                      <Form.Label >Username</Form.Label>
+                      <Form.Control name="username" type="text" placeholder="Username"/>
+                  </Form.Group>
+                  <Form.Group className="mb-3" >
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control name="password" type="password" placeholder="Password"/>
+                  </Form.Group>
+                </div>
+                <Button type="submit" text-align = "center">{displayName}</Button>
+                {error && error.response && <div> {error.response.data} </div>}
+              </form>
+            </center>
 
-   
-        <Button type="submit" text-align = "center">{displayName}</Button> 
-   
-        {error && error.response && <div> {error.response.data} </div>}
-      </form> 
-      </center>
-      {/* </Stack>  */}
-      {name == "login" ? 
-      <Card.Link href = "/signup"><p>Don't have an account?</p></Card.Link> :
-      <Card.Link href = "/login"><p>Already have an account?</p></Card.Link> }
-      </Card.Body>
+            </Card.Body>
+          </div>
+        </div>
       </Card>
       </center>
   )

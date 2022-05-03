@@ -10,7 +10,7 @@ export default function Footer() {
   const handleShow = () => setShow(true);
 
   return (
-    <div className = "footer"> 
+    <footer className = "footer"> 
       <Link onClick = {handleShow} > 
         <p>Meet the Team</p> 
       </Link>
@@ -44,7 +44,7 @@ export default function Footer() {
         </Offcanvas.Body>
 
       </Offcanvas>
-    </div>
+    </footer>
 
     
   );

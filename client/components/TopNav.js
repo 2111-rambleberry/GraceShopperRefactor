@@ -5,6 +5,7 @@ import { BsFillBasket3Fill, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal"
 import {
+  Image,
   Navbar,
   FormControl,
   Form,
@@ -24,8 +25,12 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
       {/* <Container> */}  
       
       <Navbar.Brand href="/homepage" className="logo">
-        <h1 className="logo">BookShopper</h1>
-        {/* <img src = 'logo.png' height = '100px' width = '300px'/> */}
+        <Stack direction="horizontal" gap={1} >
+          <Image  src = 'logoUpdate.png' height = '100px'/>       
+          {/* <img src = 'lampLogo.png' height = '70px' width = '70px'/>  */}
+          {/* <img src = 'shelfLogo.png' height = '100px' width = '100px'/>  */}
+          <h1 className="logo">BookShopper</h1>
+        </Stack>
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

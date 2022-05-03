@@ -1,5 +1,28 @@
 body {
   font-family: "Montserrat";
+  position: relative;
+  min-height: 100vh;
+}
+
+.content {
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.outOfStock {
+	content: "OUT OF STOCK";
+	position: absolute;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 100%;
+	text-align: center;
+	width: 70px;
+	height: 70px;
+	top: calc(50% - 35px);
+	left: calc(50% - 35px);
+	font-size: 0.8em;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
 }
 
 h1 {
@@ -28,6 +51,10 @@ a {
   text-decoration: none;
 }
 
+.background-lilac {
+  background-color: #e3d7ee;
+}
+
 .genre {
   margin-bottom: 3.5%;
   text-align: center;
@@ -36,7 +63,17 @@ a {
   font-weight: 800;
   font-display: swap;
   color: #2d0a4e;
-}
+ }
+ 
+ .cart {
+  margin-bottom: 3.5%;
+  text-align: center;
+  background-color: lightgray;
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  color: #2d0a4e;
+ }
 
 .singleBook{
   margin-top: 5%;
@@ -53,6 +90,16 @@ a {
   color: orange; 
 }
 
+.loginCard {
+  margin-bottom: 5%;
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+ } 
+
 .logo {
   font-style: normal;
   font-weight: 800;
@@ -61,14 +108,15 @@ a {
 }
 
 .footer {
-  /* position: fixed; */
-  flex:end;
-  left: 0;
+  position: absolute;
+  display: flex;
+  /* left: 0; */
   bottom: 0;
   width: 100%;
-  background-color: lightslategray;
-  color: white;
-  text-align: center;
+  height: 80px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
 }
 
 .bold {
@@ -77,13 +125,18 @@ a {
   font-display: swap;
 }
 
+.checkoutTable{
+  background-color: white;
+}
+
 .boldCarousel {
   font-style: normal;
   font-weight: 800;
   font-display: swap;
   color: #2d0a4e;
   margin-left: 5%;
-  margin-bottom: 30px;
+  margin-bottom: 30px;  
+  margin-top: 30px;
 
 }
 
@@ -165,6 +218,14 @@ nav {
   margin: 20px 20px 20px 20px;
 }
 
+.cartBook{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 100px;
+  margin: 20px 20px 20px 20px;
+}
+
 .book-info {
   display: flex;
   flex-flow: column nowrap;
@@ -180,7 +241,7 @@ td {
 }
 
 tr:nth-child(even) { 
-  background: rgb(228, 226, 226); 
+  background: lightgray;
 }
 
 table {

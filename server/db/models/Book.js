@@ -38,6 +38,15 @@ const Book = db.define("book", {
       isInt: true,
     },
   },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 10,
+    validate: {
+      isInt: true,
+      isNull: false,
+      
+    },
+  },
   publisher: {
     type: Sequelize.STRING,
   },
@@ -49,10 +58,6 @@ const Book = db.define("book", {
   price: {
     type: Sequelize.INTEGER,
     defaultValue: 500,
-  },
-  bought: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
   },
   createdAt: {
     type: Sequelize.DATE,

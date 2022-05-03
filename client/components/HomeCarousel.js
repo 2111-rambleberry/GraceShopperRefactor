@@ -13,26 +13,33 @@ const HomeCarousel = () => {
 
     return(
         <>
-        <Carousel indicators={false} controls={false} >                                  
+        <Carousel indicators={false} controls={false} >  
+                <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src = "HomePage.png"
+                        alt="Deets Slide"
+                        />
+                </Carousel.Item> 
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src ="https://images-production.bookshop.org/spree/promo_banner_slides/desktop_images/183/original/ALA-Award-Winners--Bookshop-Desktop.jpg?1647863141"
+                    src = "HomePlants.png"
+                    alt="Plants Slide"
+                    />
+                </Carousel.Item>                                
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src = "https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2022/04/19/Gateway_Billboard_C_Graduation_04-19.jpg"
                     alt="First slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src ="https://images-production.bookshop.org/spree/promo_banner_slides/desktop_images/180/original/AG_Bookshop_29146_2048x600.jpg?1647267716"
-                    alt="Second"
-                    />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src ="https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2022/03/01/Gateway_Billboard-B_OMP.jpg"
-                    alt="Third slide"
+                    src ="https://dispatch.barnesandnoble.com/content/dam/ccr/homepage/daily/2022/04/19/Gateway_Billboard_C_Graduation_04-19.jpg"
+                    alt="Fourth slide"
                     />
                 </Carousel.Item>
             </Carousel>
