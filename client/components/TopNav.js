@@ -18,7 +18,7 @@ import {
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
-const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username, books}) => (
+const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username, books, cartItems}) => (
   <div>
     {/* <Stack direction="horizontal" gap={2}> */}
     <Navbar collapseOnSelect sticky="top" expand="lg" bg="light">
@@ -80,10 +80,10 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username, books}) => (
       <Nav>
         <Nav.Link href="/cart">
             <BsFillBasket3Fill/>
-            <Badge pill bg="primary">
-              {!books ? "" : books.length }
-            </Badge>
           </Nav.Link>
+          <Badge onLoad={cartItems} pill className="cart-items">
+            {!books ? 0 : books.length }
+          </Badge>
         </Nav>
       </Navbar.Collapse>
       {/* </Container> */}
@@ -108,6 +108,9 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(logout());
     },
+    cartItems() {
+      dispatch(loadCart());
+    }
   };
 };
 
