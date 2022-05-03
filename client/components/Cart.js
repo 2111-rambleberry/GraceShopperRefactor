@@ -12,10 +12,6 @@ const Cart = () => {
   const history = useHistory()
   const cart = useSelector((state) => state.cartReducer)
 
-  useEffect(() => {
-    dispatch(loadCart())
-  }, []);
-
   function getTotal(cart){
     if(cart.books == undefined) return;
     let books = cart.books;

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, createContext } from 'react'
+import { loadCart } from '../client/store/cart'
+import { useSelector, useDispatch } from "react-redux";
 import GenreNav from './components/GenreNav'
 import Routes from './Routes'
 import Footer from './components/Footer'
@@ -10,7 +12,7 @@ const App = () => {
       <div className='content'>
         <TopNav />
         <GenreNav />
-        <Routes />
+        <Routes/>
       </div>
       <Footer />
     </div>

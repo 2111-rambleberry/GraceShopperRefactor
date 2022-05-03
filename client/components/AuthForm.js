@@ -11,10 +11,10 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   return (
       <center>
-      <Card style={{ width: "40%" }} className = "loginCard shadow-lg">
+      <Card style={{ width: "50%" }} className = "loginCard shadow-lg">
         <div className='row'>
           <div className='col-md-6'>
-            <Card.Img src="books-login.png" alt="Card image" />
+            <Card.Img src="logo-openBook.png" alt="Card image" />
           </div>
           <div className='col-md-6'>
           <Card.Body>

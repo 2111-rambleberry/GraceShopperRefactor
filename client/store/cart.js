@@ -105,9 +105,8 @@ export default function cartReducer(state = initialState, action) {
     case LOAD_CART:
       return action.cart;
     case ADD_TO_CART:
-      return {...state, cart: {
-          ...state.cart,
-          books: [...state.cart.books, action.book]} 
+      return {...state, 
+          books: [...state.books, action.book] 
       } 
     case REMOVE_ITEM:
       return {...state, 
