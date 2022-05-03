@@ -11,47 +11,26 @@ const AllUsers = () => {
     };
   });
 
-  const [hoveredRow, setHoveredRow] = useState(null);
-
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
 
   return (
     <table>
-      <tbody className="user-table headers">
+      <tbody>
         <tr>
           <th>Username</th>
           <th>Name</th>
           <th>email</th>
-          <th>Edit</th>
         </tr>
         {users.map((user) => {
           return (
-            <tr
-              className="user-table rows"
-              key={user.id}
-              style={{
-                backgroundColor: user.id === hoveredRow ? "#efefef" : "white",
-              }}
-            >
+            <tr key={user.id}>
               <td>{user.username}</td>
               <td>
                 {user.firstName} {user.lastName}
               </td>
               <td>{user.email}</td>
-              <td>
-                <button
-                  onMouseEnter={(e) => {
-                    setHoveredRow(user.id);
-                  }}
-                  onMouseLeave={(e) => {
-                    setHoveredRow(null);
-                  }}
-                >
-                  Edit
-                </button>
-              </td>
             </tr>
           );
         })}

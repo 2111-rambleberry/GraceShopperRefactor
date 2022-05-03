@@ -43,8 +43,8 @@ const Cart = () => {
         <div>
           <h2 className="cart">My Cart</h2>
         </div>
-        <div>
-         <Table bordered className = "checkoutTable">
+        <div style={{marginLeft: "8%", marginRight: "8%"}}>
+         <Table className="cart-table">
            <thead>
              <tr>
                <th>Book</th>
@@ -53,7 +53,7 @@ const Cart = () => {
                <th>Remove</th>
              </tr>
            </thead>
-           {/* <tbody>  */}
+           <tbody className="cartTable"> 
              {cart.books.map((book) => (
                <tr key={book.id}>
                  <td><Image height = "150px" src={book.coverimg} className = "cartBook"/></td>
@@ -66,26 +66,25 @@ const Cart = () => {
                      ? (book.price / 100).toFixed(2)
                      : (5.0).toFixed(2)}
                  </td>
-        
                  <td className="ms-auto">
                    <Button
                      size="md"
                      type="button"
-                     variant="primary"
+                     variant="outline-primary"
                      onClick={() => dispatch(removeItemThunk(book.id))}
                    >
-                     <RiDeleteBin3Line color = "black"/>
+                     <RiDeleteBin3Line/>
                    </Button>
                  </td>
                </tr>
              ))}
-              <tr className = "total">
-                 <td>Total</td>
+              <tr className = "darkPurple">
+                 <td><h1>Total</h1></td>
                  <td></td>
                  <td><h1>${total}</h1></td>
                  <td></td>
                 </tr>
-             {/* </tbody>  */}
+             </tbody> 
          </Table>
        </div>
        <div>

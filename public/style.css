@@ -226,6 +226,19 @@ th {
   background-color: lavender;
 }
 
+.cart-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: lavender;
+}
+
+.cart-table tr {
+  background: white
+}
+
 .cart-items {
   margin-left: -25px;
   margin-right: 25px;
