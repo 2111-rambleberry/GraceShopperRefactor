@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store";
+import { loadCart } from "../store/cart";
 import { BsFillBasket3Fill, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal"
@@ -9,7 +10,7 @@ import {
   Navbar,
   FormControl,
   Form,
-  Container,
+  Badge,
   Nav,
   NavDropdown,
   Stack,
@@ -17,8 +18,7 @@ import {
 } from "react-bootstrap";
 
 //This Navbar should have the login, Logo, dropdown for admin and cart icon
-const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
-
+const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username, books}) => (
   <div>
     {/* <Stack direction="horizontal" gap={2}> */}
     <Navbar collapseOnSelect sticky="top" expand="lg" bg="light">
@@ -57,9 +57,6 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
             <Nav.Link href="#" onClick={handleClick}>
               Logout
             </Nav.Link>
-            <Nav.Link href="/cart">
-              <BsFillBasket3Fill />
-            </Nav.Link>
             {isUserAdmin && (
               <NavDropdown
                 title="Admin Portal"
@@ -77,12 +74,17 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
           <>
             {/* The navbar will show these links before you log in */}
             <Nav.Link href = '/login'>Login</Nav.Link>
-            <Nav.Link href="/cart">
-              <BsFillBasket3Fill />
-            </Nav.Link>
           </>
         )}
       </Nav>
+      <Nav>
+        <Nav.Link href="/cart">
+            <BsFillBasket3Fill/>
+            <Badge pill bg="primary">
+              {!books ? "" : books.length }
+            </Badge>
+          </Nav.Link>
+        </Nav>
       </Navbar.Collapse>
       {/* </Container> */}
     </Navbar>
@@ -90,11 +92,14 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
   </div>
 );
 
+
+
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     isUserAdmin: !!state.auth.isAdmin,
-    username: state.auth.username
+    username: state.auth.username,
+    books: state.cartReducer.books
   };
 };
 
@@ -103,9 +108,6 @@ const mapDispatch = (dispatch) => {
     handleClick() {
       dispatch(logout());
     },
-    handleModal() {
-      
-    }
   };
 };
 
