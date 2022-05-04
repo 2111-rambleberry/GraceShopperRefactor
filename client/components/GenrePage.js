@@ -36,7 +36,7 @@ const GenrePage = () => {
                   {/* */}
                   <Card className = "border-0"  style={{ width: '12rem', height: '32rem' }}> 
                     <Card.Link href = {`/books/${book.id}`}> 
-                      {book.quantity < 0 ? 
+                      {book.quantity > 0 ? 
                       <Card.Img variant ="top" className="book-cover shadow-lg" src={book.coverimg}/> :
                       <Card.Img variant ="top" className="outOfStock" src={book.coverimg}/> 
                       }
@@ -65,7 +65,7 @@ const GenrePage = () => {
                       {/* </div> */}
                       </Card.Body>
                       <Card.Footer style ={{color:"white", border: "none", backgroundColor: "white"}}>
-                        {book.quantity < 0 ? 
+                        {book.quantity > 0 ? 
                         <Button
                         size="sm"
                         style ={{color:"white", backgroundColor: "purple", border: "purple"}}
