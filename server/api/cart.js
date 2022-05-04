@@ -17,7 +17,7 @@ router.get("/", requireToken, async (req, res, next) => {
         include: [
           {
             model: Book,
-            attributes: ["id", "title", "author", "coverimg", "price"],
+            attributes: ["id", "title", "author", "coverimg", "price","quantity"],
             through: { attributes: [] },
             required: true,
           },
@@ -58,7 +58,7 @@ router.post('/', requireToken, async (req, res, next) => {
       include: [
         {
           model: Book,
-          attributes: ["id", "title", "author", "coverimg", "price"],
+          attributes: ["id", "title", "author", "coverimg", "price", "quantity"],
           through: { attributes: [] },
           required: true,
         },
@@ -93,7 +93,7 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
         include: [
           {
             model: Book,
-            attributes: ["id", "title", "author", "coverimg", "price"],
+            attributes: ["id", "title", "author", "coverimg", "price", "quantity"],
             through: { attributes: [] },
             required: true,
           },
@@ -128,7 +128,7 @@ router.put('/:id', requireToken, async (req, res, next) => {
           include: [
             {
               model: Book,
-              attributes: ["id", "title", "author", "coverimg", "price"],
+              attributes: ["id", "title", "author", "coverimg", "price", "quantity"],
               through: { attributes: [] },
               required: true,
             },

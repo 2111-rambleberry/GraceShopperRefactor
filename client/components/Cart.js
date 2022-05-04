@@ -4,15 +4,17 @@ import { useHistory } from 'react-router-dom';
 import { loadCart, removeItemThunk, cartCheckoutStatus } from '../store/cart'
 // import { reduceStockQty } from '../store/stockItem'
 import { reduceStockQty } from '../store/stock'
-//import { Button } from 'react-bootstrap';
+// import { reduceBookQty } from '../store/singleBook'
+import { reduceBookQty } from '../store/books'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
-import GenreCarousel from "./Carousel";
+
 
 const Cart = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cart = useSelector((state) => state.cartReducer)
+  const books = useSelector((state) => state.booksReducer)
 
   useEffect(() => {
     dispatch(loadCart())
@@ -105,7 +107,8 @@ const Cart = () => {
            type="button"
            variant="primary"
            onClick={() => {
-            cart.books.map((book) => dispatch(reduceStockQty(book, history)));
+             console.log('onclick', cart.books)
+            cart.books.map((book) => dispatch(reduceBookQty(book, history)));
            //  dispatch(cartCheckoutStatus(cart.id))}
            }}
          >

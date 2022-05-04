@@ -44,7 +44,7 @@ const Book = db.define("book", {
     validate: {
       isInt: true,
       isNull: false,
-      
+      min: 0,
     },
   },
   publisher: {
