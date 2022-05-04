@@ -1,3 +1,5 @@
+/* GLOBAL STYLES */
+
 body {
   font-family: "Montserrat";
   position: relative;
@@ -9,11 +11,7 @@ body {
   overflow: hidden;
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-}
-
-h2 {
+h1, h2 {
   font-family: 'Playfair Display', serif;
 }
 
@@ -22,17 +20,72 @@ h3 {
   font-style: italic;
 }
 
-.bookTitle {
-  font-size: 20;
-  font-family: 'Playfair Display', serif; 
-}
-
 p {
   font-family: "Montserrat";
 }
 
 a {
   text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+label {
+  display: block;
+}
+
+.logo {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  color: #2d0a4e;
+}
+
+.darkPurple {
+  color: #2d0a4e;
+}
+
+.bold {
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+.marginTop {
+  margin-top: 5%;
+}
+
+.marginBottom {
+  margin-bottom: 5%;
+}
+
+.footer {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background: lightgray;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookTitle {
+  font-size: 20;
+  font-family: 'Playfair Display', serif; 
 }
 
 .background-lilac {
@@ -64,10 +117,6 @@ a {
   margin-bottom: 5%;
 }
 
-.darkPurple {
-  color: #2d0a4e;
-}
-
 .darkPurpleNav {
   background-color: #2d0a4e;
   font-family: "Montserrat";
@@ -83,34 +132,6 @@ a {
   width: 100%;
   height: 100%;
  } 
-
-.logo {
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  color: #2d0a4e;
-}
-
-.footer {
-  position: absolute;
-  display: flex;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  background: lightgray;
-  justify-content: center;
-  align-items: center;
-}
-
-.bold {
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-}
-
-.checkoutTable{
-  background-color: white;
-}
 
 .boldCarousel {
   font-style: normal;
@@ -142,33 +163,6 @@ a {
   flex-direction: row;
   align-items: center;
   padding-bottom: 5%;
-}
-
-.marginTop {
-  margin-top: 5%;
-}
-
-.marginBottom {
-  margin-bottom: 5%;
-}
-
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
 }
 
 .all-books {
@@ -239,9 +233,10 @@ th {
   background: white
 }
 
-.cart-items {
-  margin-left: -25px;
-  margin-right: 25px;
+.cart-badge {
+  position: absolute;
+  margin-left: 40px;
+  /* margin-right: 40; */
   margin-top: 20px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }

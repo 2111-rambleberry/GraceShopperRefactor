@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Offcanvas from 'react-bootstrap/Offcanvas'
@@ -10,7 +11,8 @@ export default function Footer() {
   const handleShow = () => setShow(true);
 
   return (
-    <footer className = "footer"> 
+    <footer className = "footer">
+      <Image  src="../bookshopper-logo.png" height = '80%'/>
       <Link onClick = {handleShow} > 
         <p>Meet the Team</p> 
       </Link>

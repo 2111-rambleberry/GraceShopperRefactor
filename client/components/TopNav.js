@@ -41,13 +41,12 @@ const TopNav = () => {
         
         <Navbar.Brand href="/" className="logo">
           <Stack direction="horizontal" gap={1} >
-            {/* <Image  src = 'cassetteLogo.png' height = '70px'/>        */}
+            <Image  src="../bookshopper-logo.png" height = '100px'/>       
             {/* <img src = 'lampLogo.png' height = '70px' width = '70px'/>  */}
             {/* <img src = 'shelfLogo.png' height = '100px' width = '100px'/>  */}
             <h1 className="logo">BookShopper</h1>
           </Stack>
         </Navbar.Brand>
-
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className = "ms-auto"> 
@@ -92,11 +91,11 @@ const TopNav = () => {
             </>
           )}
         </Nav>
-        <Nav>
+        <Nav style={{marginRight:"5%"}}>
           <Nav.Link href="/cart">
               <BsFillBasket3Fill/>
             </Nav.Link>
-            <Badge pill className="cart-items">
+            <Badge pill className="cart-badge">
               {!cart.books ? 0 : cart.books.length }
             </Badge>
           </Nav>
