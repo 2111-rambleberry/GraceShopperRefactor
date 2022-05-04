@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { loadCart, removeItemThunk, cartCheckout  } from '../store/cart'
+import { loadCart, removeItemThunk, cartCheckoutStatus } from '../store/cart'
+// import { reduceStockQty } from '../store/stockItem'
+import { reduceStockQty } from '../store/stock'
 //import { Button } from 'react-bootstrap';
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
@@ -27,9 +29,11 @@ const Cart = () => {
     }
     return (total/100).toFixed(2);
   }
-
   const total = getTotal(cart);
 
+// function reduceQty(cart){
+//   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
+// }
     console.log('react cart', cart)
   return (
     <>
@@ -77,7 +81,7 @@ const Cart = () => {
                      size="md"
                      type="button"
                      variant="primary"
-                     onClick={() => dispatch(removeItemThunk(book.id))}
+                     onClick={() => {dispatch(removeItemThunk(book.id))}}
                    >
                      <RiDeleteBin3Line color = "black"/>
                    </Button>
@@ -100,7 +104,10 @@ const Cart = () => {
            size="md"
            type="button"
            variant="primary"
-           onClick={() => dispatch(cartCheckout(cart))}
+           onClick={() => {
+            cart.books.map((book) => dispatch(reduceStockQty(book, history)));
+           //  dispatch(cartCheckoutStatus(cart.id))}
+           }}
          >
            <h1>Checkout</h1>
          </Button>

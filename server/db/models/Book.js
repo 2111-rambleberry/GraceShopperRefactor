@@ -40,7 +40,7 @@ const Book = db.define("book", {
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 10,
+    defaultValue: 1,
     validate: {
       isInt: true,
       isNull: false,

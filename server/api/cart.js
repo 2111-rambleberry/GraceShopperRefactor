@@ -13,7 +13,7 @@ router.get("/", requireToken, async (req, res, next) => {
         where: {
           order_status: "in cart",
         },
-        attributes: ["id"],
+        attributes: ["id", "order_status", "cart_quantity"],
         include: [
           {
             model: Book,
@@ -54,7 +54,7 @@ router.post('/', requireToken, async (req, res, next) => {
       where: {
         order_status: "in cart",
       },
-      attributes: ["id"],
+      attributes: ["id", "order_status", "cart_quantity"],
       include: [
         {
           model: Book,
@@ -89,7 +89,7 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
         where: {
           order_status: "in cart",
         },
-        attributes: ["id"],
+        attributes: ["id", "order_status", "cart_quantity"],
         include: [
           {
             model: Book,
@@ -112,9 +112,9 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
   }
 })
 
-// remove item from stock db
-//Starting by deleting all the books
-router.delete('/', requireToken, async (req, res, next) => {
+//checkout after book qty reduced
+//charge cart status
+router.put('/:id', requireToken, async (req, res, next) => {
     try{
       //look for the cart with the books in the db
       const user = await User.findByPk(req.user.id)
@@ -124,7 +124,7 @@ router.delete('/', requireToken, async (req, res, next) => {
           where: {
             order_status: "in cart",
           },
-          attributes: ["id"],
+          attributes: ["id", "order_status", "checkout_price", "cart_quantity"],
           include: [
             {
               model: Book,
@@ -136,14 +136,8 @@ router.delete('/', requireToken, async (req, res, next) => {
         });
       //delete all the books from the stock db, but save the books data in an array in the cart
       console.log("api cart", currentCart)
-      if(currentCart){
-        await currentCart.removeBooks(currentCart.books)
-        res.json(currentCart);
+      if(currentCart) res.json(await currentCart.update(req.body))
       }
-      //switch the cart to ordered
-
-      //Later on the user profile make ordered items viewable
-  } 
 }catch (err) {
     console.log('api error')
     next(err)
