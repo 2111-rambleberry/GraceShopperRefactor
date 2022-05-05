@@ -236,7 +236,5 @@ th {
 .cart-badge {
   position: absolute;
   margin-left: 40px;
-  /* margin-right: 40; */
   margin-top: 20px;
-  /* margin-bottom: 30px; */
 }
