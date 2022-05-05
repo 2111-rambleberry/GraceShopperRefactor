@@ -23,8 +23,7 @@ const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
 const emptyCart = () => ({ type: EMPTY_CART });
-
-const checkout = (cart) => ({ type: CHECKOUT, cart });
+const checkout = (cart) => ({ type: CHECKOUT, order_status });
 
 //Thunks
 export const loadCart = () => {
@@ -103,12 +102,12 @@ export const removeItemThunk = (id) => {
   }
 }
 
-export const cartCheckoutStatus = (cartId) => {
+export const cartCheckoutStatus = (cart) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
       if (token) {
-        const { data: cart } = await axios.put(`/api/cart/${cartId}`, {
+        const { data } = await axios.put(`/api/cart`, cart, {
           headers: {
             authorization: token,
           },
@@ -132,17 +131,18 @@ export default function cartReducer(state = initialState, action) {
       return {...state,
         cart: {...state.cart,
           books: [...state.cart.books, action.book]},
-      //   cart_quantity: { state.cart_quantity ? state.cart_quantity = 1 : state.cart_quantity +=1},   
+ 
        } 
     case REMOVE_ITEM:
       return {...state, 
         books: state.books.filter((book) => {
           return book.id !== action.book.id
         }),
-        // cart_quantity: state.cart_quantity -=1
+
     } 
     case CHECKOUT:
-      return {...state, order_status: state.order_status = 'ordered'};
+      console.log('reducer', state.order_status)
+      return {...state, order_status: action.cart.order_status};
     case EMPTY_CART:
       return initialState;
     default:

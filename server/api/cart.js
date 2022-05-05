@@ -114,11 +114,11 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
 
 //checkout after book qty reduced
 //charge cart status
-router.put('/:id', requireToken, async (req, res, next) => {
+router.put('/', requireToken, async (req, res, next) => {
     try{
       //look for the cart with the books in the db
       const user = await User.findByPk(req.user.id)
-      console.log("api user", user)
+      // console.log("api user", user)
       if (user) {
         const currentCart = await Cart.findOne({
           where: {
@@ -135,8 +135,11 @@ router.put('/:id', requireToken, async (req, res, next) => {
           ],
         });
       //delete all the books from the stock db, but save the books data in an array in the cart
-      console.log("api cart", currentCart)
-      if(currentCart) res.json(await currentCart.update(req.body))
+    
+        const reciept = await currentCart.changeStatus('ordered');
+        res.json(reciept);
+        console.log("api cart", currentCart)
+      
       }
 }catch (err) {
     console.log('api error')

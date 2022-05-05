@@ -3,7 +3,7 @@ import axios from "axios";
 //ACTIONS
 const SET_BOOKS = "SET_BOOKS";
 const ADD_BOOK = "ADD_BOOK";
-const CHECKOUT_BOOK = "CHECKOUT_BOOK";
+//const CHECKOUT_BOOK = "CHECKOUT_BOOK";
 
 //ACTION CREATORS
 export const setBooks = (books) => ({
@@ -16,12 +16,12 @@ export const setSingleBook = (singleBook) =>({
   singleBook
 })
 
-export const checkoutBook = (book) => {
-  return {
-      type: CHECKOUT_BOOK,
-      book
-  }
-}
+// export const checkoutBook = (book) => {
+//   return {
+//       type: CHECKOUT_BOOK,
+//       book
+//   }
+// }
 
 //THUNK CREATORS
 
@@ -48,26 +48,17 @@ export const setBook = (book) => {
 }
 
 //for checkout
-export const reduceBookQty = (book, history) => {
-  return async (dispatch) => {
-    try {
-      // const token = window.localStorage.getItem(TOKEN)
-      // if(token){
-          const { data } = await axios.put(`/api/books/${book.id}`, book)
-          // , {
-          //   headers: {
-          //     authorization: token,
-          //   },
-          // });
-          //console.log("redux stuff", data);
-          dispatch(checkoutBook(data));
-      //)}    
-       //history.push(`/home`)  
-    } catch (err) {
-      console.log(err);
-    }
-  }
-};
+// export const reduceBookQty = (book, history) => {
+//   return async (dispatch) => {
+//     try {
+//           const { data } = await axios.put(`/api/books/${book.id}`, book)
+//           dispatch(checkoutBook(data));
+//        //history.push(`/home`)  
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// };
 //REDUCER
 const initialState = [];
 
@@ -77,8 +68,8 @@ export default function booksReducer(state = initialState, action) {
       return action.books;
     case ADD_BOOK:
       return [...state, ...action.singleBook]
-      case CHECKOUT_BOOK:
-        return state.map((book) => book.id === action.books.id ? book.quantity - 1 : book.quantity) 
+      // case CHECKOUT_BOOK:
+      //   return state.map((book) => {book.id === action.books.id ? book.quantity - 1 : book.quantity}) 
     default:
       return state;
   }

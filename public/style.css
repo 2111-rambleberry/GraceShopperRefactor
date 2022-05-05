@@ -123,6 +123,11 @@ a {
   background-color: white;
 }
 
+.checkoutPage {
+  margin-bottom: 7%;
+  margin-top: 7%;
+}
+
 .boldCarousel {
   font-style: normal;
   font-weight: 800;

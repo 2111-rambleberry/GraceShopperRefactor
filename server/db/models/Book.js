@@ -42,7 +42,6 @@ const Book = db.define("book", {
     type: Sequelize.INTEGER,
     defaultValue: 1,
     validate: {
-      isInt: true,
       isNull: false,
       min: 0,
     },
