@@ -16,18 +16,20 @@ const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_ITEM = "REMOVE_ITEM";
 // EMPTY CART each time user checks out
 const EMPTY_CART = "EMPTY_CART";
-
+const CHECKOUT = "CHECKOUT"
 
 //ACTION CREATORS
 const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
 const emptyCart = () => ({ type: EMPTY_CART });
+const checkout = (cart) => ({ type: CHECKOUT, order_status });
 
 //Thunks
 export const loadCart = () => {
   return async (dispatch) => {
-    try { const token = window.localStorage.getItem(TOKEN);
+    try { 
+      const token = window.localStorage.getItem(TOKEN);
       if (token) {
         const { data: cart } = await axios.get("/api/cart", {
           headers: {
@@ -49,6 +51,7 @@ export const loadCart = () => {
 
 // thunk for adding book to cart
 export const addItemThunk = (book) => {
+  console.log(book); 
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN)
@@ -99,22 +102,47 @@ export const removeItemThunk = (id) => {
   }
 }
 
+export const cartCheckoutStatus = (cart) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+        const { data } = await axios.put(`/api/cart`, cart, {
+          headers: {
+            authorization: token,
+          },
+        });
+        dispatch(checkout(cart));
+    }
+  }catch(err){
+      console.log('api error')
+      console.log(err)
+    }
+  }
+}
+
 //Reducer
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       return action.cart;
     case ADD_TO_CART:
-      return {...state, cart: {
-          ...state.cart,
-          books: [...state.cart.books, action.book]} 
-      } 
+      console.log('redux state', state)
+      return {...state,
+        cart: {...state.cart,
+          books: [...state.cart.books, action.book]},
+ 
+       } 
     case REMOVE_ITEM:
       return {...state, 
         books: state.books.filter((book) => {
           return book.id !== action.book.id
-        }) 
+        }),
+
     } 
+    case CHECKOUT:
+      console.log('reducer', state.order_status)
+      return {...state, order_status: action.cart.order_status};
     case EMPTY_CART:
       return initialState;
     default:

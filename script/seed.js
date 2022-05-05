@@ -92,10 +92,6 @@ async function seed() {
       lastName: "the-turtle",
       email: "cody@emailplace.org",
     }),
-    User.create({ username: "china", password: "123" }),
-    User.create({ username: "amanda", password: "123" }),
-    User.create({ username: "gal", password: "123" }),
-    User.create({ username: "keranie", password: "123" }),
   ]);
 
   //creating Carts

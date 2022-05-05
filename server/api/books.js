@@ -24,4 +24,14 @@ router.get('/:bookId', async(req, res, next) => {
   }
 })
 
+// //Update book qty
+router.put('/:bookId', async(req, res, next) => {
+  try{
+    const book = await Book.findByPk(req.params.bookId)
+    res.send(await book.update(req.body))
+  }catch(err){
+    next(err)
+  }
+})
+
 

@@ -7,6 +7,7 @@ const GET_STOCK = "GET_STOCK";
 const DELETE_STOCK = "DELETE_STOCK";
 const ADD_STOCK = "ADD_STOCK"
 const EDIT_STOCK = "EDIT_STOCK";
+const CHECKOUT_STOCK = "CHECKOUT_STOCK";
 
 //ACTION CREATORS
 export const getStock = (stock) => ({
@@ -19,7 +20,6 @@ export const deleteStock = (stockItem) => ({
   stockItem,
 });
 
-
 export const setSingleItem = (singleBook) =>({
   type: ADD_STOCK,
   singleBook
@@ -30,8 +30,10 @@ export const editStock = (stockItem) => ({
   stockItem,
 });
 
-
-// export const addStock = stock => ({})
+// export const checkoutStock = (stockItem) => ({
+//   type: CHECKOUT_STOCK,
+//   stockItem
+// })
 
 //THUNK CREATORS
 
@@ -106,6 +108,27 @@ export const removeStock = (id) => {
   }
 };
 
+//gets cart qty and reduces stock
+// export const reduceStockQty = (stockItem, history) => {
+//   return async (dispatch) => {
+//     try {
+//       const token = window.localStorage.getItem(TOKEN)
+//       if(token){
+//           const { data } = await axios.put(`/api/stock/${stockItem.id}`, stockItem, {
+//             headers: {
+//               authorization: token,
+//             },
+//           });
+//           //console.log("redux stuff", data,);
+//           dispatch(checkoutStock(data));
+//       }    
+//       // history.push(`/stock/${stockItem.id}`)  
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// };
+
 //REDUCER
 const initialState = [];
 
@@ -119,6 +142,8 @@ export default function stockReducer(state = initialState, action) {
       return state.map((stockItem) => {stockItem.id === action.stockItem.id ? action.stockItem : stockItem});
     case DELETE_STOCK:
       return state.filter((stockItem) => stockItem.id !== action.stockItem.id);
+    // case CHECKOUT_STOCK:
+    //   return state.map((stockItem) => {stockItem.id === action.stockItem.id ? stockItem.quantity -= 1 : stockItem});
     default:
       return state;
   }

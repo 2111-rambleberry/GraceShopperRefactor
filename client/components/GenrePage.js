@@ -31,15 +31,15 @@ const GenrePage = () => {
       <div className="book-small">
       
       {books.map((book) => {
-        {
-          if (book.bought === false)
             return (
             <Col key = {book.id}>
-
                   {/* */}
                   <Card className = "border-0"  style={{ width: '12rem', height: '32rem' }}> 
                     <Card.Link href = {`/books/${book.id}`}> 
-                      <Card.Img variant ="top" className="book-cover shadow-lg" src={book.coverimg} />
+                      {book.quantity > 0 ? 
+                      <Card.Img variant ="top" className="book-cover shadow-lg" src={book.coverimg}/> :
+                      <Card.Img variant ="top" className="outOfStock" src={book.coverimg}/> 
+                      }
                       </Card.Link>
                       <Card.Body className= "d-flex flex-column">
                         <Card.Title>
@@ -65,21 +65,24 @@ const GenrePage = () => {
                       {/* </div> */}
                       </Card.Body>
                       <Card.Footer style ={{color:"white", border: "none", backgroundColor: "white"}}>
+                        {book.quantity > 0 ? 
                         <Button
                         size="sm"
                         style ={{color:"white", backgroundColor: "purple", border: "purple"}}
                         type="submit"
                         variant="primary"
                         onClick={() => dispatch(addItemThunk(book))}
-                      >
-                      
-                        <BsFillBasket3Fill color = "white"/>  Add To Cart
-                      </Button >
+                      > <BsFillBasket3Fill color = "white"/>  Add To Cart
+                      </Button >: 
+                      <Button size="sm" variant="secondary" disabled>
+                      Sold Out
+                       </Button> 
+                        }
                       </Card.Footer>
                   </Card>
               </Col>
             );
-        }
+        
       })}
        </div>
       </Row>

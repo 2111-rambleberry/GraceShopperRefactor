@@ -29,7 +29,6 @@ router.get('/:stockId', requireToken, isAdmin, async(req, res, next) => {
 router.put('/:stockId', requireToken, isAdmin, async(req, res, next) => {
   try {
     const book = await Book.findByPk(req.params.stockId)
-    console.log(book)
     res.json(await book.update(req.body));
   } catch (err) {
     next(err);
@@ -55,3 +54,14 @@ router.post('/', requireToken, isAdmin, async(req, res, next) => {
     next(err);
   }
 })
+
+//Update book qty
+//similar to editing book details, but one does not need to be an admin
+// router.put('/:bookId', requireToken, isAdmin, async(req, res, next) => {
+//   try{
+//     const book = await Book.findByPk(req.params.bookId)
+//     res.send(await book.update(req.body))
+//   }catch(err){
+//     next(err)
+//   }
+// })

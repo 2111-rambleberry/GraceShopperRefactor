@@ -43,16 +43,23 @@ const Books = () => {
     <div className="book-small">
       {books.map((book) => {
         {
-          if (book.bought === false)
             return (
+              book.quantity ? 
               <div className="book-info" key={book.id}>
                 <div className="shadow-lg">
                   <Link to={`/books/${book.id}`}>
                     <img className="book-cover all-books" src={book.coverimg} />
                   </Link>
                 </div>
-              </div>
-            );
+              </div> :
+              <div className="book-info" key={book.id}>
+                <div className="soldOut">
+                  <Link to={`/books/${book.id}`}>
+                    <img className="book-cover all-books" src={book.coverimg} />
+                 </Link>
+                    </div>
+                      </div>
+            ); 
         }
       })}
     </div>

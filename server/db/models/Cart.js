@@ -62,6 +62,11 @@ const Cart = db.define("cart", {
   shippingAddress: Sequelize.STRING,
 });
 
+Cart.prototype.changeStatus = async(status) => {
+  console.log('model method', this)
+  this.order_status = status;
+}
+
 module.exports = Cart;
 
 //Cart:

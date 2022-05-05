@@ -26,7 +26,7 @@ const TopNav = ({ handleClick, isLoggedIn, isUserAdmin, username }) => (
       
       <Navbar.Brand href="/homepage" className="logo">
         <Stack direction="horizontal" gap={1} >
-          {/* <Image  src = 'cassetteLogo.png' height = '70px'/>        */}
+          <Image  src = '../logoUpdate.png' height = '100px'/>       
           {/* <img src = 'lampLogo.png' height = '70px' width = '70px'/>  */}
           {/* <img src = 'shelfLogo.png' height = '100px' width = '100px'/>  */}
           <h1 className="logo">BookShopper</h1>
