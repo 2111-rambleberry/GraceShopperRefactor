@@ -23,7 +23,7 @@ const CHECKOUT_CART = "CHECKOUT_CART"
 const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
-const checkoutCart = (cart) => {{ type: CHECKOUT_CART, cart}}
+const checkoutCart = (cart) => ({ type: CHECKOUT_CART, cart})
 // const emptyCart = () => ({ type: EMPTY_CART });
 
 //Thunks

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { requireToken, isAdmin } = require("./gatekeepingMiddleware");
+const { requireToken } = require("./gatekeepingMiddleware");
 const {
   models: { Cart, User, Book },
 } = require("../db");

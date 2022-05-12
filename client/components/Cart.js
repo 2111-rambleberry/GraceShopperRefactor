@@ -8,13 +8,13 @@ import { reduceBookQty } from '../store/singleBook'
 //import { reduceBookQty } from '../store/books'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
-import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cart = useSelector((state) => state.cartReducer)
   const books = useSelector((state) => state.booksReducer)
+  const [show, setShow] = useState(false);
 
   function getTotal(cart){
     if(cart.books == undefined) return;
@@ -27,16 +27,8 @@ const Cart = () => {
     }
     return (total/100).toFixed(2);
   }
-
   const total = getTotal(cart);
 
-  // useEffect(() => {
-  //   dispatch(loadCart());
-  // }, [])
-
-// function reduceQty(cart){
-//   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
-// }
   console.log('react cart', cart)
 
   return (
@@ -47,7 +39,6 @@ const Cart = () => {
             <center>
             <h2 className="bold darkPurple marginTop" >Nothing in Cart - Start Shopping!</h2>
             <Image src = "boy-reading.png" height = "400px"/>
-            {/* <GenreCarousel genre = "Fiction" /> */}
             </center>
            </Stack>
         </div>
