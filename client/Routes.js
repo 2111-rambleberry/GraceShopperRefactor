@@ -36,6 +36,7 @@ class Routes extends Component {
             {/* <Route path="/cart/:username" component={UserCart} /> */}
             <Route exact path="/books/:bookId" component={SingleBook} />
             <Route exact path="/edit" component={PastOrders} />
+            {/* <Route exact path="/edit" component={UserDataForm} /> */}
             <Route exact path="/stock" component={Stock} />
             <Route exact path="/stock/:stockId" component={StockItem} />
             <Route path="/stock/edit/:stockId" component={FormStockItem} />

@@ -67,8 +67,6 @@ router.post('/', requireToken, async (req, res, next) => {
       if(currentOrder) {
         await currentOrder.addBook(currBook.id)
         res.json(currBook)
-        // await currBook.setCarts(currentOrder.id);
-        // res.json(currBook)
       } else {
         const newOrder = await Cart.create()
         await user.setCarts(newOrder.id) 
@@ -155,7 +153,7 @@ router.put('/', requireToken, async (req, res, next) => {
   }
 })
 
-
+//get orders
 router.get("/my-orders", requireToken, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id)

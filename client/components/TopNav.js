@@ -66,7 +66,8 @@ const TopNav = () => {
           {isLoggedIn ? (
             <>  
               <Nav.Link disabled>Hello {auth.username}!</Nav.Link>         
-              <Nav.Link href="/edit">Profile</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+              {/* <Nav.Link href="/profile/edit">Profile</Nav.Link> */}
               {/* The navbar will show these links after you log in */}
               <Nav.Link href="#" onClick={handleClick}>
                 Logout

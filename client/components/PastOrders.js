@@ -9,28 +9,9 @@ const PastOrders = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.ordersReducer)
 
-  // function getTotal(cart){
-  //   if(cart.books == undefined) return;
-  //   let books = cart.books;
-  //   let total = 0;
-  //   for(let book in books){
-  //     let cost = books[book].price;
-  //     if(cost === 0 || cost < 100) total += 500;
-  //     else total+=cost;
-  //   }
-  //   return (total/100).toFixed(2);
-  // }
-
-  // const total = getTotal(cart);
-
   useEffect(() => {
     dispatch(loadOrders());
   }, [])
-
-// function reduceQty(cart){
-//   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
-// }
-  console.log('react orders', orders)
 
   return (
     <>
