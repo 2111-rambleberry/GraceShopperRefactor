@@ -25,6 +25,7 @@ const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
 const checkoutCart = (cart) => {{type: CHECKOUT_CART, cart}}
+const getOrders = (cart) => {{type: LOAD_ORDERS, cart}}
 // const emptyCart = () => ({ type: EMPTY_CART });
 
 //Thunks
@@ -120,6 +121,29 @@ export const checkoutBooks = (cart) => {
   }
 }
 
+export const loadOrders = () => {
+  return async (dispatch) => {
+    try { const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+        const { data: carts } = await axios.get("/api/cart/my-orders", {
+          headers: {
+            authorization: token,
+          },
+        });
+        dispatch(getOrders(carts));
+      } 
+      // else {
+      //   const cart = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+      //     ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
+      //     : {}
+      //   dispatch(getCart(cart));
+      // }
+    } catch (err) {
+      console.log(">>>>>>loadCartThunk not working");
+    }
+  };
+};
+
 //Reducer
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
@@ -137,8 +161,11 @@ export default function cartReducer(state = initialState, action) {
       }
     case CHECKOUT_CART:
       return {...state,
-        order_status: action.cart.order_status
+        order_status: action.cart.order_status,
+        checkout_price: action.cart.checkout_price
       } 
+    case LOAD_CART:
+      return action.carts
 
     // case EMPTY_CART:
     //   return initialState;
