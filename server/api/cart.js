@@ -19,7 +19,6 @@ router.get("/", requireToken, async (req, res, next) => {
             model: Book,
             attributes: ["id", "title", "author", "coverimg", "price"],
             through: { attributes: [] },
-            required: true,
           },
         ],
       });
@@ -29,14 +28,14 @@ router.get("/", requireToken, async (req, res, next) => {
         console.log("no cart - get shopping!");
         throw new Error();
       }
-    // } else {
-    //   const currentCart = window.sessionStorage.getItem("guestCart") 
-    //   if (currentCart) {
-    //     res.json(currentCart);
-    //   } else {
-    //     console.log("no cart - get shopping!");
-    //     throw new Error();
-    //   }
+    } else {
+      const currentCart = window.sessionStorage.getItem("guestCart") 
+      if (currentCart) {
+        res.json(currentCart);
+      } else {
+        console.log("no cart - get shopping!");
+        throw new Error();
+      }
     }
   } catch (err) {
     console.log(">>>>>>>You are not Authorized!");
@@ -60,18 +59,18 @@ router.post('/', requireToken, async (req, res, next) => {
           model: Book,
           attributes: ["id", "title", "author", "coverimg", "price"],
           through: { attributes: [] },
-          required: true,
         },
       ],
     });
       if(currentOrder) {
-        await currBook.setCarts(currentOrder.id);
+        await currentOrder.addBook(currBook.id)
         res.json(currBook)
+        // await currBook.setCarts(currentOrder.id);
+        // res.json(currBook)
       } else {
-        const newOrder = await Cart.create({
-          userId: req.user.id
-        })
-        await currBook.setCarts(newOrder.id);
+        const newOrder = await Cart.create()
+        await user.setCart(newOrder.id) 
+        await newOrder.addBook(currBook.id)
         res.json(currBook)
       }
     }
