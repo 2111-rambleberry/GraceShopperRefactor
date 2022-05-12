@@ -92,25 +92,13 @@ async function seed() {
       lastName: "the-turtle",
       email: "cody@emailplace.org",
     }),
-    User.create({ username: "china", password: "123" }),
-    User.create({ username: "amanda", password: "123" }),
-    User.create({ username: "gal", password: "123" }),
-    User.create({ username: "keranie", password: "123" }),
   ]);
 
   //creating Carts
-
-  //carts associated with users
+  //test carts
   const cart1 = await Cart.create();
   const cart2 = await Cart.create();
   const cart3 = await Cart.create();
-  const cart4 = await Cart.create();
-
-  //guest carts
-  const cart5 = await Cart.create();
-  const cart6 = await Cart.create();
-  const cart7 = await Cart.create();
-  const cart8 = await Cart.create();
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

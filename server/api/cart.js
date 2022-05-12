@@ -11,6 +11,7 @@ router.get("/", requireToken, async (req, res, next) => {
     if (user) {
       const currentCart = await Cart.findOne({
         where: {
+          userId: user.id,
           order_status: "in cart",
         },
         attributes: ["id"],
@@ -51,6 +52,7 @@ router.post('/', requireToken, async (req, res, next) => {
     if (user) {
       const currentOrder = await Cart.findOne({
       where: {
+        userId: user.id,
         order_status: "in cart",
       },
       attributes: ["id"],
@@ -69,7 +71,7 @@ router.post('/', requireToken, async (req, res, next) => {
         // res.json(currBook)
       } else {
         const newOrder = await Cart.create()
-        await user.setCart(newOrder.id) 
+        await user.setCarts(newOrder.id) 
         await newOrder.addBook(currBook.id)
         res.json(currBook)
       }
@@ -86,6 +88,7 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
     if (user) {
       const currentOrder = await Cart.findOne({
         where: {
+          userId: user.id,
           order_status: "in cart",
         },
         attributes: ["id"],
@@ -118,6 +121,7 @@ router.put('/', requireToken, async (req, res, next) => {
     if (user) {
       const currentOrder = await Cart.findOne({
         where: {
+          userId: user.id,
           order_status: "in cart",
         },
         attributes: ["id", "order_status"],
@@ -130,14 +134,15 @@ router.put('/', requireToken, async (req, res, next) => {
           },
         ],
       });
-      console.log(currentOrder)
+      console.log("currentOrder", currentOrder)
       if(currentOrder){
         const order = await currentOrder.update({
           order_status: "ordered"
         });
-        await user.setCart(order)
+        await user.setCarts(order)
+        console.log(order)
         res.json(order);
-        console.log(currentOrder)
+        console.log("req.body", req.body)
       } else {
         console.log("not working!")
       }
@@ -146,6 +151,39 @@ router.put('/', requireToken, async (req, res, next) => {
     next(err)
   }
 })
+
+
+router.get("/my-orders", requireToken, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id)
+    if (user) {
+      const orders = await Cart.findAll({
+        where: {
+          userId: user.id,
+          order_status: "ordered",
+        },
+        attributes: ["id"],
+        include: [
+          {
+            model: Book,
+            attributes: ["id", "title", "author", "coverimg", "price"],
+            through: { attributes: [] },
+            required: true
+          },
+        ],
+      });
+      if (orders) {
+        res.json(orders);
+      } else {
+        console.log("no cart - get shopping!");
+        throw new Error();
+      }
+    } 
+  } catch (err) {
+    console.log(">>>>>>>You are not Authorized!");
+    next(err);
+  }
+});
 
 // remove item from stock db
 // router.post('/:bookId', requireToken, async (req, res, next) => {

@@ -15,7 +15,6 @@ const LOAD_CART = "LOAD_CART";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const CHECKOUT_CART = "CHECKOUT_CART"
-const LOAD_ORDERS = "LOAD_ORDERS";
 // EMPTY CART each time user checks out
 // const EMPTY_CART = "EMPTY_CART";
 
@@ -24,8 +23,7 @@ const LOAD_ORDERS = "LOAD_ORDERS";
 const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
-const checkoutCart = (cart) => {{type: CHECKOUT_CART, cart}}
-const getOrders = (cart) => {{type: LOAD_ORDERS, cart}}
+const checkoutCart = (cart) => {{ type: CHECKOUT_CART, cart}}
 // const emptyCart = () => ({ type: EMPTY_CART });
 
 //Thunks
@@ -164,9 +162,6 @@ export default function cartReducer(state = initialState, action) {
         order_status: action.cart.order_status,
         checkout_price: action.cart.checkout_price
       } 
-    case LOAD_CART:
-      return action.carts
-
     // case EMPTY_CART:
     //   return initialState;
     default:
