@@ -119,12 +119,13 @@ router.put('/', requireToken, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id)
     if (user) {
+      //look for the cart with the books in the db
       const currentOrder = await Cart.findOne({
         where: {
           userId: user.id,
           order_status: "in cart",
         },
-        attributes: ["id", "order_status"],
+        attributes: ["id", "order_status", "checkout_price"],
         include: [
           {
             model: Book,
@@ -134,11 +135,13 @@ router.put('/', requireToken, async (req, res, next) => {
           },
         ],
       });
+      //switch the cart to ordered
       console.log("currentOrder", currentOrder)
       if(currentOrder){
         const order = await currentOrder.update({
           order_status: "ordered"
         });
+        //Later on the user profile make ordered items viewable
         await user.setCarts(order)
         console.log(order)
         res.json(order);
@@ -184,33 +187,5 @@ router.get("/my-orders", requireToken, async (req, res, next) => {
     next(err);
   }
 });
-
-// remove item from stock db
-// router.post('/:bookId', requireToken, async (req, res, next) => {
-//     try{
-//       //look for the cart with the books in the db
-//       const currentOrder = await Cart.findOne({
-//         where: {
-//           order_status: "in cart",
-//         },
-//         attributes: ["id"],
-//         include: [
-//           {
-//             model: Book,
-//             attributes: ["id", "title", "author", "coverimg", "price"],
-//             through: { attributes: [] },
-//             required: true,
-//           },
-//         ],
-//       });
-      //delete all the books from the stock db, but save the books data in an array in the cart
-
-      //switch the cart to ordered
-
-      //Later on the user profile make ordered items viewable
-//   } catch (err) {
-//     next(err)
-//   }
-// })
 
 module.exports = router;
