@@ -111,15 +111,16 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
   }
 })
 
-// remove item from stock db
-router.post('/:bookId', requireToken, async (req, res, next) => {
-    try{
-      //look for the cart with the books in the db
+//checkout cart
+router.put('/', requireToken, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id)
+    if (user) {
       const currentOrder = await Cart.findOne({
         where: {
           order_status: "in cart",
         },
-        attributes: ["id"],
+        attributes: ["id", "order_status"],
         include: [
           {
             model: Book,
@@ -129,14 +130,49 @@ router.post('/:bookId', requireToken, async (req, res, next) => {
           },
         ],
       });
+      console.log(currentOrder)
+      if(currentOrder){
+        const order = await currentOrder.update({
+          order_status: "ordered"
+        });
+        await user.setCart(order)
+        res.json(order);
+        console.log(currentOrder)
+      } else {
+        console.log("not working!")
+      }
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
+// remove item from stock db
+// router.post('/:bookId', requireToken, async (req, res, next) => {
+//     try{
+//       //look for the cart with the books in the db
+//       const currentOrder = await Cart.findOne({
+//         where: {
+//           order_status: "in cart",
+//         },
+//         attributes: ["id"],
+//         include: [
+//           {
+//             model: Book,
+//             attributes: ["id", "title", "author", "coverimg", "price"],
+//             through: { attributes: [] },
+//             required: true,
+//           },
+//         ],
+//       });
       //delete all the books from the stock db, but save the books data in an array in the cart
 
       //switch the cart to ordered
 
       //Later on the user profile make ordered items viewable
-  } catch (err) {
-    next(err)
-  }
-})
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 module.exports = router;

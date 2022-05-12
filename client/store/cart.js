@@ -14,15 +14,18 @@ const initialState = {
 const LOAD_CART = "LOAD_CART";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_ITEM = "REMOVE_ITEM";
+const CHECKOUT_CART = "CHECKOUT_CART"
+const LOAD_ORDERS = "LOAD_ORDERS";
 // EMPTY CART each time user checks out
-const EMPTY_CART = "EMPTY_CART";
+// const EMPTY_CART = "EMPTY_CART";
 
 
 //ACTION CREATORS
 const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
 const removeItem = (book)=> ({ type: REMOVE_ITEM, book});
-const emptyCart = () => ({ type: EMPTY_CART });
+const checkoutCart = (cart) => {{type: CHECKOUT_CART, cart}}
+// const emptyCart = () => ({ type: EMPTY_CART });
 
 //Thunks
 export const loadCart = () => {
@@ -99,6 +102,24 @@ export const removeItemThunk = (id) => {
   }
 }
 
+export const checkoutBooks = (cart) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem(TOKEN)
+      if(token) {
+        const { data: order } = await axios.put(`/api/cart`, cart, {
+          headers: {
+            authorization: token,
+          },
+        })
+        dispatch(checkoutCart(order))
+      }
+    } catch(err) {
+      console.log('error checking out')
+    }
+  }
+}
+
 //Reducer
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
@@ -113,9 +134,14 @@ export default function cartReducer(state = initialState, action) {
         books: state.books.filter((book) => {
           return book.id !== action.book.id
         }) 
-    } 
-    case EMPTY_CART:
-      return initialState;
+      }
+    case CHECKOUT_CART:
+      return {...state,
+        order_status: action.cart.order_status
+      } 
+
+    // case EMPTY_CART:
+    //   return initialState;
     default:
       return state;
     }
