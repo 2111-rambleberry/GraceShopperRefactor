@@ -5,9 +5,7 @@ const GUEST_CART = "guestCart";
 
 //Initial state:
 const initialState = {
-  cart: {
     books: []
-  }   
 } 
 
 //ACTIONS
@@ -160,7 +158,8 @@ export default function cartReducer(state = initialState, action) {
     case CHECKOUT_CART:
       return {...state,
         order_status: action.cart.order_status,
-        checkout_price: action.cart.checkout_price
+        checkout_price: action.cart.checkout_price,
+        books: []
       } 
     // case EMPTY_CART:
     //   return initialState;

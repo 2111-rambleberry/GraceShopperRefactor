@@ -20,6 +20,7 @@ router.get("/", requireToken, async (req, res, next) => {
             model: Book,
             attributes: ["id", "title", "author", "coverimg", "price"],
             through: { attributes: [] },
+            required: true
           },
         ],
       });
@@ -61,6 +62,7 @@ router.post('/', requireToken, async (req, res, next) => {
           model: Book,
           attributes: ["id", "title", "author", "coverimg", "price"],
           through: { attributes: [] },
+          required: true
         },
       ],
     });
@@ -69,7 +71,7 @@ router.post('/', requireToken, async (req, res, next) => {
         res.json(currBook)
       } else {
         const newOrder = await Cart.create()
-        await user.setCarts(newOrder.id) 
+        await newOrder.setUser(user.id) 
         await newOrder.addBook(currBook.id)
         res.json(currBook)
       }
@@ -123,7 +125,7 @@ router.put('/', requireToken, async (req, res, next) => {
           userId: user.id,
           order_status: "in cart",
         },
-        attributes: ["id", "order_status", "checkout_price"],
+        attributes: ["id", "order_status", "checkout_price", "userId"],
         include: [
           {
             model: Book,
@@ -140,7 +142,8 @@ router.put('/', requireToken, async (req, res, next) => {
           order_status: "ordered"
         });
         //Later on the user profile make ordered items viewable
-        await user.setCarts(order)
+        // await user.setCarts(order)
+        await order.setUser(user.id) 
         console.log(order)
         res.json(order);
         console.log("req.body", req.body)

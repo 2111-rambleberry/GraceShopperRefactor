@@ -117,9 +117,9 @@ const Cart = () => {
           </div>
         </>
       )}
-      <CheckoutModal show={modalShow} checkout={() => checkout(cart)}/>
+      <CheckoutModal show={modalShow} onClick={() => {{handleClose()}; {checkout(cart)}}}/>
     </>
   );
 }
 
-export default Cart;
+export default Cart;  
