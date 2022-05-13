@@ -8,15 +8,24 @@ import { reduceBookQty } from '../store/singleBook'
 //import { reduceBookQty } from '../store/books'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
+import CheckoutModal  from './CheckoutModal';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cart = useSelector((state) => state.cartReducer)
   const books = useSelector((state) => state.booksReducer)
-  const [show, setShow] = useState(false);
 
-  function getTotal(cart){
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => setModalShow(false);
+
+  const checkout = (order) => {
+    dispatch(checkoutBooks(order))
+    handleClose()
+  }
+
+  const getTotal = (cart) => {
     if(cart.books == undefined) return;
     let books = cart.books;
     let total = 0;
@@ -28,8 +37,6 @@ const Cart = () => {
     return (total/100).toFixed(2);
   }
   const total = getTotal(cart);
-
-  console.log('react cart', cart)
 
   return (
     <>
@@ -101,18 +108,19 @@ const Cart = () => {
               size="md"
               type="button"
               variant="primary"
-              onClick={() => dispatch(checkoutBooks(cart))}
+              onClick={() => setModalShow(true)}
               // onClick={() => console.log("checkout!")}
               //  onClick={handleCheckout} >
                   /*/console.log('onclick', cart.books)
               cart.books.map((book) => dispatch(reduceBookQty(book, history)));*/
             >
-           <h4>Checkout</h4>
-         </Button>
+              <h4>Checkout</h4>
+            </Button>
             </div>    
           </div>
         </>
       )}
+      <CheckoutModal show={modalShow} checkout={() => checkout(cart)}/>
     </>
   );
 }

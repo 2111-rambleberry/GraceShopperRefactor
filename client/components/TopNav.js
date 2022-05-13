@@ -41,7 +41,7 @@ const TopNav = () => {
         
         <Navbar.Brand href="/" className="logo">
           <Stack direction="horizontal" gap={1} >
-            <Image  src="../bookshopper-logo.png" height = '100px'/>       
+            <Image  src="../logo-updated.png" height = '100px'/>       
             {/* <img src = 'lampLogo.png' height = '70px' width = '70px'/>  */}
             {/* <img src = 'shelfLogo.png' height = '100px' width = '100px'/>  */}
             <h1 className="logo">BookShopper</h1>

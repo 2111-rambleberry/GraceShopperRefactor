@@ -12,7 +12,7 @@ export default function Footer() {
 
   return (
     <footer className = "footer">
-      <Image  src="../bookshopper-logo.png" height = '80%'/>
+      <Image  src="../logo-updated.png" height = '80%'/>
       <Link onClick = {handleShow} > 
         <p>Meet the Team</p> 
       </Link>
