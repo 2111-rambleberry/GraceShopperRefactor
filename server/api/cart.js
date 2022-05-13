@@ -28,7 +28,6 @@ router.get("/", requireToken, async (req, res, next) => {
         res.json(currentCart);
       } else {
         console.log("no cart - get shopping!");
-        throw new Error();
       }
     } else {
       const currentCart = window.sessionStorage.getItem("guestCart") 

@@ -12,25 +12,25 @@ const Home = () => {
   return (
     <div>
       <HomeCarousel />
-      <div className="marginTop">
+      <div className="marginSide">
         <Row>
           <Col>
             <Image  src="../welcome-to-bookshopper.png"/>
           </Col>
           <Col>
-          <div className="darkPurple">
-            <h2>We are an online bookstore specialising in new and 
+          <div className="darkPurple centerItems">
+            <h1 >We are an online bookstore specialising in new and 
               gently-loved used books! Browse our collection and add to your
               bookshelf today.
-            </h2>
+            </h1>
           </div>
           </Col>
         </Row>
-        <GenreCarousel genre = {'Fiction'} />
-        <GenreCarousel genre = {'Historical'} />
-        {/* <GenreCarousel genre3 = {'Westerns'} /> */}
-        <Books />
       </div>
+      <GenreCarousel genre = {'Fiction'} />
+      <GenreCarousel genre = {'Historical'} />
+      {/* <GenreCarousel genre3 = {'Westerns'} /> */}
+      <Books />
     </div>
   );
 };
