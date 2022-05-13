@@ -9,6 +9,7 @@ import { reduceBookQty } from '../store/singleBook'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
 import CheckoutModal  from './CheckoutModal';
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,12 @@ const Cart = () => {
   }
   const total = getTotal(cart);
 
+// function reduceQty(cart){
+//   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
+// }
+    
+  console.log('react cart', cart)
+    
   return (
     <>
       {!cart.books || cart.books.length === 0 ? (

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleBook } from "../store/singleBook";
 import { addItemThunk } from "../store/cart";
-import { Button, Stack, Container, Row, Col, Card } from "react-bootstrap";
+import { Button, Stack, Container, Row, Col, Card, Badge } from "react-bootstrap";
 import GenreCarousel from "./Carousel";
 
 const SingleBook = () => {
@@ -29,11 +29,24 @@ const SingleBook = () => {
           <Container >
             <Row>
               <Col sm={4}>
-                <img
+                
+                {book.quantity > 0 ?
+                <div key = "img">
+                 <img
                   className="float-right shadow-lg"
                   src={book.coverimg}
                   style={{ width: "280px" }}
-                />
+                /> 
+                </div>:
+                <div key = "img"> 
+                <img
+                className="outOfStock"
+                src={book.coverimg}
+                style={{ width: "280px" }}
+              />
+              </div>
+              }
+              
               </Col>
 
               <Col sm={8}>
@@ -52,14 +65,19 @@ const SingleBook = () => {
                     </div>
 
                     <div className="ms-auto">
-                      <Button
+                      {book.quantity > 0 ? <Button
                         size="sm"
                         type="button"
                         variant="primary"
                         onClick={() => dispatch(addItemThunk(book))}
                       >
                         Add To Cart
-                      </Button>
+                      </Button> :
+                      <Button size="sm" type="button" disabled>
+                      Sold Out
+                    </Button> 
+                      }
+                      
                     </div>
                   </Stack>
 

@@ -16,7 +16,6 @@ const CHECKOUT_CART = "CHECKOUT_CART"
 // EMPTY CART each time user checks out
 // const EMPTY_CART = "EMPTY_CART";
 
-
 //ACTION CREATORS
 const getCart = (cart) => ({ type: LOAD_CART, cart });
 const updateCart = (book) =>({ type: ADD_TO_CART, book})
@@ -27,7 +26,8 @@ const checkoutCart = (cart) => ({ type: CHECKOUT_CART, cart})
 //Thunks
 export const loadCart = () => {
   return async (dispatch) => {
-    try { const token = window.localStorage.getItem(TOKEN);
+    try { 
+      const token = window.localStorage.getItem(TOKEN);
       if (token) {
         const { data: cart } = await axios.get("/api/cart", {
           headers: {
@@ -49,6 +49,7 @@ export const loadCart = () => {
 
 // thunk for adding book to cart
 export const addItemThunk = (book) => {
+  console.log(book); 
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN)

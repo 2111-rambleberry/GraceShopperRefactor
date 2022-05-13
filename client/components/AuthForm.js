@@ -9,18 +9,25 @@ import { Link } from "react-router-dom";
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
+
   return (
       <center>
-      <Card style={{ width: "50%" }} className = "loginCard shadow-lg">
-        <div className='row'>
+      <Card style={{ width: "40%", padding:"2%"}} className = "loginCard shadow-lg">
+        <Card.Title>
+              <h2 className="darkPurple" >{displayName}</h2>
+            </Card.Title>
+        <div className='row'>            
           <div className='col-md-6'>
-            <Card.Img src="logo-openBook.png" alt="Card image" />
+            <Card.Img src="books-login.png" alt="Card image" />
+            <div className='marginTop'>
+              {name == "login" ? 
+              <Card.Link href = "/signup"><p>Don't have an account?</p></Card.Link>
+              : <Card.Link href = "/login"><p>Already have an account?</p></Card.Link> }
+            </div>
           </div>
           <div className='col-md-6'>
           <Card.Body>
-            <Card.Title>
-              <h2 className="darkPurple">{displayName}</h2>
-            </Card.Title>
+
             <center>
               <form onSubmit={handleSubmit} name={name}>
                 <div>
@@ -37,11 +44,7 @@ const AuthForm = props => {
                 {error && error.response && <div> {error.response.data} </div>}
               </form>
             </center>
-            <div className='marginTop'>
-              {name == "login" ? 
-              <Card.Link href = "/signup"><p>Don't have an account?</p></Card.Link>
-              : <Card.Link href = "/login"><p>Already have an account?</p></Card.Link> }
-            </div>
+
             </Card.Body>
           </div>
         </div>

@@ -14,11 +14,11 @@ router.get("/", requireToken, async (req, res, next) => {
           userId: user.id,
           order_status: "in cart",
         },
-        attributes: ["id"],
+        attributes: ["id", "order_status", "cart_quantity"],
         include: [
           {
             model: Book,
-            attributes: ["id", "title", "author", "coverimg", "price"],
+            attributes: ["id", "title", "author", "coverimg", "price","quantity"],
             through: { attributes: [] },
             required: true
           },
@@ -55,11 +55,11 @@ router.post('/', requireToken, async (req, res, next) => {
         userId: user.id,
         order_status: "in cart",
       },
-      attributes: ["id"],
+      attributes: ["id", "order_status", "cart_quantity"],
       include: [
         {
           model: Book,
-          attributes: ["id", "title", "author", "coverimg", "price"],
+          attributes: ["id", "title", "author", "coverimg", "price", "quantity"],
           through: { attributes: [] },
           required: true
         },
@@ -90,11 +90,11 @@ router.delete('/:bookId', requireToken, async (req, res, next) => {
           userId: user.id,
           order_status: "in cart",
         },
-        attributes: ["id"],
+        attributes: ["id", "order_status", "cart_quantity"],
         include: [
           {
             model: Book,
-            attributes: ["id", "title", "author", "coverimg", "price"],
+            attributes: ["id", "title", "author", "coverimg", "price", "quantity"],
             through: { attributes: [] },
             required: true,
           },

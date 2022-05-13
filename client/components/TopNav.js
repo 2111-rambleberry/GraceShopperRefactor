@@ -16,7 +16,7 @@ import {
 } from "react-bootstrap";
 
 const TopNav = () => {
-
+  
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer)
   const auth = useSelector((state) => state.auth)

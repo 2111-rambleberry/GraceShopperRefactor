@@ -152,7 +152,16 @@ label {
   justify-content: center;
   width: 100%;
   height: 100%;
- } 
+ }
+
+.checkoutTable{
+  background-color: white;
+}
+
+.checkoutPage {
+  margin-bottom: 7%;
+  margin-top: 7%;
+}
 
 .boldCarousel {
   font-style: normal;
@@ -162,7 +171,6 @@ label {
   margin-left: 5%;
   margin-bottom: 30px;  
   margin-top: 30px;
-
 }
 
 .carouselGenre {
@@ -185,7 +193,6 @@ label {
   align-items: center;
   padding-bottom: 5%;
 }
-
 .all-books {
   width: 10vw;
 }
