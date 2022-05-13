@@ -136,7 +136,6 @@ router.put('/', requireToken, async (req, res, next) => {
         ],
       });
       //switch the cart to ordered
-      console.log("currentOrder", currentOrder)
       if(currentOrder){
         const order = await currentOrder.update({
           order_status: "ordered"
@@ -144,9 +143,7 @@ router.put('/', requireToken, async (req, res, next) => {
         //Later on the user profile make ordered items viewable
         // await user.setCarts(order)
         await order.setUser(user.id) 
-        console.log(order)
         res.json(order);
-        console.log("req.body", req.body)
       } else {
         console.log("not working!")
       }
@@ -166,7 +163,7 @@ router.get("/my-orders", requireToken, async (req, res, next) => {
           userId: user.id,
           order_status: "ordered",
         },
-        attributes: ["id"],
+        attributes: ["id", "createdAt"],
         include: [
           {
             model: Book,

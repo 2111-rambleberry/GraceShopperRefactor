@@ -111,7 +111,9 @@ export const checkoutBooks = (cart) => {
         })
         dispatch(checkoutCart(order))
       } else {
+        const order = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
         window.sessionStorage.clear()
+        dispatch(checkoutCart(order))
       }
     } catch(err) {
       console.log('error checking out')

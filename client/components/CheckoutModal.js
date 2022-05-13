@@ -11,10 +11,10 @@ const CheckoutModal = (props) => {
           <h2>Are you sure you want to checkout?</h2>
         </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={props.handleClose}>
+        <Button variant="primary" onClick={props.onHide}>
           No - I want to keep shopping!
         </Button>
-        <Button variant="primary" onSubmit={props.checkout}>
+        <Button variant="primary" onClick={props.onCheckout}>
           Yes - I want my books!
         </Button>
       </Modal.Footer>

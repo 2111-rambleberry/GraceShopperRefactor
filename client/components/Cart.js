@@ -22,7 +22,6 @@ const Cart = () => {
 
   const checkout = (order) => {
     dispatch(checkoutBooks(order))
-    handleClose()
     history.push("/checkout");
   }
 
@@ -117,7 +116,7 @@ const Cart = () => {
           </div>
         </>
       )}
-      <CheckoutModal show={modalShow} onClick={() => {{handleClose()}; {checkout(cart)}}}/>
+      <CheckoutModal show={modalShow} onHide={() => {handleClose()}} onCheckout={() => {checkout(cart)}}/>
     </>
   );
 }

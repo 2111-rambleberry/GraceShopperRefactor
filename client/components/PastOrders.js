@@ -34,7 +34,7 @@ const PastOrders = () => {
             <Table className="cart-table">
               <thead>
                 <tr>
-                  <th>Order</th>
+                  <th>Books</th>
                   <th>Price</th>
                 </tr>
               </thead>
@@ -42,13 +42,16 @@ const PastOrders = () => {
                 {orders.map((order) => (
                   <tr key={order.id}>
                     <td>
-                    {order.books.map((book) => (
-                      <div key={book.id}>
-                        <Image height = "150px" src={book.coverimg} className = "cartBook"/>
-                        <h4>{book.title}</h4>
-                        <p>{book.author}</p>
-                      </div>
-                    ))}
+                    <div>
+                      <h2>Order Date: {order.createdAt.slice(0, 10)}</h2>
+                    </div>
+                    <div className="book-orders">
+                      {order.books.map((book) => (
+                        <div key={book.id}>
+                          <Image height = "150px" src={book.coverimg} className = "cartBook"/>
+                        </div>
+                      ))}
+                    </div>
                     </td>
                     <td>{order.checkout_price}</td>
                   </tr>
