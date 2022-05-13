@@ -110,6 +110,8 @@ export const checkoutBooks = (cart) => {
           },
         })
         dispatch(checkoutCart(order))
+      } else {
+        window.sessionStorage.clear()
       }
     } catch(err) {
       console.log('error checking out')
@@ -128,12 +130,6 @@ export const loadOrders = () => {
         });
         dispatch(getOrders(carts));
       } 
-      // else {
-      //   const cart = JSON.parse(window.sessionStorage.getItem(GUEST_CART))
-      //     ? JSON.parse(window.sessionStorage.getItem(GUEST_CART))
-      //     : {}
-      //   dispatch(getCart(cart));
-      // }
     } catch (err) {
       console.log(">>>>>>loadCartThunk not working");
     }
