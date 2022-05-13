@@ -23,6 +23,7 @@ const Cart = () => {
   const checkout = (order) => {
     dispatch(checkoutBooks(order))
     handleClose()
+    history.push("/checkout");
   }
 
   const getTotal = (cart) => {

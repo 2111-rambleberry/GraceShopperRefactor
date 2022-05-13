@@ -43,11 +43,11 @@ const PastOrders = () => {
                   <tr key={order.id}>
                     <td>
                     {order.books.map((book) => (
-                      <>
+                      <div key={book.id}>
                         <Image height = "150px" src={book.coverimg} className = "cartBook"/>
                         <h4>{book.title}</h4>
                         <p>{book.author}</p>
-                      </>
+                      </div>
                     ))}
                     </td>
                     <td>{order.checkout_price}</td>

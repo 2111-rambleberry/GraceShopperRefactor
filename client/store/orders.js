@@ -22,7 +22,6 @@ export const loadOrders = () => {
             authorization: token,
           },
         });
-        console.log("thunk", orders)
         dispatch(getOrders(orders));
       } 
     } catch (err) {
