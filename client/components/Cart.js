@@ -109,10 +109,6 @@ const Cart = () => {
               type="button"
               variant="primary"
               onClick={() => setModalShow(true)}
-              // onClick={() => console.log("checkout!")}
-              //  onClick={handleCheckout} >
-                  /*/console.log('onclick', cart.books)
-              cart.books.map((book) => dispatch(reduceBookQty(book, history)));*/
             >
               <h4>Checkout</h4>
             </Button>
