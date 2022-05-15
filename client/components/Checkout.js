@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { loadCart } from "../store/cart";
-import {Stack, Image} from 'react-bootstrap'
+import React from "react";
+import { Stack, Image } from 'react-bootstrap'
+
 //this thunk should include the active carts total price
 //import all thunks needed here
 

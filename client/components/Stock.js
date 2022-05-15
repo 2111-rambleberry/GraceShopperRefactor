@@ -19,7 +19,6 @@ const Stock = () => {
 
   return (
     <div>
-      <button type = "button" onClick = {() => {history.push(`/add-book`)}}>Add Book </button>
       <table>
         <tbody>
           <tr>

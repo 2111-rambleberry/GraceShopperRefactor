@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { loadCart, removeItemThunk, cartCheckoutStatus } from '../store/cart'
+import { loadCart, removeItemThunk, checkoutBooks} from '../store/cart'
 // import { reduceStockQty } from '../store/stockItem'
 import { reduceStockQty } from '../store/stock'
 import { reduceBookQty } from '../store/singleBook'
 //import { reduceBookQty } from '../store/books'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
+import CheckoutModal  from './CheckoutModal';
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -16,15 +17,16 @@ const Cart = () => {
   const cart = useSelector((state) => state.cartReducer)
   const books = useSelector((state) => state.booksReducer)
 
-  useEffect(() => {
-    dispatch(loadCart())
-  }, []);
+  const [modalShow, setModalShow] = useState(false);
 
-  function handleCheckout() {
+  const handleClose = () => setModalShow(false);
+
+  const checkout = (order) => {
+    dispatch(checkoutBooks(order))
     history.push("/checkout");
   }
 
-  function getTotal(cart){
+  const getTotal = (cart) => {
     if(cart.books == undefined) return;
     let books = cart.books;
     let total = 0;
@@ -40,7 +42,9 @@ const Cart = () => {
 // function reduceQty(cart){
 //   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
 // }
-    console.log('react cart', cart)
+    
+  console.log('react cart', cart)
+    
   return (
     <>
       {!cart.books || cart.books.length === 0 ? (
@@ -49,84 +53,79 @@ const Cart = () => {
             <center>
             <h2 className="bold darkPurple marginTop" >Nothing in Cart - Start Shopping!</h2>
             <Image src = "boy-reading.png" height = "400px"/>
-            {/* <GenreCarousel genre = "Fiction" /> */}
             </center>
            </Stack>
         </div>
         ) : (
         <>
-        <div>
-          <h2 className="cart">My Cart</h2>
-        </div>
-        <div>
-         <Table bordered className = "checkoutTable">
-           <thead>
-             <tr>
-               <th>Book</th>
-               <th></th>
-               <th>Price</th>
-               <th>Remove</th>
-             </tr>
-           </thead>
-           {/* <tbody>  */}
-             {cart.books.map((book) => (
-               <tr key={book.id}>
-                 <td><Image height = "150px" src={book.coverimg} className = "cartBook"/></td>
-                 <td>
-                   <Stack>
-                     <h3>{book.title}</h3>
-                     <p>{book.author}</p>
-                   </Stack></td>
-                 <td>${book.price
-                     ? (book.price / 100).toFixed(2)
-                     : (5.0).toFixed(2)}
-                 </td>
-        
-                 <td className="ms-auto">
-                   <Button
-                     size="md"
-                     type="button"
-                     variant="primary"
-                     onClick={() => {dispatch(removeItemThunk(book.id))}}
-                   >
-                     <RiDeleteBin3Line color = "black"/>
-                   </Button>
-                 </td>
-               </tr>
-             ))}
-              <tr className = "total">
-                 <td>Total</td>
-                 <td></td>
-                 <td><h1>${total}</h1></td>
-                 <td></td>
+          <div>
+            <h2 className="cart">My Cart</h2>
+          </div>
+          <div style={{marginLeft: "8%", marginRight: "8%"}}>
+            <Table className="cart-table">
+              <thead>
+                <tr>
+                  <th>Book</th>
+                  <th></th>
+                  <th>Price</th>
+                  <th>Remove</th>
                 </tr>
-             {/* </tbody>  */}
-         </Table>
-       </div>
-       <div>
-
-         <center>
-         <Button
-           size="md"
-           type="button"
-           variant="primary"
-          //  onClick={handleCheckout} >
-           onClick={() => {
-              {/*/console.log('onclick', cart.books)
-           cart.books.map((book) => dispatch(reduceBookQty(book, history)));*/}
-             dispatch(cartCheckoutStatus(cart))
-             handleCheckout(); 
-          }}
-         >
-           <h1>Checkout</h1>
-         </Button>
-         </center>
-
-       </div>
+              </thead>
+              <tbody className="cartTable"> 
+                {cart.books.map((book) => (
+                  <tr key={book.id}>
+                    <td><Image height = "150px" src={book.coverimg} className = "cartBook"/></td>
+                    <td>
+                      <Stack>
+                        <h3>{book.title}</h3>
+                        <p>{book.author}</p>
+                      </Stack>
+                    </td>
+                    <td>${book.price
+                        ? (book.price / 100).toFixed(2)
+                        : (5.0).toFixed(2)}
+                    </td>
+                    <td className="ms-auto">
+                      <Button
+                        size="md"
+                        type="button"
+                        variant="outline-primary"
+                        onClick={() => dispatch(removeItemThunk(book.id))}
+                      >
+                        <RiDeleteBin3Line/>
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+                </tbody> 
+            </Table>
+          </div>
+          <div style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "20px",
+                marginRight: "8%",
+                marginBottom: "8%"
+              }}>        
+            <div>
+              <h2>Total: ${total}</h2>
+            </div>
+            <div> 
+            <Button
+              size="md"
+              type="button"
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            >
+              <h4>Checkout</h4>
+            </Button>
+            </div>    
+          </div>
         </>
       )}
+      <CheckoutModal show={modalShow} onHide={() => {handleClose()}} onCheckout={() => {checkout(cart)}}/>
     </>
   );
 }
 
-export default Cart;
+export default Cart;  

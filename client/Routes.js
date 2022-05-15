@@ -3,19 +3,19 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 //import UserDataForm from "./components/AddressInfo";
-import UserDataForm from "./components/UserDataForm";
+// import UserDataForm from "./components/UserDataForm";
 import SingleBook from "./components/SingleBook";
 import Cart from "./components/Cart";
 import Stock from "./components/Stock";
 import StockItem from "./components/StockItem";
 import FormStockItem from "./components/FormStockItem";
+import PastOrders from "./components/PastOrders";
 import Home from "./components/Home";
 import { me } from "./store";
 import AllUsers from "./components/AllUsers";
 import Checkout from "./components/Checkout";
 import AddBook from "./components/AddBook";
 import GenrePage from './components/GenrePage'
-import LoginModal from "./components/LoginModal";
 
 //Note theres is a slight switch if the user is logged in
 class Routes extends Component {
@@ -35,7 +35,8 @@ class Routes extends Component {
             <Route path="/cart" component={Cart} />
             {/* <Route path="/cart/:username" component={UserCart} /> */}
             <Route exact path="/books/:bookId" component={SingleBook} />
-            <Route path="/edit" component={UserDataForm} />
+            <Route exact path="/profile" component={PastOrders} />
+            {/* <Route exact path="/profile/edit" component={UserDataForm} /> */}
             <Route exact path="/stock" component={Stock} />
             <Route exact path="/stock/:stockId" component={StockItem} />
             <Route path="/stock/edit/:stockId" component={FormStockItem} />

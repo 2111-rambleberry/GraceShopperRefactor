@@ -6,6 +6,7 @@ import singleUserReducer from "./singleUser"
 import booksReducer from "./books";
 import stockReducer from "./stock";
 import stockItemReducer from "./stockItem";
+import ordersReducer from "./orders";
 import cartReducer from "./cart"
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   stockReducer,
   stockItemReducer,
   cartReducer,
+  ordersReducer,
   genreReducer
 });
 const middleware = composeWithDevTools(

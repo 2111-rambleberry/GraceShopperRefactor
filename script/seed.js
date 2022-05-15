@@ -95,18 +95,10 @@ async function seed() {
   ]);
 
   //creating Carts
-
-  //carts associated with users
+  //test carts
   const cart1 = await Cart.create();
   const cart2 = await Cart.create();
   const cart3 = await Cart.create();
-  const cart4 = await Cart.create();
-
-  //guest carts
-  const cart5 = await Cart.create();
-  const cart6 = await Cart.create();
-  const cart7 = await Cart.create();
-  const cart8 = await Cart.create();
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
