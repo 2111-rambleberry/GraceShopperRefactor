@@ -23,31 +23,29 @@ export default function Footer() {
       </Offcanvas.Header>
 
       <Offcanvas.Body>
-        <div className="China">
-          <Offcanvas.Title>China Hoffman</Offcanvas.Title>
-          <p><a href="https://www.linkedin.com/in/montensia/" target="_blank">LinkedIn</a> | <a href="https://github.com/cph2134" target="_blank">GitHub</a></p>
-        </div>
+      <div className="China">
+           <Offcanvas.Title>China Hoffman</Offcanvas.Title>
+           <p><a href="https://www.linkedin.com/in/chinahoffman/" target="_blank">LinkedIn</a> | <a href="https://github.com/cph2134" target="_blank">GitHub</a></p>
+         </div>
 
-        <div className="Keranie">
-        <Offcanvas.Title>Keranie</Offcanvas.Title>
-          <p><a href="https://www.linkedin.com/in/chua-kimberly/" target="_blank">LinkedIn</a> | <a href="https://github.com/kez-theo" target="_blank">GitHub</a></p>
-        </div>
+         <div className="Keranie Theodosiou">
+         <Offcanvas.Title>Keranie Theodosiou</Offcanvas.Title>
+           <p><a href="https://www.linkedin.com/in/ktheodosiou/" target="_blank">LinkedIn</a> | <a href="https://github.com/kez-theo" target="_blank">GitHub</a></p>
+         </div> 
 
-        <div className="Gal">
-        <Offcanvas.Title>Gal</Offcanvas.Title>
-          <p><a href="https://www.linkedin.com/in/gal-l-gir/" target="_blank">LinkedIn</a> | <a href="https://github.com/Galilior" target="_blank">GitHub</a></p>
-        </div>
-
-        <div className="Amanda">
-        <Offcanvas.Title>Amanda Henneberry</Offcanvas.Title>
-          <p><a href="https://www.linkedin.com/in/sandra-magnusdottir/" target="_blank">LinkedIn</a> | <a href="https://github.com/amandahenneberry" target="_blank">GitHub</a></p>
-        </div>
+         <div className="Gal">
+         <Offcanvas.Title>Gal Gir</Offcanvas.Title>
+           <p><a href="https://www.linkedin.com/in/gal-l-gir/" target="_blank">LinkedIn</a> | <a href="https://github.com/Galilior" target="_blank">GitHub</a></p>
+         </div>
+ 
+         <div className="Amanda">
+         <Offcanvas.Title>Amanda Henneberry</Offcanvas.Title>
+           <p><a href="https://www.linkedin.com/in/a-henneberry/" target="_blank">LinkedIn</a> | <a href="https://github.com/amandahenneberry" target="_blank">GitHub</a></p>         </div> 
 
         </Offcanvas.Body>
 
       </Offcanvas>
     </footer>
-
     
   );
 }
