@@ -1,7 +1,3 @@
-///This will be as dynamic as possible
-
-//This will get a genre input, then based off the genre will go to 
-//-->Thunk-->API-->Data-->Component
 import React, { useEffect, useState } from "react";
 import { Carousel, CarouselItem, Row} from "react-bootstrap";
 import axios from "axios";

@@ -11,11 +11,6 @@ const Cart = db.define("cart", {
       min: 0,
     },
   },
-  //   cart_contents:{
-  //     // figurre out an array within array
-  //     type: Sequelize.ARRAY(Sequelize.ARRAY)
-  //  },
-  //ordering:
   order_name: {
     type: Sequelize.STRING,
   },
@@ -40,30 +35,11 @@ const Cart = db.define("cart", {
       len: [4],
     },
   },
-  // payment_CreditCardCCV: {
-  //   type: DataTypes.STRING,
-  //   allowNull: false,
-  //   validate: {
-  //     isInt: true,
-  //     len: [3]
-  //   },
-  // },
-  // payment_CreditCardEXP: {
-  //   type: DataTypes.STRING,
-  //   allowNull: false,
-  //   validate: {
-  //     isDate: true
-  //   },
-  // },
-  // sales_tax_at_checkout: Sequelize.INTEGER,
-  // shipping_method: Sequelize.STRING,
-  // shipping_price: Sequelize.INTEGER,
   billingAddress: Sequelize.STRING,
   shippingAddress: Sequelize.STRING,
 });
 
 Cart.prototype.changeStatus = async(status) => {
-  console.log('model method', this)
   this.order_status = status;
 }
 

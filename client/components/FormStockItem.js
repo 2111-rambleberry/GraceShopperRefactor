@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { fetchStockItem } from "../store/stockItem";
 import { updateStock } from "../store/stock";
-
+import { Form, Button, Stack, Card } from 'react-bootstrap'
 
 export class FormStockItem extends React.Component {
   constructor(props) {
@@ -16,28 +16,9 @@ export class FormStockItem extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.stockItem.stockId !== this.props.stockItem.stockId) {
-  //     this.setState({
-  //       title: this.props.stockItem.title || '',
-  //       price: this.props.stockItem.price || ''
-  //     });
-  //   }
-  // }
-
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchStockItem(this.props.match.params.stockId);
-    console.log(this.props.stockItem)
-    // this.setState({
-    //   title: this.props.stockItem.title || '',
-    //   price: this.props.stockItem.price || ''
-    // });
-  }
-
-  // componentWillUnmount() {
-  //   this.props.clearStockItem();
-  // }
+}
 
   handleChange(evt) {
     this.setState({
@@ -54,28 +35,37 @@ export class FormStockItem extends React.Component {
     const { title, price } = this.state
     
     const { handleSubmit, handleChange } = this;
-    console.log('>>>>PROPS', this.props)
-    console.log('>>>>STATE', this.state)
+
     return (
       <div>
-        <h2>Edit a Book</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Edit Book Title</label>
-          <input type="text" name="title" onChange={handleChange} value={title} />
+        <center>
+          <Card style={{ width: "40%", padding:"2%"}} className = "loginCard shadow-lg">
+          <Card.Body> 
+            <center>
+              <Card.Title> <h2>Edit a Book</h2> </Card.Title>
+              <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" >
+                <Form.Label htmlFor="title">Edit Book Title</Form.Label>
+                <Form.Control type="text" name="title" onChange={handleChange} value={title} />
+              </Form.Group>
 
-          <label htmlFor="price">Edit Price</label>
-          <input type="text" name="price" onChange={handleChange} value={price} />
+              <Form.Group className="mb-3" >
+                <Form.Label htmlFor="price">Edit Price</Form.Label>
+                <Form.Control type="text" name="price" onChange={handleChange} value={price} />
+              </Form.Group>
 
-          <button type='submit'>Update Book</button>
-        </form>
+              <div>
+                <Button type='submit'>Update Book</Button>
+              </div>
+              </Form>
+          </center>
+        </Card.Body>
+        </Card>
+        </center>
       </div>
     );
   }
 }
-
-// const mapStateToProps = ({ stockItemReducer }) => ({
-//   stockItemReducer
-// })
 
 const mapDispatch = (dispatch, { history}) => ({
   fetchStockItem: (id) => dispatch(fetchStockItem(id)),

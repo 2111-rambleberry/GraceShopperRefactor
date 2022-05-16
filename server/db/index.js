@@ -6,8 +6,8 @@ const Sequelize = require("sequelize");
 const User = require("./models/User");
 const Cart = require("./models/Cart");
 const Book = require("./models/Book");
-//associations could go here!
 
+//associations could go here!
 //explicitly defining the join table allows me to leave out the timestamp columns
 const Book_Cart = db.define("Book_Carts", {}, { timestamps: false });
 User.hasMany(Cart);

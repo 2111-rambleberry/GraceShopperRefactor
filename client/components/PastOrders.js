@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { loadOrders } from '../store/orders'
-import { RiDeleteBin3Line } from "react-icons/ri";
-import {Table, Button, Stack, Image} from 'react-bootstrap'
+import {Table, Stack, Image} from 'react-bootstrap'
 
 const PastOrders = () => {
 
@@ -35,7 +34,7 @@ const PastOrders = () => {
               <thead>
                 <tr>
                   <th>Books</th>
-                  <th>Price</th>
+                  {/* <th>Price</th> */}
                 </tr>
               </thead>
               <tbody className="cartTable"> 
@@ -53,7 +52,7 @@ const PastOrders = () => {
                       ))}
                     </div>
                     </td>
-                    <td>{order.checkout_price}</td>
+                    {/* <td>{order.checkout_price}</td> */}
                   </tr>
                 ))}
                 </tbody> 

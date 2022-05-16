@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { loadCart, removeItemThunk, checkoutBooks} from '../store/cart'
-// import { reduceStockQty } from '../store/stockItem'
-import { reduceStockQty } from '../store/stock'
-import { reduceBookQty } from '../store/singleBook'
-//import { reduceBookQty } from '../store/books'
+import { removeItemThunk, checkoutBooks} from '../store/cart'
 import { RiDeleteBin3Line } from "react-icons/ri";
 import {Table, Button, Stack, Image} from 'react-bootstrap'
 import CheckoutModal  from './CheckoutModal';
@@ -15,8 +11,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cart = useSelector((state) => state.cartReducer)
-  const books = useSelector((state) => state.booksReducer)
-
   const [modalShow, setModalShow] = useState(false);
 
   const handleClose = () => setModalShow(false);
@@ -37,13 +31,7 @@ const Cart = () => {
     }
     return (total/100).toFixed(2);
   }
-  const total = getTotal(cart);
-
-// function reduceQty(cart){
-//   cart.books.map((book) => reduceStockQty(book.id, book.quantity))
-// }
-    
-  console.log('react cart', cart)
+  const total = getTotal(cart);  
     
   return (
     <>

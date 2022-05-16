@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleBook } from "../store/singleBook";
 import { addItemThunk } from "../store/cart";
-import { Button, Stack, Container, Row, Col, Card, Badge } from "react-bootstrap";
+import { Button, Stack, Container, Row, Col} from "react-bootstrap";
 import GenreCarousel from "./Carousel";
 
 const SingleBook = () => {
@@ -15,14 +15,9 @@ const SingleBook = () => {
     dispatch(fetchSingleBook(bookId));
   }, []);
 
-  const genreIndex = Math.floor(Math.random() * 7)
-
-  // console.log(book.genres.length || []) 
-  // console.log(Object.keys(book.genres))
-
   return (
     <div className = "singleBook">
-      {!book ? (
+      {!book.quantity ? (
         <p> Loading... </p>
       ) : (
         <div>
@@ -46,7 +41,6 @@ const SingleBook = () => {
               />
               </div>
               }
-              
               </Col>
 
               <Col sm={8}>
@@ -94,5 +88,4 @@ const SingleBook = () => {
   );
 };
 
-//book has a bought property that once it is bought it is true. (keep in mind for button)
 export default SingleBook;

@@ -54,14 +54,12 @@ const GenrePage = () => {
                           book.author
                           }
                         </Card.Text>
-                        {/* <div  style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}> */}
                         <Card.Text>                       
                          ${book.price
                           ? (book.price / 100).toFixed(2)
                           : (5.0).toFixed(2)}
                         </Card.Text>
 
-                      {/* </div> */}
                       </Card.Body>
                       <Card.Footer style ={{color:"white", border: "none", backgroundColor: "white"}}>
                           <Button

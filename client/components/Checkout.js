@@ -1,9 +1,6 @@
 import React from "react";
 import { Stack, Image } from 'react-bootstrap'
 
-//this thunk should include the active carts total price
-//import all thunks needed here
-
 const Checkout = () => {
   return (
     <div>

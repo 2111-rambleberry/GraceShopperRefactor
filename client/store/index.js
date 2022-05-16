@@ -14,7 +14,6 @@ import usersReducer from "./users";
 import genreReducer from "./genre"
 
 //add reducers here! Don't forget to import!
-
 const reducer = combineReducers({
   auth,
   booksReducer,

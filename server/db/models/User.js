@@ -32,16 +32,6 @@ const User = db.define("user", {
       isEmail: true,
     },
   },
-  //CC, and address may all be confidential information and we may need to store it in some encrypted way.
-  //I was thinking maybe the whole address/credit card block can be stored in its own column/json/object called shopping
-  //info or something of the like
-
-  // creditCard:{
-  //   Sequelize.INTEGER/FLOAT,
-  //   validate:{
-  //     isCreditCard: true
-  //   }
-  // },
   streetAddress: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -53,18 +43,7 @@ const User = db.define("user", {
   zipcode: {
     type: Sequelize.STRING,
     allowNull: true,
-    // validate: {
-
-    // }
   },
-
-  // This needs to be included for the user routes, Maybe it needs to be randomly generated?
-  // id: {
-  //   type: Sequelize.INTEGER,
-  //   validate: {
-  //     isUUID: true
-  //   }
-  // },
   password: {
     type: Sequelize.STRING,
   },

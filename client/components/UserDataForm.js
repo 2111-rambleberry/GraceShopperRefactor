@@ -21,12 +21,6 @@ class UserDataForm extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-//For when you remove this data from the dom
-// componentWillUnmount() {
-    //if this is neccissary go back and create a clear user thunk
-//     this.props.clearUser();
-//   }
-
 //Lifecycle hook to prepopulate form with user data
 componentDidUpdate(prevProps){
   if (prevProps.user.id !== this.props.user.id) {
@@ -71,9 +65,6 @@ componentDidUpdate(prevProps){
     render(){
         const { handleSubmit, handleChange } = this;
         const { firstName, username, lastName, email, streetAddress, cityAddress, zipcode, phoneNumber} = this.state;
-
-        console.log('props', this.props)
-        console.log('state', this.state)
 
         return (
             <div style= "background-color: #e3d7ee">
@@ -121,9 +112,6 @@ componentDidUpdate(prevProps){
                 <Form.Control id ="phoneNumber" type="phone-number" placeholder= 'Phone Number' onChange = {handleChange} value = {phoneNumber}/>
               </Form.Group>
 
-                
-             
-              {/* {error && error.response && <div> {error.response.data} </div>} */}
             </Form>
              <Button  className="col-md-5 mx-auto" type="submit" variant="primary">Submit</Button>
             </Stack> 
@@ -132,15 +120,6 @@ componentDidUpdate(prevProps){
         )
     }
   }
-
-//Would I include this if I switch the signup page to be a seprate component
-// const mapSignup = state => {
-//     return {
-//       name: 'signup',
-//       displayName: 'Sign Up',
-//       error: state.auth.error
-//     }
-//   }
 
 const mapStateToProps = (state) => ({
     user: state.singleUserReducer

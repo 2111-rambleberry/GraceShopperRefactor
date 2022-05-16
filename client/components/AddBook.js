@@ -2,6 +2,7 @@ import React from 'react';
 import { setStock } from '../store/stock'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Form, Button, Stack, Card } from 'react-bootstrap'
 
 class AddBook extends React.Component{
     constructor(){
@@ -11,8 +12,6 @@ class AddBook extends React.Component{
             series: '',
             author: '',
             description: '',
-            // isbn: 0,
-            //I set a default value in the sequelize model, null may not work
             coverimg: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg'
         }        
         this.handleChange = this.handleChange.bind(this);
@@ -20,8 +19,6 @@ class AddBook extends React.Component{
     }
 
     handleChange(evt) {
-        console.log(this.state)
-        console.log(evt)
         this.setState({
           [evt.target.id]: evt.target.value
         });
@@ -35,7 +32,6 @@ class AddBook extends React.Component{
             series: '',
             author: '',
             description: '',
-            //isbn: 0,
             coverimg: 'https://edit.org/images/cat/book-covers-big-2019101610.jpg'})
     }
 
@@ -45,31 +41,78 @@ class AddBook extends React.Component{
 
 
         return(
-            <div id= 'add-book-form'>
-                <form id = 'add-book' onSubmit = {handleSubmit}>
-                    <h3>Add Book</h3>
-                    <label htmlFor = "title">Title</label>
-                    <input type = "text" id = "title" onChange = {handleChange} value = {title}/>
+            <div id="add-book-form">
+            <center>
+              <Card
+                style={{ width: "40%", padding: "2%" }}
+                className="loginCard shadow-lg"
+              >
+                <Card.Body>
+                  <center>
+                    <Form id="add-book" onSubmit={handleSubmit}>
+                      <Card.Title>
+                        <h3>Add Book</h3>
+                      </Card.Title>
+    
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="title">Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="title"
+                          onChange={handleChange}
+                          value={title}
+                        />
+                      </Form.Group>
+    
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="series">Series</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="series"
+                          onChange={handleChange}
+                          value={series}
+                        />
+                      </Form.Group>
+    
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="author">Author</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="author"
+                          onChange={handleChange}
+                          value={author}
+                        />
+                      </Form.Group>
+    
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="description">Description</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="description"
+                          onChange={handleChange}
+                          value={description}
+                        />
+                      </Form.Group>
+    
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="image">Cover Image</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="coverimg"
+                          onChange={handleChange}
+                          value={coverimg}
+                        />
+                      </Form.Group>
+    
+                      <Button type="submit">Submit</Button>
 
-                    <label htmlFor = "series">Series</label>
-                    <input type = "text" id = "series" onChange = {handleChange} value = {series}/>
-
-                    <label htmlFor = "author">Author</label>
-                    <input type = "text" id = "author" onChange = {handleChange} value = {author}/>
-
-                    {/* <label htmlFor = "isbn">ISBN</label>
-                    <input type = "number" id = "isbn" onChange = {handleChange} value = {isbn}/> */}
-
-                    <label htmlFor = "description">Description</label>
-                    <input type = "text" id = "description" onChange = {handleChange} value = {description}/>
-
-                    <label htmlFor = "image">Cover Image</label>
-                    <input type = "text" id = "coverimg" onChange = {handleChange} value = {coverimg}/>
-
-                    <button type = "submit">Submit</button>
-                    <Link to = "/stock">Cancel</Link>
-                </form>
-            </div>
+                      <Link to="/stock">Cancel</Link>
+                    </Form>
+                  </center>
+                </Card.Body>
+              </Card>
+            </center>
+          </div>
         )
     }
     

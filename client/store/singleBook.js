@@ -32,18 +32,8 @@ export const fetchSingleBook = (bookId) => {
 export const reduceBookQty = (book, history) => {
     return async (dispatch) => {
       try {
-        // const token = window.localStorage.getItem(TOKEN)
-        // if(token){
             const { data } = await axios.put(`/api/books/${book.id}`, book)
-            // , {
-            //   headers: {
-            //     authorization: token,
-            //   },
-            // });
-            //console.log("redux stuff", data);
-            dispatch(checkoutSingleBook(data));
-        //)}    
-         //history.push(`/home`)  
+            dispatch(checkoutSingleBook(data)); 
       } catch (err) {
         console.log(err);
       }
