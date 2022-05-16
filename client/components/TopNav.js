@@ -35,14 +35,10 @@ const TopNav = () => {
 
   return (
     <div>
-      {/* <Stack direction="horizontal" gap={2}> */}
-      <Navbar collapseOnSelect sticky="top" expand="lg" bg="light">
-        {/* <Container> */}          
+      <Navbar collapseOnSelect sticky="top" expand="lg" bg="light">     
         <Navbar.Brand href="/" className="logo">
           <Stack direction="horizontal" gap={1} >
             <Image  src="../logo-updated.png" height = '100px'/>       
-            {/* <img src = 'lampLogo.png' height = '70px' width = '70px'/>  */}
-            {/* <img src = 'shelfLogo.png' height = '100px' width = '100px'/>  */}
             <h1 className="logo">BookShopper</h1>
           </Stack>
         </Navbar.Brand>
@@ -66,7 +62,6 @@ const TopNav = () => {
             <>  
               <Nav.Link disabled>Hello {auth.username}!</Nav.Link>         
               <Nav.Link href="/profile">Profile</Nav.Link>
-              {/* <Nav.Link href="/profile/edit">Profile</Nav.Link> */}
               {/* The navbar will show these links after you log in */}
               <Nav.Link href="#" onClick={handleClick}>
                 Logout
@@ -100,9 +95,7 @@ const TopNav = () => {
             </Badge>
           </Nav>
         </Navbar.Collapse>
-        {/* </Container> */}
       </Navbar>
-      {/* </Stack> */}
     </div>
   );
 }

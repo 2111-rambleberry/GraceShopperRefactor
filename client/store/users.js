@@ -12,7 +12,6 @@ export const setUsers = (users) => ({
 });
 
 //THUNK CREATORS
-
 export const fetchUsers = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);

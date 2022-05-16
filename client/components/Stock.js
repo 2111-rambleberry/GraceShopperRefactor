@@ -1,4 +1,3 @@
-//note: look at todos and todo in PairExercise.TodoList.V2 for a good example of how to pass an id prop to each single book
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";

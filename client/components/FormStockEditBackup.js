@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { fetchStockItem, updateStock } from "../store/stockItem";
-
+import { Form, Button, Stack } from 'react-bootstrap'
 
 class FormStockItem extends React.Component {
   constructor(props) {
@@ -71,8 +71,11 @@ class FormStockItem extends React.Component {
 
     return (
       <div>
+
+        <Stack gap={3} className = "col-md-5 mx-auto">
         <h2>Edit a Book</h2>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+          
           <label htmlFor="title">Edit Book Title</label>
           <input name="title" onChange={handleChange} value={title} />
 
@@ -110,7 +113,8 @@ class FormStockItem extends React.Component {
           <input name="price" onChange={handleChange} value={price} />
 
           <button type='submit'>Update Book</button>
-        </form>
+        </Form>
+        </Stack>
       </div>
     );
   }
